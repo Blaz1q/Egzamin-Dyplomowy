@@ -28,12 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            JSON_label = new TextBox();
+            SuspendLayout();
+            // 
+            // JSON_label
+            // 
+            JSON_label.Location = new Point(8, 3);
+            JSON_label.Multiline = true;
+            JSON_label.Name = "JSON_label";
+            JSON_label.Size = new Size(780, 422);
+            JSON_label.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(JSON_label);
+            Name = "Form1";
+            Text = "Form1";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox JSON_label;
     }
 }
