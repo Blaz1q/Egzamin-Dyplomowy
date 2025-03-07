@@ -1,5 +1,5 @@
 
-namespace TwojProjekt
+namespace KlasWykl
 {
     public class Osoba
     {
