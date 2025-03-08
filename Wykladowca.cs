@@ -32,7 +32,7 @@ namespace KlasyWykl
             return tytul;
         }
 
-        public void PrzedstawSie()
+        public void GetDaneWykl()
         {
             Console.WriteLine($"{tytul} {GetImieNazwisko()}");
             Console.WriteLine($"Wydział: {wydzial}");
