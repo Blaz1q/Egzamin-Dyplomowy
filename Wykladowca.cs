@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace KlasyWykl
+namespace egzamin_dyplomowy
 {
     public class Wykladowca : Osoba
     {
