@@ -1,5 +1,5 @@
 
-namespace KlasWykl
+namespace egzamin_dyplomowy
 {
     public class Osoba
     {
