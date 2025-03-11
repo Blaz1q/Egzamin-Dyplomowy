@@ -7,9 +7,9 @@ namespace egzamin_dyplomowy
     {
         private string wydzial;
         private List<string> przedmioty;
-        private string tytul;
+        private List<string> tytul;
 
-        public Wykladowca(string imieNazwisko, string wydzial, List<string> przedmioty, string tytul) 
+        public Wykladowca(string imieNazwisko, string wydzial, List<string> przedmioty, List<string> tytul) 
             : base(imieNazwisko)
         {
             this.wydzial = wydzial;
@@ -27,14 +27,14 @@ namespace egzamin_dyplomowy
             return przedmioty;
         }
 
-        public string GetTytul()
+        public List<string> GetTytul()
         {
             return tytul;
         }
 
         public void GetDaneWykl()
         {
-            Console.WriteLine($"{tytul} {GetImieNazwisko()}");
+            Console.WriteLine($"{string.Join(" ", tytul)} {GetImieNazwisko()}");
             Console.WriteLine($"Wydział: {wydzial}");
             Console.WriteLine("Prowadzone przedmioty:");
 
