@@ -1,8 +1,9 @@
 using System;
-
-class Program
+namespace egzamin_dyplomowy
 {
-    static void Main()
+class Kalkulator
+{
+    private static void Main()
     {
         double ocenaStudia, ocenaPracaPromotora, ocenaPracaDyplomowa, ocenaZaPrezentacje, ocena1, ocena2, ocena3;
 
@@ -50,12 +51,12 @@ class Program
         Console.ReadKey();
     }
 
-    static double ObliczSredniaWazona(double ocenaStudia, double sredniaPracaDyplomowa, double sredniaEgzamin)
+    public static double ObliczSredniaWazona(double ocenaStudia, double sredniaPracaDyplomowa, double sredniaEgzamin)
     {
         return 0.5 * ocenaStudia + 0.25 * sredniaPracaDyplomowa + 0.25 * sredniaEgzamin;
     }
 
-    static string PrzypiszOcene(double sredniaWazona)
+    public static string PrzypiszOcene(double sredniaWazona)
     {
         if (sredniaWazona >= 4.70)
             return "celująca (5,5)";
@@ -72,12 +73,13 @@ class Program
         else
             return "niezaliczone (2,0)";
     }
-    static double obliczSredniaPracyDyplomowej(double ocenaPracaPromotora, double ocenaPracaDyplomowa)
+    public static double obliczSredniaPracyDyplomowej(double ocenaPracaPromotora, double ocenaPracaDyplomowa)
     {
         return (ocenaPracaPromotora + ocenaPracaDyplomowa) / 2;
     }
-    static double obliczSredniaEgzaminu(double ocenaZaPrezentacje, double ocena1, double ocena2, double ocena3)
+    public static double obliczSredniaEgzaminu(double ocenaZaPrezentacje, double ocena1, double ocena2, double ocena3)
     {
         return (ocenaZaPrezentacje + ocena1 + ocena2 + ocena3) / 4;
     }
+}
 }
