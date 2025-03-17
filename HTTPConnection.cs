@@ -40,22 +40,24 @@ namespace egzamin_dyplomowy
             //Debug.WriteLine("[" + string.Join(",", jsonObjects).Trim() + "]");
             return "[" + string.Join(",", jsonObjects).Trim() + "]"; // Return as a valid JSON array
         }
-
-        public async Task InsertDataAsync(string name, string value)
+        public async Task<string> LogIn(string login, string password) {
+            var values = new Dictionary<string, string> {
+                {"USERLOGIN",login },
+                {"USERPASSWORD",password }
+            };
+            return await this.InsertDataAsync(values);
+        }
+        public async Task<string> InsertDataAsync(Dictionary<string,string> values)
         {
             using (HttpClient client = new HttpClient())
             {
-                var values = new Dictionary<string, string>
-                {
-                    { "name", name },
-                    { "value", value }
-                };
-
                 var content = new FormUrlEncodedContent(values);
 
                 HttpResponseMessage response = await client.PostAsync(this.url, content);
                 string result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(result);
+                Debug.WriteLine(result);
+                return result;
+                //MessageBox.Show(result);
             }
         }
     }

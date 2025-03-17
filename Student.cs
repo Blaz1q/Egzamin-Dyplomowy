@@ -3,14 +3,13 @@ namespace egzamin_dyplomowy
     public class Student : Osoba
     {
         private int srednia;
-        public Student(string imie_nazwisko, int srednia)
-        {
-            this.imie_nazwisko = imie_nazwisko;
+        public Student(string imieNazwisko, int srednia) : base(imieNazwisko)
+        { 
             this.srednia = srednia;
         }
 
-        public void getImieNazwisko(){return this.imie_nazwisko;}
+        public string getImieNazwisko(){return this.imie_nazwisko;}
 
-        public void getSrednia() {return this.srednia;}
+        public int getSrednia() {return this.srednia;}
     }
 }

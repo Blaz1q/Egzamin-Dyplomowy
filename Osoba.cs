@@ -3,7 +3,7 @@ namespace egzamin_dyplomowy
 {
     public class Osoba
     {
-        private string imie_nazwisko;
+        protected string imie_nazwisko;
 
         public Osoba(string imieNazwisko)
         {
