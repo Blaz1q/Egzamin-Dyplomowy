@@ -1,4 +1,5 @@
-using System;
+
+namespace egzamin_dyplomowy;
 
 public class Pytanie
 {
@@ -25,7 +26,7 @@ public class Pytanie
         tresc = nowaTresc;
     }
 
-    public override string ToString()
+    public String Wypisz()
     {
         return $"ID: {Id}, Treść: {tresc}, Kierunek: {Kierunek}, Wykładowca: {Wykladowca}";
     }
