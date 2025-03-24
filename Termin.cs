@@ -1,5 +1,5 @@
-using System;
 
+namespace egzamin_dyplomowy;
 public class Egzamin
 {
     public string Nazwa { get; set; }
@@ -11,7 +11,7 @@ public class Termin
     public DateTime Data { get; set; } 
     public TimeSpan Godzina { get; set; } 
     public string Status { get; set; } 
-    public Egzamin Egzamin { get; set; }
+    public Egzamin egzamin { get; set; }
 
     public Termin() { }
 
