@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             JSON_label = new TextBox();
-            label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            button1 = new Button();
+            waliduj_token = new Button();
+            panel1 = new Panel();
+            Zmien_token = new Button();
             SuspendLayout();
             // 
             // JSON_label
@@ -44,63 +42,44 @@
             JSON_label.Size = new Size(780, 101);
             JSON_label.TabIndex = 0;
             // 
-            // label1
+            // waliduj_token
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(33, 32);
-            label1.Name = "label1";
-            label1.Size = new Size(46, 20);
-            label1.TabIndex = 1;
-            label1.Text = "Login";
+            waliduj_token.Location = new Point(672, 279);
+            waliduj_token.Name = "waliduj_token";
+            waliduj_token.Size = new Size(116, 29);
+            waliduj_token.TabIndex = 6;
+            waliduj_token.Text = "Waliduj token";
+            waliduj_token.UseVisualStyleBackColor = true;
+            waliduj_token.Click += waliduj_token_Click;
             // 
-            // textBox1
+            // panel1
             // 
-            textBox1.Location = new Point(33, 55);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 2;
+            panel1.Location = new Point(8, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(467, 296);
+            panel1.TabIndex = 7;
             // 
-            // textBox2
+            // Zmien_token
             // 
-            textBox2.Location = new Point(33, 142);
-            textBox2.Name = "textBox2";
-            textBox2.ShortcutsEnabled = false;
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 3;
-            textBox2.UseSystemPasswordChar = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(33, 119);
-            label2.Name = "label2";
-            label2.Size = new Size(47, 20);
-            label2.TabIndex = 4;
-            label2.Text = "Hasło";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(33, 196);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 5;
-            button1.Text = "Zaloguj";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            Zmien_token.Location = new Point(543, 279);
+            Zmien_token.Name = "Zmien_token";
+            Zmien_token.Size = new Size(102, 29);
+            Zmien_token.TabIndex = 8;
+            Zmien_token.Text = "Zmien token";
+            Zmien_token.UseVisualStyleBackColor = true;
+            Zmien_token.Click += Zmien_token_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
-            Controls.Add(label2);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
+            Controls.Add(Zmien_token);
+            Controls.Add(panel1);
+            Controls.Add(waliduj_token);
             Controls.Add(JSON_label);
             Name = "Form1";
-            Text = "Egzamin Dyplomowy";
+            Text = "u";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -108,10 +87,8 @@
         #endregion
 
         private TextBox JSON_label;
-        private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Label label2;
-        private Button button1;
+        private Button waliduj_token;
+        private Panel panel1;
+        private Button Zmien_token;
     }
 }

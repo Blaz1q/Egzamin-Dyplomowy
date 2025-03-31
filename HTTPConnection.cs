@@ -47,6 +47,22 @@ namespace egzamin_dyplomowy
             };
             return await this.InsertDataAsync(values);
         }
+        public async Task<string> Register(string login, string password, string name, string surname) {
+            var values = new Dictionary<string, string> {
+                {"USERLOGIN",login },
+                {"USERPASSWORD",password },
+                {"USERNAME",name},
+                {"USERSURNAME",surname}
+            };
+            return await this.InsertDataAsync(values);
+        }
+        public async Task<string> SendToken(string token) {
+            var values = new Dictionary<string, string>
+            {
+                { "TOKEN",token}
+            };
+            return await this.InsertDataAsync(values);
+        }
         public async Task<string> InsertDataAsync(Dictionary<string,string> values)
         {
             using (HttpClient client = new HttpClient())
