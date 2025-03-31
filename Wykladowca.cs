@@ -5,96 +5,43 @@ namespace egzamin_dyplomowy
 {
     public class Wykladowca : Osoba
     {
-        public int Id { get; set; }
-        public string Status { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        
-        public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie + " " + nazwisko)
+        private string wydzial;
+        private List<string> przedmioty;
+        private List<string> tytul;
+
+        public Wykladowca(string imieNazwisko, string wydzial, List<string> przedmioty, List<string> tytul) 
+            : base(imieNazwisko)
         {
-            Id = id;
-            Imie = imie;
-            Nazwisko = nazwisko;
-            Status = status;
+            this.wydzial = wydzial;
+            this.przedmioty = przedmioty;
+            this.tytul = tytul;
         }
 
-//wypisz jednego wykładowce
-
-        public void Wypisz()
+        public string GetWydzial()
         {
-            Console.WriteLine($"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}");
-        }
-    }
-
-//zarządzanie
-
-    public class ZarzadzanieWykladowcami
-    {
-        private List<Wykladowca> wykladowcy = new List<Wykladowca>();
-//dodawanie
-        public void DodajWykladowce(int id, string imie, string nazwisko, string status)
-        {
-            wykladowcy.Add(new Wykladowca(id, imie, nazwisko, status));
-        }
-//usuwanie
-        public void UsunWykladowce(int index)
-        {
-            if (index >= 0 && index < wykladowcy.Count)
-                wykladowcy.RemoveAt(index);
-            else
-                Console.WriteLine("Błedny indeks");
-        }
-//edytowanie
-        public void EdytujStatus(int index, string nowyStatus)
-        {
-            if (index >= 0 && index < wykladowcy.Count)
-                wykladowcy[index].Status = nowyStatus;
-            else
-                Console.WriteLine("Błedny indeks");
+            return wydzial;
         }
 
-        public void EdytujWykladowce(int index, string noweImie, string noweNazwisko)
+        public List<string> GetPrzedmioty()
         {
-            if (index >= 0 && index < wykladowcy.Count)
+            return przedmioty;
+        }
+
+        public List<string> GetTytul()
+        {
+            return tytul;
+        }
+
+        public void GetDaneWykl()
+        {
+            Console.WriteLine($"{string.Join(" ", tytul)} {GetImieNazwisko()}");
+            Console.WriteLine($"Wydział: {wydzial}");
+            Console.WriteLine("Prowadzone przedmioty:");
+
+            foreach (var przedmiot in przedmioty)
             {
-                wykladowcy[index].Imie = noweImie;
-                wykladowcy[index].Nazwisko = noweNazwisko;
+                Console.WriteLine($"- {przedmiot}");
             }
-            else
-                Console.WriteLine("Błedny indeks");
-        }
-//wypisywanie całej listy
-        public void WypiszWszystkich()
-        {
-            foreach (var wykladowca in wykladowcy)
-            {
-                wykladowca.Wypisz();
-            }
-        }
-    }
-//testowanie
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
-            
-            zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");
-            zarzadzanie.DodajWykladowce(2, "Steve", "Jobs", "Recenzent");
-            
-            Console.WriteLine("lista po dodaniu:");
-            zarzadzanie.WypiszWszystkich();
-            
-            zarzadzanie.EdytujStatus(0, "Prodziekan");
-            zarzadzanie.EdytujWykladowce(1, "Melon", "Muzg");
-            
-            Console.WriteLine("Lista po edycji:");
-            zarzadzanie.WypiszWszystkich();
-            
-            zarzadzanie.UsunWykladowce(0);
-            
-            Console.WriteLine("Lista po usunięciu:");
-            zarzadzanie.WypiszWszystkich();
         }
     }
 }
