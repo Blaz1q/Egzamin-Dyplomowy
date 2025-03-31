@@ -29,7 +29,7 @@ namespace egzamin_dyplomowy
             string result = await conn.InsertDataAsync(values);
             ValueChanged?.Invoke(this, result);
         }
-        private async void zaloguj_Click(object sender, EventArgs e) {
+        private void zaloguj_Click(object sender, EventArgs e) {
             if (this.ParentForm is Form1 mainForm)
             {
                 logowanie log = new logowanie();
