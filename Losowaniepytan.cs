@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace egzamin_dyplomowy;
+namespace PytaniaBiblioteka;
 
 public class LosowaniePytan
 {
