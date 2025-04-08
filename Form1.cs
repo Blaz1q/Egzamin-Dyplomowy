@@ -53,5 +53,13 @@ namespace egzamin_dyplomowy
             token = JSON_label.Text;
 
         }
+
+        private void przejdz_do_aplikacji_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            main_panel main_Panel = new main_panel(this.token);
+            main_Panel.Show();
+            
+        }
     }
 }

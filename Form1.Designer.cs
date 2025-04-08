@@ -32,6 +32,7 @@
             waliduj_token = new Button();
             panel1 = new Panel();
             Zmien_token = new Button();
+            przejdz_do_aplikacji = new RoundedButton();
             SuspendLayout();
             // 
             // JSON_label
@@ -69,11 +70,34 @@
             Zmien_token.UseVisualStyleBackColor = true;
             Zmien_token.Click += Zmien_token_Click;
             // 
+            // przejdz_do_aplikacji
+            // 
+            przejdz_do_aplikacji.BackColor = Color.MediumSlateBlue;
+            przejdz_do_aplikacji.BackgroundColor = Color.MediumSlateBlue;
+            przejdz_do_aplikacji.BorderColor = Color.PaleVioletRed;
+            przejdz_do_aplikacji.BorderRadius = 10;
+            przejdz_do_aplikacji.BorderSize = 0;
+            przejdz_do_aplikacji.FlatAppearance.BorderSize = 0;
+            przejdz_do_aplikacji.FlatAppearance.MouseOverBackColor = Color.SlateBlue;
+            przejdz_do_aplikacji.FlatStyle = FlatStyle.Flat;
+            przejdz_do_aplikacji.ForeColor = Color.White;
+            przejdz_do_aplikacji.HoverColor = Color.Transparent;
+            przejdz_do_aplikacji.Location = new Point(543, 170);
+            przejdz_do_aplikacji.Name = "przejdz_do_aplikacji";
+            przejdz_do_aplikacji.Size = new Size(188, 33);
+            przejdz_do_aplikacji.TabIndex = 9;
+            przejdz_do_aplikacji.Text = "Przejdź do aplikacji";
+            przejdz_do_aplikacji.TextColor = Color.White;
+            przejdz_do_aplikacji.TooltipText = null;
+            przejdz_do_aplikacji.UseVisualStyleBackColor = false;
+            przejdz_do_aplikacji.Click += przejdz_do_aplikacji_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(przejdz_do_aplikacji);
             Controls.Add(Zmien_token);
             Controls.Add(panel1);
             Controls.Add(waliduj_token);
@@ -90,5 +114,6 @@
         private Button waliduj_token;
         private Panel panel1;
         private Button Zmien_token;
+        private RoundedButton przejdz_do_aplikacji;
     }
 }
