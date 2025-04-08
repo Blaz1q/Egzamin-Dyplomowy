@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PytaniaBiblioteka;
+namespace egzamin_dyplomowy;
 
 public class Pytanie
 {

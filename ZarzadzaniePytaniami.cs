@@ -1,4 +1,5 @@
-﻿public class ZarzadzaniePytaniami
+﻿namespace egzamin_dyplomowy;
+public class ZarzadzaniePytaniami
 {
     private static List<Pytanie> pytania = new List<Pytanie>();
     private static int nextId = 1;

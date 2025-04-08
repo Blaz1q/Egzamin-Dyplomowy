@@ -7,11 +7,23 @@
     <Compile Update="logowanie.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="main_panel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModernToolTip.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="rejestracja.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="aktywuj_konto.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="RejestracjaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="RoundedButton.cs">
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
 </Project>

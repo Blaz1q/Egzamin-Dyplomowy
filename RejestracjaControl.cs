@@ -6,13 +6,14 @@ namespace egzamin_dyplomowy
     public partial class RejestracjaControl : UserControl
     {
         private Walidacja walidacja = new Walidacja();
-
+        public event EventHandler<string> ValueChanged;
+        public event Action<UserControl> OnSwitchControl;
         public RejestracjaControl()
         {
             InitializeComponent();
         }
 
-        private void buttonreg_Click(object sender, EventArgs e)
+        private async void buttonreg_Click(object sender, EventArgs e)
         {
             if (!walidacja.Email(textrejestracja.Text) || !walidacja.Haslo(texthaslo.Text) || texthaslo.Text != textpowtorz.Text)
             {
@@ -22,6 +23,10 @@ namespace egzamin_dyplomowy
             else
             {
                 MessageBox.Show("Rejestracja zakończona sukcesem!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string url = "https://egzamin-dyplomowy.7m.pl/rejestracja.php";
+                HTTPConnection conn = new HTTPConnection(url);
+                string responce = await conn.Register(textrejestracja.Text, texthaslo.Text, "null", "null");
+                ValueChanged?.Invoke(this, responce);
             }
         }
         private void RejestracjaControl_Load(object sender, EventArgs e)
@@ -41,7 +46,13 @@ namespace egzamin_dyplomowy
 
         private void buttonexit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Tu bedzie można podpiąć cofnięcie sie w aplkiacji ewentualnie bedzie mozna tu walnąć cos na zasadzie: masz juz konto? zaloguj sie etc", "jak co to wywale", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (this.ParentForm is Form1 mainForm)
+            {
+                aktywuj_konto aktywuj = new aktywuj_konto();
+                aktywuj.ValueChanged += mainForm.getToken;
+                aktywuj.userlogin = textrejestracja.Text;
+                mainForm.ChangeUserControl(aktywuj);
+            }
         }
 
         private void buttonclear_Click(object sender, EventArgs e)
