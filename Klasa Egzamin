@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+
+namespace egzamin_dyplomowy
+{
+    public class Egzamin
+    {
+        public Student Student { get; set; }
+        public Wykladowca Promotor { get; set; }
+        public Wykladowca Recenzent { get; set; }
+        public Wykladowca Prodziekan { get; set; }
+        public List<string> Pytania { get; set; }
+
+        public Egzamin(Student student, Wykladowca promotor, Wykladowca recenzent, Wykladowca prodziekan, List<string> pytania)
+        {
+            Student = student;
+            Promotor = promotor;
+            Recenzent = recenzent;
+            Prodziekan = prodziekan;
+            Pytania = pytania;
+        }
+
+        public void WypiszEgzamin()
+        {
+            Console.WriteLine($"Student: {Student.getImieNazwisko()}, Średnia: {Student.getSrednia()}");
+            Console.WriteLine("Promotor:");
+            Promotor.Wypisz();
+            Console.WriteLine("Recenzent:");
+            Recenzent.Wypisz();
+            Console.WriteLine("Prodziekan:");
+            Prodziekan.Wypisz();
+            Console.WriteLine("Pytania egzaminacyjne:");
+            foreach (var pytanie in Pytania)
+            {
+                Console.WriteLine("- " + pytanie);
+            }
+        }
+    }
+}
