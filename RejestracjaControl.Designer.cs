@@ -75,7 +75,7 @@ namespace egzamin_dyplomowy
             label1.Font = new Font("Segoe UI", 15.75F);
             label1.Location = new Point(169, 415);
             label1.Name = "label1";
-            label1.Size = new Size(71, 30);
+            label1.Size = new Size(93, 37);
             label1.TabIndex = 19;
             label1.Text = "E-mail";
             label1.Click += label1_Click_1;
@@ -86,7 +86,7 @@ namespace egzamin_dyplomowy
             label2.Font = new Font("Segoe UI", 15.75F);
             label2.Location = new Point(169, 495);
             label2.Name = "label2";
-            label2.Size = new Size(66, 30);
+            label2.Size = new Size(84, 37);
             label2.TabIndex = 16;
             label2.Text = "Hasło";
             label2.Click += label2_Click;
@@ -97,7 +97,7 @@ namespace egzamin_dyplomowy
             label3.Font = new Font("Segoe UI", 15.75F);
             label3.Location = new Point(169, 575);
             label3.Name = "label3";
-            label3.Size = new Size(146, 30);
+            label3.Size = new Size(187, 37);
             label3.TabIndex = 15;
             label3.Text = "Powtórz Hasło";
             // 
@@ -112,8 +112,9 @@ namespace egzamin_dyplomowy
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(125, 264);
+            //pictureBox1.Image = Properties.Resources.my_account_login;
+            //pictureBox1.InitialImage = Properties.Resources.my_account_login;
+            pictureBox1.Location = new Point(20, 253);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(38, 30);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -299,7 +300,7 @@ namespace egzamin_dyplomowy
             // 
             textpowtorz.Location = new Point(316, 582);
             textpowtorz.Name = "textpowtorz";
-            textpowtorz.Size = new Size(281, 23);
+            textpowtorz.Size = new Size(281, 27);
             textpowtorz.TabIndex = 3;
             textpowtorz.UseSystemPasswordChar = true;
             // 
@@ -307,7 +308,7 @@ namespace egzamin_dyplomowy
             // 
             texthaslo.Location = new Point(316, 504);
             texthaslo.Name = "texthaslo";
-            texthaslo.Size = new Size(281, 23);
+            texthaslo.Size = new Size(281, 27);
             texthaslo.TabIndex = 4;
             texthaslo.UseSystemPasswordChar = true;
             // 
@@ -339,13 +340,14 @@ namespace egzamin_dyplomowy
             // 
             textrejestracja.Location = new Point(316, 422);
             textrejestracja.Name = "textrejestracja";
-            textrejestracja.Size = new Size(333, 23);
+            textrejestracja.Size = new Size(333, 27);
             textrejestracja.TabIndex = 8;
             // 
             // pictureBox4
             // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(284, 3);
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            //pictureBox4.Image = Properties.Resources.umg_zolty;
+            pictureBox4.Location = new Point(194, 6);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(184, 180);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -354,8 +356,8 @@ namespace egzamin_dyplomowy
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(125, 575);
+            //pictureBox3.Image = Properties.Resources.password_76;
+            pictureBox3.Location = new Point(20, 413);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(38, 30);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -364,8 +366,8 @@ namespace egzamin_dyplomowy
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(125, 495);
+            //pictureBox2.Image = Properties.Resources.password_76;
+            pictureBox2.Location = new Point(20, 333);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(38, 30);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -387,7 +389,7 @@ namespace egzamin_dyplomowy
             label5.Font = new Font("Segoe UI", 8.25F);
             label5.Location = new Point(125, 536);
             label5.Name = "label5";
-            label5.Size = new Size(306, 13);
+            label5.Size = new Size(364, 19);
             label5.TabIndex = 17;
             label5.Text = "Hasło musi zawierać 8 znaków, jedną dużą literę oraz cyfrę";
             label5.Click += label1_Click_1;
@@ -395,10 +397,10 @@ namespace egzamin_dyplomowy
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Bauhaus 93", 27.75F);
-            label4.Location = new Point(284, 186);
+            label4.Font = new Font("Microsoft Sans Serif", 27.75F);
+            label4.Location = new Point(180, 189);
             label4.Name = "label4";
-            label4.Size = new Size(210, 42);
+            label4.Size = new Size(258, 54);
             label4.TabIndex = 18;
             label4.Text = "Rejestracja";
             label4.Click += label1_Click_1;

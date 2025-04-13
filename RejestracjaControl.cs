@@ -7,17 +7,15 @@ namespace egzamin_dyplomowy
     public partial class RejestracjaControl : UserControl
     {
         private Walidacja walidacja = new Walidacja();
-
-
-
-
+        public event EventHandler<string> ValueChanged;
+        public event Action<UserControl> OnSwitchControl;
         public RejestracjaControl()
         {
             InitializeComponent();
 
         }
 
-        private void buttonreg_Click(object sender, EventArgs e)
+        private async void buttonreg_Click(object sender, EventArgs e)
         {
             if (!walidacja.Email(textrejestracja.Text) || !walidacja.Haslo(texthaslo.Text) || texthaslo.Text != textpowtorz.Text || !walidacja.imie(textimie.Text) || !walidacja.nazwisko(textnazwisko.Text))
             {
@@ -74,10 +72,13 @@ namespace egzamin_dyplomowy
 
         private void buttonexit_Click(object sender, EventArgs e)
         {
-            aktywuj_konto aktywuj = new aktywuj_konto();
-            aktywuj.ValueChanged += mainForm.getToken;
-            aktywuj.userlogin = textrejestracja.Text;
-            mainForm.ChangeUserControl(aktywuj);
+            if (this.ParentForm is Form1 mainForm)
+            {
+                aktywuj_konto aktywuj = new aktywuj_konto();
+                aktywuj.ValueChanged += mainForm.getToken;
+                aktywuj.userlogin = textrejestracja.Text;
+                mainForm.ChangeUserControl(aktywuj);
+            }
         }
 
 
