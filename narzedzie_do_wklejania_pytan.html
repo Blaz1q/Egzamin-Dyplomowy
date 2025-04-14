@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narzędzie do wklejania pytań</title>
+</head>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+</style>
+<script>
+function convertToSQL(inputText, tableName, type, kierunek) {
+const questionBlocks = inputText.split(/\n(?=\d+\))/); // split where a line starts with number + )
+    const sqlParts = questionBlocks.map(block => {
+    // Remove the leading number and ) and trim
+    const question = block.replace(/^\s*\d+\)\s*/, '').replace(/\n/g, ' ').trim();
+    const escaped = question.replace(/'/g, "''");
+    return `('${kierunek}', '${escaped}', '${type}')`;
+  });
+
+  const sql = `INSERT INTO ${tableName} (id_specjalnosc, tresc_pytania, stopien) VALUES\n` + sqlParts.join(',\n') + ';';
+  return sql;
+}
+function generate_and_copy(){
+    var pytania = document.getElementById("pytania").value;
+    var stopien = document.getElementById("stopien").value;
+    var kierunek = parseInt(document.getElementById("id_kierunek").value);
+    var sql = convertToSQL(pytania,"pytania",stopien,kierunek);
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(sql);
+  document.getElementById("result").innerHTML = sql;
+}
+</script>
+<body>
+    <textarea id="pytania" placeholder="wklej tutaj pytania"></textarea>
+    <select name="stopien" id="stopien">
+        <option value="INŻYNIER">INŻYTNIER</option>
+        <option value="MAGISTER">MAGISTER</option>
+    </select>
+    <input type="number" id="id_kierunek" min="1" placeholder="id specjalności" value="1"/>
+    <button onclick="generate_and_copy()">Generuj i kopiuj zapytanie</button>
+    <div id="result"></div>
+</body>
+</html>
