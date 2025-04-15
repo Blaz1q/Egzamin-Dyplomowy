@@ -1,4 +1,5 @@
-﻿namespace egzamin_dyplomowy;
+namespace egzamin_dyplomowy;
+
 public class ZarzadzaniePytaniami
 {
     private static List<Pytanie> pytania = new List<Pytanie>();

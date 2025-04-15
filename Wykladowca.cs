@@ -64,18 +64,6 @@ namespace egzamin_dyplomowy
                 Console.WriteLine("Błedny indeks");
         }
         //wypisywanie całej listy
-<<<<<<< Updated upstream
-        public void WypiszWszystkich()
-        {
-            foreach (var wykladowca in wykladowcy)
-            {
-                wykladowca.Wypisz();
-            }
-        }
-        //testowanie
-        public static void Testing()
-        {
-=======
         public void WypiszWszystkich()
         {
             foreach (var wykladowca in wykladowcy)
@@ -88,7 +76,9 @@ namespace egzamin_dyplomowy
         }        
         public static void Testing() //testowanie
         {
->>>>>>> Stashed changes
+        //testowanie
+        public static void Testing()
+        {
             ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
 
             zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");

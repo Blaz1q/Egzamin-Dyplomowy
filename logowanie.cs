@@ -34,7 +34,7 @@ namespace egzamin_dyplomowy
         {
             if (this.ParentForm is Form1 mainForm)
             {
-                rejestracja rej = new rejestracja();
+                RejestracjaControl rej = new RejestracjaControl();
                 rej.ValueChanged += mainForm.getToken;
                 mainForm.ChangeUserControl(rej); // Przełączenie na UserControl2
             }

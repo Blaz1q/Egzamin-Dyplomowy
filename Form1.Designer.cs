@@ -37,6 +37,7 @@
             // 
             // JSON_label
             // 
+            JSON_label.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             JSON_label.Location = new Point(8, 324);
             JSON_label.Multiline = true;
             JSON_label.Name = "JSON_label";
@@ -55,6 +56,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Location = new Point(8, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(467, 296);

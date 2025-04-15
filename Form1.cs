@@ -59,7 +59,6 @@ namespace egzamin_dyplomowy
             this.Hide();
             main_panel main_Panel = new main_panel(this.token);
             main_Panel.Show();
-            
         }
     }
 }
