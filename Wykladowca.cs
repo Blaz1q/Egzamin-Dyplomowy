@@ -74,8 +74,6 @@ namespace egzamin_dyplomowy
         public List<Wykladowca> getLista() {
             return wykladowcy;
         }        
-        public static void Testing() //testowanie
-        {
         //testowanie
         public static void Testing()
         {
