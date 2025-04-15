@@ -1,12 +1,13 @@
-﻿namespace egzamin_dyplomowy;
+namespace egzamin_dyplomowy;
+
 public class ZarzadzaniePytaniami
 {
     private static List<Pytanie> pytania = new List<Pytanie>();
     private static int nextId = 1;
 
-    public static void DodajPytanie(string tresc, string kierunek, string wykladowca, string kategoria, string poziom)
+    public static void DodajPytanie(string tresc, string kierunek, List<Wykladowca> wykladowcy, string kategoria, string poziom)
     {
-        pytania.Add(new Pytanie(nextId, tresc, kierunek, wykladowca, kategoria, poziom));
+        pytania.Add(new Pytanie(nextId, tresc, kierunek, wykladowcy, kategoria, poziom));
         nextId++;
     }
 
@@ -24,14 +25,14 @@ public class ZarzadzaniePytaniami
         }
     }
 
-    public static void EdytujPytanie(int id, string nowaTresc, string nowyKierunek, string nowyWykladowca, string nowaKategoria, string nowyPoziom)
+    public static void EdytujPytanie(int id, string nowaTresc, string nowyKierunek, List<Wykladowca> nowiWykladowcy, string nowaKategoria, string nowyPoziom)
     {
         var pytanie = pytania.FirstOrDefault(p => p.Id == id);
         if (pytanie != null)
         {
             pytanie.SetTresc(nowaTresc);
             pytanie.Kierunek = nowyKierunek;
-            pytanie.Wykladowca = nowyWykladowca;
+            pytanie.Wykladowcy = nowiWykladowcy;
             pytanie.Kategoria = nowaKategoria;
             pytanie.Poziom = nowyPoziom;
             Console.WriteLine("Pytanie zaktualizowane.");

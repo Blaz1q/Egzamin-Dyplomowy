@@ -3,21 +3,12 @@ using System.Collections.Generic;
 
 namespace egzamin_dyplomowy
 {
-    public class Egzamin
-    {
-        public string Nazwa { get; set; }
-        public int Punkty { get; set; }
-    }
-
-    public class Termin
-    {
+  public class Termin
+  {
         public DateTime Data { get; set; } 
         public TimeSpan Godzina { get; set; } 
         public string Status { get; set; } 
         public Egzamin egzamin { get; set; }
-
-        public Termin() { }
-
         public Termin(DateTime data, TimeSpan godzina, string status, Egzamin egzamin)
         {
             this.Data = data;
@@ -28,7 +19,7 @@ namespace egzamin_dyplomowy
 
         public void WyswietlSzczegoly()
         {
-            Console.WriteLine($"Data: {Data.ToShortDateString()}, Godzina: {Godzina}, Status: {Status}, Egzamin: {egzamin.Nazwa}, Punkty: {egzamin.Punkty}");
+            Console.WriteLine($"Data: {Data.ToShortDateString()}, Godzina: {Godzina}, Status: {Status}");
         }
 
         public void Edytuj(DateTime data, TimeSpan godzina, string status, Egzamin egzamin)
@@ -68,4 +59,3 @@ namespace egzamin_dyplomowy
         }
     }
 }
-// jebac to

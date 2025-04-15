@@ -71,6 +71,11 @@ namespace egzamin_dyplomowy
                 wykladowca.Wypisz();
             }
         }
+        public List<Wykladowca> getLista() {
+            return wykladowcy;
+        }        
+        public static void Testing() //testowanie
+        {
         //testowanie
         public static void Testing()
         {
