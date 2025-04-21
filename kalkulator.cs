@@ -3,7 +3,7 @@ namespace egzamin_dyplomowy
 {
 class Kalkulator
 {
-    private static void Main()
+    private static void Testing()
     {
         double ocenaStudia, ocenaPracaPromotora, ocenaPracaDyplomowa, ocenaZaPrezentacje, ocena1, ocena2, ocena3;
 
