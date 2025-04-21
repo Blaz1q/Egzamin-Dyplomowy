@@ -1,34 +1,35 @@
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 namespace egzamin_dyplomowy
 {
-  public class Termin
-  {
-        public DateTime Data { get; set; } 
-        public TimeSpan Godzina { get; set; } 
-        public string Status { get; set; } 
-        public Egzamin egzamin { get; set; }
-        public Termin(DateTime data, TimeSpan godzina, string status, Egzamin egzamin)
+    public class Termin
+    {
+        public DateTime Data { get; set; }
+        public TimeSpan Godzina { get; set; }
+        public TimeSpan CzasTrwania { get; set; }
+        public string Status { get; set; }
+        public Egzamin Egzamin { get; set; }
+
+        public Termin() { }
+
+        public Termin(DateTime data, TimeSpan godzina, TimeSpan czasTrwania, string status, Egzamin egzamin)
         {
             this.Data = data;
             this.Godzina = godzina;
+            this.CzasTrwania = czasTrwania;
             this.Status = status;
-            this.egzamin = egzamin;
+            this.Egzamin = egzamin;
         }
 
         public void WyswietlSzczegoly()
         {
-            Console.WriteLine($"Data: {Data.ToShortDateString()}, Godzina: {Godzina}, Status: {Status}");
+            Console.WriteLine($"Data: {Data.ToShortDateString()}, Godzina: {Godzina}, Czas trwania: {CzasTrwania}, Status: {Status}");
+            Egzamin.WypiszEgzamin();
         }
 
-        public void Edytuj(DateTime data, TimeSpan godzina, string status, Egzamin egzamin)
-        {
-            this.Data = data;
-            this.Godzina = godzina;
-            this.Status = status;
-            this.egzamin = egzamin;
-        }
+        public DateTime GetStartTime() => Data.Add(Godzina);
+        public DateTime GetEndTime() => GetStartTime().Add(CzasTrwania);
     }
 
     public class OperacjeNaTerminach
@@ -37,12 +38,85 @@ namespace egzamin_dyplomowy
 
         public void DodajTermin(Termin termin)
         {
+            foreach (var istniejącyTermin in terminy)
+            {
+                if (CzyTerminKoliduje(termin, istniejącyTermin))
+                {
+                    Debug.WriteLine("Termin koliduje..");
+                    if (CzyKomisjaSięPowtarza(termin, istniejącyTermin))
+                    {
+
+                        Debug.WriteLine("Nie można dodać terminu: Członkowie komisji się powtarzają.");
+                        return;
+                    }
+                }   
+            }
             terminy.Add(termin);
+            Debug.WriteLine("Termin dodany pomyślnie.");
+        }
+
+        private bool CzyTerminKoliduje(Termin nowyTermin, Termin istniejącyTermin)
+        {
+            var nowyStart = nowyTermin.GetStartTime();
+            var nowyEnd = nowyTermin.GetEndTime();
+
+            if (nowyStart < istniejącyTermin.GetEndTime() && nowyEnd > istniejącyTermin.GetStartTime())
+            {
+                if (nowyStart < istniejącyTermin.GetStartTime().AddMinutes(15) || nowyEnd > istniejącyTermin.GetEndTime().AddMinutes(-15))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool CzyKomisjaSięPowtarza(Termin nowyTermin, Termin istniejącyTermin)
+        {
+            var komisjaNowa = new List<Wykladowca>
+            {
+                nowyTermin.Egzamin.getPromotor(),
+                nowyTermin.Egzamin.getRecenzent(),
+                nowyTermin.Egzamin.getProdziekan()
+            };
+
+            var komisjaIstniejaca = new List<Wykladowca>
+            {
+                istniejącyTermin.Egzamin.getPromotor(),
+                istniejącyTermin.Egzamin.getRecenzent(),
+                istniejącyTermin.Egzamin.getProdziekan()
+            };
+
+            return komisjaNowa.Any(osoba => komisjaIstniejaca.Contains(osoba));
         }
 
         public void EdytujTermin(Termin termin, DateTime data, TimeSpan godzina, string status, Egzamin egzamin)
         {
-            termin.Edytuj(data, godzina, status, egzamin);
+            var nowyTermin = new Termin(data, godzina, termin.CzasTrwania, status, egzamin);
+
+            foreach (var istniejącyTermin in terminy)
+            {
+                if (istniejącyTermin == termin) continue;
+
+                if (CzyTerminKoliduje(nowyTermin, istniejącyTermin))
+                {
+                    Debug.WriteLine("Termin koliduje..");
+                    if (CzyKomisjaSięPowtarza(nowyTermin, istniejącyTermin))
+                    {
+                        Debug.WriteLine("Nie można edytować terminu: Członkowie komisji się powtarzają.");
+                        return;
+                    }
+                }
+
+                
+            }
+
+            termin.Data = data;
+            termin.Godzina = godzina;
+            termin.Status = status;
+            termin.Egzamin = egzamin;
+
+            Console.WriteLine("Termin edytowany pomyślnie.");
         }
 
         public void UsunTermin(Termin termin)
