@@ -25,7 +25,7 @@ namespace egzamin_dyplomowy
         public void WyswietlSzczegoly()
         {
             Console.WriteLine($"Data: {Data.ToShortDateString()}, Godzina: {Godzina}, Czas trwania: {CzasTrwania}, Status: {Status}");
-            Egzamin.WypiszEgzamin();
+            //Egzamin.WypiszEgzamin(); sorry, nie ma jeszcze takiej funkcji bo krzysiek tego nie zrobił bo nie wymagałem (chyba) - Belzebebe
         }
 
         public DateTime GetStartTime() => Data.Add(Godzina);
