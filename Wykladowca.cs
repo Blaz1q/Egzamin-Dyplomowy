@@ -36,6 +36,12 @@ namespace egzamin_dyplomowy
         {
             wykladowcy.Add(new Wykladowca(id, imie, nazwisko, status));
         }
+         // NOWA METODA!!!!!!! (freaky)
+        public void DodajWykladowceV2(Wykladowca wykladowca)
+         {
+             wykladowcy.Add(wykladowca);
+         }
+
         //usuwanie
         public void UsunWykladowce(int index)
         {
@@ -95,6 +101,13 @@ namespace egzamin_dyplomowy
 
             Console.WriteLine("Lista po usunięciu:");
             zarzadzanie.WypiszWszystkich();
+            Console.WriteLine("Nowa metoda dodawania DodajWykladowceV2:");
+            Wykladowca nowy = new Wykladowca(3, "Majkyl", "Gansta", "Promotor");
+            zarzadzanie.DodajWykladowceV2(nowy);
+            zarzadzanie.WypiszWszystkich();
+
+
         }
     }    
 }
+
