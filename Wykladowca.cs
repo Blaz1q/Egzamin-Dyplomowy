@@ -17,8 +17,9 @@ namespace egzamin_dyplomowy
             Nazwisko = nazwisko;
             Status = status;
         }
+        public string ImieNazwisko => $"{Imie} {Nazwisko}";
 
-//wypisz jednego wykładowce
+        //wypisz jednego wykładowce
 
         public void Wypisz()
         {
