@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 
+namespace egzamin_dyplomowy;
 public class Komunikat
 {
     public enum MessageType
