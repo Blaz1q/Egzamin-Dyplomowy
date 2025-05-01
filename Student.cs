@@ -18,7 +18,7 @@ namespace egzamin_dyplomowy
         public int getSrednia() { return this.srednia; }
         public void Wypisz()
         {
-            Console.WriteLine($"Imie i Nazwisko: {this.imie_nazwisko}, Średnia: {this.srednia}, Czy uczęszczał na koła naukowe?: {this.kola_naukowe}, Kierunek: {this.kierunek}")
+            Console.WriteLine($"Imie i Nazwisko: {this.imie_nazwisko}, Średnia: {this.srednia}, Czy uczęszczał na koła naukowe?: {this.kola_naukowe}, Kierunek: {this.kierunek}");
         }
     }
 
@@ -30,7 +30,7 @@ namespace egzamin_dyplomowy
         //dodaj
         public void DodajStudent(string imieNazwisko, int srednia, bool kola_naukowe, int kierunek)
         {
-            studenci.Add(new Student(imieNazwisko, srednia, kola_naukowe, kierunek))
+            studenci.Add(new Student(imieNazwisko, srednia, kola_naukowe, kierunek));
         }
 
         //usun
@@ -55,7 +55,7 @@ namespace egzamin_dyplomowy
         {
             if (index >= 0 && index < studenci.Count)
             {
-                studenci[index].imie_nazwisko = noweImieNazwisko
+                studenci[index].imie_nazwisko = noweImieNazwisko;
             }
             else { Console.WriteLine("Niepoprawny index!"); }
         }
