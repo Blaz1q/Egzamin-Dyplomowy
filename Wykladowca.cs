@@ -36,6 +36,12 @@ namespace egzamin_dyplomowy
         {
             wykladowcy.Add(new Wykladowca(id, imie, nazwisko, status));
         }
+         // NOWA METODA!!!!!!! (freaky)
+        public void DodajWykladowce(Wykladowca wykladowca)
+         {
+             wykladowcy.Add(wykladowca);
+         }
+
         //usuwanie
         public void UsunWykladowce(int index)
         {
@@ -69,6 +75,7 @@ namespace egzamin_dyplomowy
             foreach (var wykladowca in wykladowcy)
             {
                 wykladowca.Wypisz();
+                Console.WriteLine(wykladowca.GetType());
             }
         }
         public List<Wykladowca> getLista() {
@@ -80,7 +87,6 @@ namespace egzamin_dyplomowy
             static void Testing()
             {
                 ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
-
                 zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");
                 zarzadzanie.DodajWykladowce(2, "Steve", "Jobs", "Recenzent");
 
