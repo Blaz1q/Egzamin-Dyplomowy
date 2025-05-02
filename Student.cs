@@ -2,23 +2,20 @@ namespace egzamin_dyplomowy
 {
     public class Student : Osoba
     {
-        private int srednia { get; set; }
-        public string kierunek { get; set; }
-        public string kola_naukowe { get; set; }
+        private double srednia { get; set; }
+        public bool kola_naukowe { get; set; }
+        public int kierunek;
 
-        public Student(string imieNazwisko, int srednia, bool kola_naukowe, int kierunek) : base(imieNazwisko)
+        public Student(string imie,string nazwisko, double srednia, bool kola_naukowe, int kierunek) : base(imie, nazwisko)
         {
-            this.imie_nazwisko = imieNazwisko;
             this.srednia = srednia;
             this.kola_naukowe = kola_naukowe;
             this.kierunek = kierunek;
         }
-
-        public string getImieNazwisko() { return this.imie_nazwisko; }
-        public int getSrednia() { return this.srednia; }
+        public double getSrednia() { return this.srednia; }
         public void Wypisz()
         {
-            Console.WriteLine($"Imie i Nazwisko: {this.imie_nazwisko}, Średnia: {this.srednia}, Czy uczęszczał na koła naukowe?: {this.kola_naukowe}, Kierunek: {this.kierunek}");
+            Console.WriteLine($"Imie i Nazwisko: {this.Imie}, {this.Nazwisko}, Średnia: {this.srednia}, Czy uczęszczał na koła naukowe?: {this.kola_naukowe}, KierunekID: {this.kierunek}");
         }
     }
 
@@ -28,9 +25,12 @@ namespace egzamin_dyplomowy
         private List<Student> studenci = new List<Student>();
 
         //dodaj
-        public void DodajStudent(string imieNazwisko, int srednia, bool kola_naukowe, int kierunek)
+        public void DodajStudent(Student student) {
+            studenci.Add(student);
+        }
+        public void DodajStudent(string imie,string nazwisko, double srednia, bool kola_naukowe,int kierunek)
         {
-            studenci.Add(new Student(imieNazwisko, srednia, kola_naukowe, kierunek));
+            studenci.Add(new Student(imie,nazwisko, srednia, kola_naukowe,kierunek));
         }
 
         //usun
@@ -51,35 +51,36 @@ namespace egzamin_dyplomowy
             if (index >= 0 && index < studenci.Count) { studenci[index].kierunek = nowyKierunek; }
             else { Console.WriteLine("Niepoprawny index!"); }
         }
-        public void EdytujStudent(int index, string noweImieNazwisko)
+        public void EdytujStudent(int index, string noweimie,string nowenazwisko)
         {
             if (index >= 0 && index < studenci.Count)
             {
-                studenci[index].imie_nazwisko = noweImieNazwisko;
+                studenci[index].SetImie(noweimie);
+                studenci[index].SetNazwisko(nowenazwisko);
             }
             else { Console.WriteLine("Niepoprawny index!"); }
         }
 
         public void WypiszAll()
-        { 
-            foreach(var student in studenci) { Console.WriteLine(student.Wypisz()); } 
+        {
+            foreach (var student in studenci) { student.Wypisz(); }
         }
-            
 
 
-    public static void Testowe()
+
+        public static void Testowe()
         {
             ZarzadzanieStudent testZarz = new ZarzadzanieStudent();
 
-            testZarz.DodajStudent("Glizzy Gobbler", 3.2, false, 2);
-            testZarz.DodajStudent("Hawk Tuah", 5.0, true, 1);
+            testZarz.DodajStudent("Glizzy","Gobbler", 3.2, false,0);
+            testZarz.DodajStudent("Hawk","Tuah", 5.0, true, 0);
 
             Console.WriteLine("lista po dodaniu:");
             testZarz.WypiszAll();
 
             testZarz.EdytujKolaNaukowe(0, true);
-            testZarz.EdytujKierunek(1, 3);
-            testZarz.EdytujStudent(0, "Waltuh White");
+            //testZarz.EdytujKierunek(1, 3);
+            testZarz.EdytujStudent(0, "Waltuh","White");
 
             Console.WriteLine("Lista po edycji:");
             testZarz.WypiszAll();
@@ -87,6 +88,7 @@ namespace egzamin_dyplomowy
             testZarz.UsunStudent(0);
 
             Console.WriteLine("Lista po usunięciu:");
-            testZarz.WypiszWszystkich();
+            testZarz.WypiszAll();
         }
     }
+}

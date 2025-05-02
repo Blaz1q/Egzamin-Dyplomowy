@@ -7,14 +7,9 @@ namespace egzamin_dyplomowy
     {
         public int Id { get; set; }
         public string Status { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-
-        public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie + " " + nazwisko)
+        public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie,nazwisko)
         {
             Id = id;
-            Imie = imie;
-            Nazwisko = nazwisko;
             Status = status;
         }
 
@@ -63,8 +58,8 @@ namespace egzamin_dyplomowy
         {
             if (index >= 0 && index < wykladowcy.Count)
             {
-                wykladowcy[index].Imie = noweImie;
-                wykladowcy[index].Nazwisko = noweNazwisko;
+                wykladowcy[index].SetImie(noweImie);
+                wykladowcy[index].SetNazwisko(noweNazwisko);
             }
             else
                 Console.WriteLine("Błedny indeks");
