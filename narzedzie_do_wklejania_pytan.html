@@ -15,7 +15,7 @@
 </style>
 <script>
 function convertToSQL(inputText, tableName, type, kierunek) {
-const questionBlocks = inputText.split(/\n(?=\d+\))/); // split where a line starts with number + )
+const questionBlocks = inputText.split(/\n(?=\d+[\.\)])/); // split where a line starts with number + )
     const sqlParts = questionBlocks.map(block => {
     // Remove the leading number and ) and trim
     const question = block.replace(/^\s*\d+\)\s*/, '').replace(/\n/g, ' ').trim();
