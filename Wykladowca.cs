@@ -9,7 +9,7 @@ namespace egzamin_dyplomowy
         public string Status { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
-        
+
         public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie + " " + nazwisko)
         {
             Id = id;
@@ -18,7 +18,7 @@ namespace egzamin_dyplomowy
             Status = status;
         }
 
-//wypisz jednego wykładowce
+        //wypisz jednego wykładowce
 
         public void Wypisz()
         {
@@ -80,35 +80,30 @@ namespace egzamin_dyplomowy
         }
         public List<Wykladowca> getLista() {
             return wykladowcy;
-        }        
-        //testowanie
-        public static void Testing()
-        {
-            ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
-
-            zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");
-            zarzadzanie.DodajWykladowce(2, "Steve", "Jobs", "Recenzent");
-
-            Console.WriteLine("lista po dodaniu:");
-            zarzadzanie.WypiszWszystkich();
-
-            zarzadzanie.EdytujStatus(0, "Prodziekan");
-            zarzadzanie.EdytujWykladowce(1, "Melon", "Muzg");
-
-            Console.WriteLine("Lista po edycji:");
-            zarzadzanie.WypiszWszystkich();
-
-            zarzadzanie.UsunWykladowce(0);
-
-            Console.WriteLine("Lista po usunięciu:");
-            zarzadzanie.WypiszWszystkich();
-            Console.WriteLine("Nowa metoda dodawania DodajWykladowceV2:");
-            Promotor nowy = new Promotor(3, "Majkyl", "Gansta", "Promotor");
-            zarzadzanie.DodajWykladowce(nowy);
-            zarzadzanie.WypiszWszystkich();
-
-
         }
-    }    
-}
+        public static void Testing() //testowanie
+        {
+            //testowanie
+            static void Testing()
+            {
+                ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
+                zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");
+                zarzadzanie.DodajWykladowce(2, "Steve", "Jobs", "Recenzent");
 
+                Console.WriteLine("lista po dodaniu:");
+                zarzadzanie.WypiszWszystkich();
+
+                zarzadzanie.EdytujStatus(0, "Prodziekan");
+                zarzadzanie.EdytujWykladowce(1, "Melon", "Muzg");
+
+                Console.WriteLine("Lista po edycji:");
+                zarzadzanie.WypiszWszystkich();
+
+                zarzadzanie.UsunWykladowce(0);
+
+                Console.WriteLine("Lista po usunięciu:");
+                zarzadzanie.WypiszWszystkich();
+            }
+        }
+    } 
+}

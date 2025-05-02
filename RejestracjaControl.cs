@@ -51,7 +51,7 @@ namespace egzamin_dyplomowy
                 MessageBox.Show("Rejestracja zakończona sukcesem!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 string url = "https://egzamin-dyplomowy.7m.pl/rejestracja.php";
                 HTTPConnection conn = new HTTPConnection(url);
-                string responce = await conn.Register(textrejestracja.Text, texthaslo.Text, "null", "null");
+                string responce = await conn.Register(textrejestracja.Text.ToLower(), texthaslo.Text, textimie.Text, textnazwisko.Text);
                 ValueChanged?.Invoke(this, responce);
             }
         }
