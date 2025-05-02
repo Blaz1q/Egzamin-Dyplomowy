@@ -13,9 +13,12 @@ public partial class RoundedTextBox : UserControl
     //─ Fields ──────────────────────────────────────────────────────────
     private Color borderColor = Color.MediumSlateBlue;
     private Color borderFocusColor = Color.HotPink;
+    private Color invalidBorderColor = Color.Red;
+    private Color invalidBorderFocusColor = Color.Orange;
     private int borderSize = 2;
     private bool underlinedStyle = false;
     private bool isFocused = false;
+    public bool isValid = true;
 
     private int borderRadius = 0;
     private Color placeholderColor = Color.DarkGray;
@@ -130,6 +133,19 @@ public partial class RoundedTextBox : UserControl
         get => borderFocusColor;
         set => borderFocusColor = value;
     }
+    [Category("RJ Code Advance")]
+    public Color InvalidBorderFocusColor
+    {
+        get => invalidBorderFocusColor;
+        set => invalidBorderFocusColor = value;
+    }
+    [Category("RJ Code Advance")]
+    public Color InvalidBorderColor
+    {
+        get => invalidBorderColor;
+        set => invalidBorderColor = value;
+    }
+
 
     [Category("RJ Code Advance")]
     public int BorderSize
@@ -224,13 +240,18 @@ public partial class RoundedTextBox : UserControl
 
         Rectangle rectBorder = this.ClientRectangle;
         int smoothSize = borderSize > 0 ? borderSize : 1;
-
+        Color BorderColor = isValid ? borderColor : invalidBorderColor;
         using (Pen penSmooth = new Pen(this.Parent.BackColor, smoothSize))
-        using (Pen penBorder = new Pen(borderColor, borderSize))
+        using (Pen penBorder = new Pen(BorderColor, borderSize))
         {
             penBorder.Alignment = PenAlignment.Center;
-            if (isFocused)
+            if (isFocused && isValid) {
                 penBorder.Color = borderFocusColor;
+            }
+            else if (isFocused&&!isValid) {
+                penBorder.Color = invalidBorderFocusColor;
+            }
+                
 
             if (borderRadius > 1) // Rounded TextBox
             {
@@ -311,6 +332,7 @@ public partial class RoundedTextBox : UserControl
         // 
         // textBox1
         // 
+        textBox1.BackColor = SystemColors.ControlLightLight;
         textBox1.BorderStyle = BorderStyle.None;
         textBox1.Dock = DockStyle.Fill;
         textBox1.Location = new Point(7, 7);
@@ -322,6 +344,7 @@ public partial class RoundedTextBox : UserControl
         // 
         // RoundedTextBox
         // 
+        BackColor = SystemColors.ControlLightLight;
         Controls.Add(textBox1);
         Name = "RoundedTextBox";
         Padding = new Padding(7);
