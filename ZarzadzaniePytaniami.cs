@@ -5,13 +5,13 @@ public class ZarzadzaniePytaniami
     private static List<Pytanie> pytania = new List<Pytanie>();
     private static int nextId = 1;
 
-    public static void DodajPytanie(string tresc, string kierunek, List<Wykladowca> wykladowcy, string kategoria, string poziom)
+    public void DodajPytanie(string tresc, string kierunek, List<Wykladowca> wykladowcy, string kategoria, string poziom)
     {
         pytania.Add(new Pytanie(nextId, tresc, kierunek, wykladowcy, kategoria, poziom));
         nextId++;
     }
 
-    public static void UsunPytanie(int id)
+    public void UsunPytanie(int id)
     {
         var pytanie = pytania.FirstOrDefault(p => p.Id == id);
         if (pytanie != null)

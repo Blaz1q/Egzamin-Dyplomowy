@@ -153,7 +153,7 @@ namespace egzamin_dyplomowy
             }
         }
 
-        private GraphicsPath GetFigurePath(Rectangle rect, int radius)
+        protected GraphicsPath GetFigurePath(Rectangle rect, int radius)
         {
             float curveSize = radius * 2F;
             GraphicsPath path = new GraphicsPath();

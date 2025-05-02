@@ -163,7 +163,7 @@ namespace egzamin_dyplomowy
             // 
             // hasloerr
             // 
-            hasloerr.Image = Rejestracja.Properties.Resources.orange_error_icon_0;
+            //hasloerr.Image = Rejestracja.Properties.Resources.orange_error_icon_0;
             hasloerr.Location = new Point(672, 504);
             hasloerr.Name = "hasloerr";
             hasloerr.Size = new Size(31, 21);
@@ -231,7 +231,7 @@ namespace egzamin_dyplomowy
             // 
             // pictureBox6
             // 
-            pictureBox6.Image = Rejestracja.Properties.Resources._8056414;
+            //pictureBox6.Image = Rejestracja.Properties.Resources._8056414;
             pictureBox6.Location = new Point(125, 415);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(38, 30);
@@ -241,7 +241,7 @@ namespace egzamin_dyplomowy
             // 
             // pictureBox5
             // 
-            pictureBox5.Image = Rejestracja.Properties.Resources._1828439;
+            //pictureBox5.Image = Rejestracja.Properties.Resources._1828439;
             pictureBox5.Location = new Point(125, 343);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(38, 30);

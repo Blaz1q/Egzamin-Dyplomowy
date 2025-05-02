@@ -18,7 +18,7 @@ public class Pytanie
         this.Id = id;
         this.tresc = tresc;
         this.Kierunek = kierunek;
-        this.Wykladowca = wykladowca;
+        this.Wykladowcy = wykladowcy;
         this.Kategoria = kategoria;
         this.Poziom = poziom;
     }
