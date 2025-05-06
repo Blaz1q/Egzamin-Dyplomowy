@@ -30,7 +30,7 @@ namespace egzamin_dyplomowy
             api.SetDane();
             Dane.Wykladowcy.WypiszWszystkich();
             Dane.Pytania.WypiszPytania();
-            
+            Dane.Studenci.WypiszAll();
         }
 
         private void main_panel_Load(object sender, EventArgs e)

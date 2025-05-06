@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace egzamin_dyplomowy
 {
     public class Student : Osoba
@@ -17,7 +19,7 @@ namespace egzamin_dyplomowy
         public double getSrednia() { return this.srednia; }
         public void Wypisz()
         {
-            Console.WriteLine($"Imie i Nazwisko: {this.Imie}, {this.Nazwisko}, Średnia: {this.srednia}, Czy uczęszczał na koła naukowe?: {this.kola_naukowe}, KierunekID: {this.kierunek}");
+            Debug.WriteLine($"Imie i Nazwisko: {this.Imie}, {this.Nazwisko}, Średnia: {this.srednia}, Czy uczęszczał na koła naukowe?: {this.kola_naukowe}, KierunekID: {this.kierunek}");
         }
     }
 
