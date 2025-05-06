@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace egzamin_dyplomowy
 {
@@ -17,7 +18,7 @@ namespace egzamin_dyplomowy
 
         public void Wypisz()
         {
-            Console.WriteLine($"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}");
+            Debug.WriteLine($"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}");
         }
     }
 
@@ -36,7 +37,9 @@ namespace egzamin_dyplomowy
          {
              wykladowcy.Add(wykladowca);
          }
-
+        public Wykladowca GetWykladowca(int id) { 
+            return wykladowcy[id];
+        }
         //usuwanie
         public void UsunWykladowce(int index)
         {
@@ -70,7 +73,7 @@ namespace egzamin_dyplomowy
             foreach (var wykladowca in wykladowcy)
             {
                 wykladowca.Wypisz();
-                Console.WriteLine(wykladowca.GetType());
+                //Debug.WriteLine(wykladowca.GetType());
             }
         }
         public List<Wykladowca> getLista() {

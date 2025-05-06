@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,17 @@ namespace egzamin_dyplomowy
         {
             InitializeComponent();
             this.token = token;
+            LoadDataBase();
+        }
+        private async void LoadDataBase() {
+            HTTPConnection getDataBase = new HTTPConnection("https://egzamin-dyplomowy.7m.pl/getDataBase.php");
+            string json = await getDataBase.SendToken(token);
+            API api = new API(json);
+            Debug.WriteLine(api.Data);
+            api.SetDane();
+            Dane.Wykladowcy.WypiszWszystkich();
+            Dane.Pytania.WypiszPytania();
+            
         }
 
         private void main_panel_Load(object sender, EventArgs e)

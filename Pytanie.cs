@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace egzamin_dyplomowy;
@@ -46,6 +47,6 @@ public class Pytanie
     }
     public void WypiszPytanie()
     {
-        Console.WriteLine($"ID: {Id}, Treść: {tresc}, Kierunek: {Kierunek}, Liczba Wykladowców: {Wykladowcy.Count}, Kategoria: {Kategoria}, Poziom: {Poziom}");
+        Debug.WriteLine($"ID: {Id}, Treść: {tresc}, Kierunek: {Kierunek}, Liczba Wykladowców: {Wykladowcy.Count}, Kategoria: {Kategoria}, Poziom: {Poziom}");
     }
 }
