@@ -108,6 +108,21 @@ namespace egzamin_dyplomowy
                     Dane.Pytania.DodajWykladowce(id_pytania, Dane.Wykladowcy.GetWykladowca(id_wykladowcy));
                 }
             }
+            if (this.Has("Terminy")) {
+                JArray Terminy = this.Data["Terminy"].ToObject<JArray>();
+                foreach (var item in Terminy) {
+                    DateTime data = DateTime.Parse(item["data"].ToString());
+                    TimeSpan godzina_rozpoczecia = TimeSpan.Parse(item["godzina_rozpoczecia"].ToString());
+                    TimeSpan godzina_zakonczenia = TimeSpan.Parse(item["godzina_zakonczenia"].ToString());
+                    int promotor_id = item["promotor_id"].ToObject<int>();
+                    int prodziekan_id = item["prodziekan_id"].ToObject<int>();
+                    int recenzent_id = item["recenzent_id"].ToObject<int>();
+                    int student_id = item["student_id"].ToObject<int>(); ;
+                    //Egzamin egzamin = new Egzamin();
+                    //Termin termin = new Termin(data,godzina_rozpoczecia,godzina_zakonczenia,"skibidi",)
+                    //Dane.Terminy.DodajTermin()
+                }
+            }
         }
     }
 }
