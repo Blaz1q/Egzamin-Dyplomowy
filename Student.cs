@@ -2,12 +2,14 @@ namespace egzamin_dyplomowy
 {
     public class Student : Osoba
     {
+        private int id { get; set; }
         private double srednia { get; set; }
         public bool kola_naukowe { get; set; }
         public int kierunek;
 
-        public Student(string imie,string nazwisko, double srednia, bool kola_naukowe, int kierunek) : base(imie, nazwisko)
+        public Student(int id,string imie,string nazwisko, double srednia, bool kola_naukowe, int kierunek) : base(imie, nazwisko)
         {
+            this.id = id;
             this.srednia = srednia;
             this.kola_naukowe = kola_naukowe;
             this.kierunek = kierunek;
@@ -28,9 +30,9 @@ namespace egzamin_dyplomowy
         public void DodajStudent(Student student) {
             studenci.Add(student);
         }
-        public void DodajStudent(string imie,string nazwisko, double srednia, bool kola_naukowe,int kierunek)
+        public void DodajStudent(int id,string imie,string nazwisko, double srednia, bool kola_naukowe,int kierunek)
         {
-            studenci.Add(new Student(imie,nazwisko, srednia, kola_naukowe,kierunek));
+            studenci.Add(new Student(id,imie,nazwisko, srednia, kola_naukowe,kierunek));
         }
 
         //usun
@@ -72,8 +74,8 @@ namespace egzamin_dyplomowy
         {
             ZarzadzanieStudent testZarz = new ZarzadzanieStudent();
 
-            testZarz.DodajStudent("Glizzy","Gobbler", 3.2, false,0);
-            testZarz.DodajStudent("Hawk","Tuah", 5.0, true, 0);
+            testZarz.DodajStudent(1,"Glizzy","Gobbler", 3.2, false,0);
+            testZarz.DodajStudent(2,"Hawk","Tuah", 5.0, true, 0);
 
             Console.WriteLine("lista po dodaniu:");
             testZarz.WypiszAll();

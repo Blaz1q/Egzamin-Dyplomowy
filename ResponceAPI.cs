@@ -33,5 +33,81 @@ namespace egzamin_dyplomowy
                 this.hasData = true;
             }
         }
+        public static void SetData(string json) { 
+
+            /*
+            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠟⠛⢉⣉⣡⣌⡉⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⣡⣤⣴⣶⣾⣿⣿⣿⣿⣿⣿⣷⣦⣄⡉⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⣁⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⠟⠋⣀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠙⢿⣿⣿⣿⣿⣿⣿
+            ⣿⠛⢁⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠻⣿⣿⣿⣿⣿
+            ⣿⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⡄⠙⢿⣿⣿⣿
+            ⡟⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⢻⣿⣿⠀⢸⣿⡿⠁⠀⢸⣿⣿⠀⣹⣿⡿⠀⣿⣿⣿⣿⣿⣿⣿⣿⣦⠈⠻⣿⣿
+            ⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⢻⠇⢠⣿⠟⢀⣴⠀⢸⣿⠃⠀⠋⠉⠁⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠹⣿
+            ⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⣶⡀⠀⢀⡿⠋⠀⠈⠁⠀⢸⠇⢀⣤⣶⠂⢀⣿⣿⠟⠛⣿⣿⣿⣿⣿⣿⣿⣿⡄⢸
+            ⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⠀⣼⣿⣷⠀⣼⠁⣰⣾⣿⣇⠀⠈⠀⣾⣿⡇⠀⣿⡿⠋⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⡇⢸
+            ⠃⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣿⣷⣷⣾⣿⣿⣿⣿⣷⣦⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢸
+            ⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⣿⠟⠛⢻⣿⠛⢿⣿⡿⠛⢺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⢸
+            ⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣤⡄⢀⣴⣶⠋⢀⣴⡿⠁⠀⣾⡟⠁⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣾
+            ⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⣼⣿⣿⣶⣿⡿⠀⡀⠀⠋⢀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿
+            ⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠃⠐⠛⢻⣿⣿⡟⠁⣼⡇⠀⣴⡏⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿
+            ⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣤⣤⣤⣤⣶⣾⣿⣿⣇⣼⣿⣷⣾⣿⣧⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿
+            ⠀⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⣿⣿⣿⣿⣿⠀⣿
+            ⠀⣿⣿⣿⡿⠟⠉⣁⣀⣠⣼⣿⠁⣸⣿⡿⠋⠉⣀⣀⡀⠟⣿⣿⠏⠀⣹⣿⠏⠀⣸⣿⣿⠟⠀⠀⢸⣿⣿⣿⣿⠀⣿
+            ⠀⣿⣿⠋⠀⠐⠛⠛⠛⠉⣿⠇⢰⡿⠃⢠⡶⠛⠉⠁⠀⢀⣿⠋⠀⠀⡿⠃⠀⢀⣿⡿⠋⢀⡆⠀⢸⣿⣿⣿⣿⠀⣿
+            ⠀⣿⣿⣶⣶⣶⠶⠂⢀⣼⡟⢀⡿⠀⢰⣿⣦⣴⠞⠋⣠⣾⠏⢠⡆⠀⢀⡴⠀⢸⡟⠁⠀⠉⡀⠀⣼⣿⠿⢿⣿⠀⣿
+            ⠀⣿⣿⠈⠀⣀⣤⣶⣿⣿⠀⣼⣷⡀⠀⠉⠀⣀⣤⣾⣿⡏⢠⣿⣧⣤⣿⣇⠀⠜⠀⣴⣿⣿⡇⢀⣿⡁⣠⣾⡟⠀⣿
+            ⡄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿⠋⢀⣾⣿
+            ⣷⡀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⣰⣿⣿⣿
+            ⣿⣿⣷⣤⣈⠙⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⢀⣾⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣷⣦⣄⡉⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣈⡙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠟⠛⢁⣴⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢰⣿⣿⣿⣿⡿⠛⠛⠛⠛⠛⠛⣉⣀⣤⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⣾⣿⣿⡿⠋⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⢰⣿⡿⠋⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠛⢁⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+            */
+        }
+        public void SetDane() {  
+            if (this.Has("Studenci"))
+            {
+                JArray Studenci = this.Data["Studenci"].ToObject<JArray>();
+                foreach (var item in Studenci) {
+                    int id = item["id"].ToObject<int>();
+                    string imie = item["imie"].ToString();
+                    string nazwisko = item["nazwisko"].ToString();
+                    Dane.Studenci.DodajStudent(id,imie,nazwisko,0,false,0);
+                }
+            }
+            if (this.Has("Wykladowcy")) { 
+                JArray Wykladowcy = this.Data["Wykladowcy"].ToObject<JArray>();
+                foreach (var item in Wykladowcy) {
+                    int id = item["id"].ToObject<int>();
+                    string imie = item["imie"].ToString();
+                    string nazwisko = item["nazwisko"].ToString();
+                    Dane.Wykladowcy.DodajWykladowce(id, imie, nazwisko, "skibidi");
+                }
+            }
+            if (this.Has("Pytania") && this.Has("LaczeniaPytan")) { 
+                JArray Pytania = this.Data["Pytania"].ToObject<JArray>();
+                JArray LaczeniaPytan = this.Data["LaczeniaPytan"].ToObject<JArray>();
+                foreach (var item in Pytania)
+                {
+                    int id = item["id"].ToObject<int>();
+                    string tresc = item["tresc_pytania"].ToString();
+                    string nazwa_specjalnosci = item["nazwa_specjalnosci"].ToString();
+                    string nazwa_kierunku = item["nazwa_kierunku"].ToString();
+                    string stopien = item["stopien"].ToString();
+                    Dane.Pytania.DodajPytanie(tresc, nazwa_kierunku, new List<Wykladowca>(), nazwa_specjalnosci, stopien);
+                    //   Dane.Wykladowcy.DodajWykladowce(id, imie, nazwisko, "skibidi");
+                }
+                
+                foreach (var item in LaczeniaPytan) {
+                    int id_pytania = item["id_pytania"].ToObject<int>();
+                    int id_wykladowcy = item["id_osoby"].ToObject<int>();
+                    Dane.Pytania.DodajWykladowce(id_pytania, Dane.Wykladowcy.GetWykladowca(id_wykladowcy));
+                }
+            }
+        }
     }
 }
