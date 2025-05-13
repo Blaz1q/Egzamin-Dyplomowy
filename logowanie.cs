@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,45 +15,31 @@ namespace egzamin_dyplomowy
 {
     public partial class logowanie : UserControl
     {
-        public string token = Form1.token;
         public event EventHandler<string> ValueChanged;
-<<<<<<< Updated upstream
-        public event EventHandler<string> GetMessage;
-=======
         public event EventHandler<string> MessageReceived;
         private readonly Color NormalBorderColor = Color.MediumSlateBlue;
         private readonly Color NormalFocusColor = Color.HotPink;
->>>>>>> Stashed changes
+
         public logowanie()
         {
             InitializeComponent();
+            roundedTextBox1._TextChanged += (_, __) => ResetField(roundedTextBox1);
+            roundedTextBox2._TextChanged += (_, __) => ResetField(roundedTextBox2);
         }
-        private async void button1_Click(object sender, EventArgs e)
+
+        private async void roundedButton1_Click(object sender, EventArgs e)
         {
-<<<<<<< Updated upstream
             string login = textBox1.Text;
             string haslo = textBox2.Text;
-=======
             ResetField(roundedTextBox1);
             ResetField(roundedTextBox2);
 
             string login = roundedTextBox1.Texts;
             string haslo = roundedTextBox2.Texts;
-            //string response = await new HTTPConnection("https://egzamin-dyplomowy.7m.pl/login.php").LogIn(login, haslo);
-
->>>>>>> Stashed changes
             string url = "https://egzamin-dyplomowy.7m.pl/login.php";
             HTTPConnection conn = new HTTPConnection(url);
             string json = await conn.LogIn(login, haslo);
             var response = new API(json);
-<<<<<<< Updated upstream
-            if (!response.Success) {
-                GetMessage?.Invoke(this, response.Message);
-                return;
-            }
-
-            token = response.Data["token"].ToObject<string>();
-=======
             if (!response.Success)
             {
                 MarkError(roundedTextBox1);
@@ -63,25 +49,15 @@ namespace egzamin_dyplomowy
             }
 
             string token = response.Data["token"].ToObject<string>();
->>>>>>> Stashed changes
             string databaseConn = "https://egzamin-dyplomowy.7m.pl/validate.php";
             conn = new HTTPConnection(databaseConn);
             string validate = await conn.SendToken(token);
             var validateToken = new API(validate);
             if (validateToken.Success)
             {
-                if (this.ParentForm is Form1 mainForm)
-                {
-                    mainForm.Hide();
-                    main_panel main_Panel = new main_panel(token);
-                    main_Panel.Owner = mainForm;
-                    main_Panel.Show();
-                }
+                string token = json.Value<string>("token");
+                ValueChanged?.Invoke(this, token);
             }
-<<<<<<< Updated upstream
-            GetMessage?.Invoke(this, response.Message + " token:" + token);
-            //JSON_label.Text = token;
-=======
             MessageReceived?.Invoke(this, response.Message + " token:" + token);
 
             //JObject json;
@@ -114,17 +90,64 @@ namespace egzamin_dyplomowy
             //    main_panel main_Panel = new main_panel(token);
             //    main_Panel.Owner = ;
             //}
->>>>>>> Stashed changes
         }
 
+        private void MarkError(RoundedTextBox box)
+        {
+            box.isValid = false;
+            box.Invalidate();
+        }
+
+        private void ResetField(RoundedTextBox box)
+        {
+            box.isValid = true;
+            box.BorderColor = NormalBorderColor;
+            box.BorderFocusColor = NormalFocusColor;
+            box.Invalidate();
+        }
         private void rejestracja_Click(object sender, EventArgs e)
         {
             if (this.ParentForm is Form1 mainForm)
             {
-                RejestracjaControl rej = new RejestracjaControl();
+                var rej = new RejestracjaControl();
                 rej.ValueChanged += mainForm.getToken;
-                mainForm.ChangeUserControl(rej); // Przełączenie na UserControl2
+                mainForm.ChangeUserControl(rej);
             }
         }
+
+
+        private void logowanie_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (this.ParentForm is Form1 mainForm)
+            {
+                var ctl = new RejestracjaControl();  //forgot password POPRAWIĆ!!!
+                mainForm.ChangeUserControl(ctl);
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (this.ParentForm is Form1 mainForm)
+            {
+                var ctl = new RejestracjaControl();  //Rejestracja
+                mainForm.ChangeUserControl(ctl);
+            }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (this.ParentForm is Form1 mainForm)
+            {
+                var ctl = new RejestracjaControl();  //activate account POPRAWIĆ!!!
+                mainForm.ChangeUserControl(ctl);
+            }
+        }
+
+
     }
 }

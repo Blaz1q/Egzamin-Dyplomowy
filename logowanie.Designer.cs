@@ -1,4 +1,4 @@
-﻿namespace egzamin_dyplomowy
+namespace egzamin_dyplomowy
 {
     partial class logowanie
     {
@@ -30,12 +30,12 @@
         {
             button1 = new Button();
             label2 = new Label();
-<<<<<<< Updated upstream
+
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             label1 = new Label();
             rejestracja = new Button();
-=======
+
             label3 = new Label();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
@@ -44,12 +44,12 @@
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
->>>>>>> Stashed changes
+
             SuspendLayout();
             // 
             // button1
             // 
-<<<<<<< Updated upstream
+
             button1.Location = new Point(18, 163);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
@@ -57,7 +57,7 @@
             button1.Text = "Zaloguj";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-=======
+
             roundedTextBox1.BackColor = SystemColors.ControlLightLight;
             roundedTextBox1.BorderColor = Color.Gray;
             roundedTextBox1.BorderFocusColor = Color.Blue;
@@ -137,36 +137,36 @@
             label1.Size = new Size(93, 36);
             label1.TabIndex = 2;
             label1.Text = "Email";
->>>>>>> Stashed changes
+
             // 
             // label2
             // 
             label2.AutoSize = true;
-<<<<<<< Updated upstream
+
             label2.Location = new Point(18, 90);
             label2.Name = "label2";
             label2.Size = new Size(47, 20);
             label2.TabIndex = 9;
-=======
+
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label2.Location = new Point(59, 275);
             label2.Name = "label2";
             label2.Size = new Size(96, 36);
             label2.TabIndex = 3;
->>>>>>> Stashed changes
+
             label2.Text = "Hasło";
             // 
             // textBox2
             // 
-<<<<<<< Updated upstream
+
             textBox2.Location = new Point(18, 113);
             textBox2.Name = "textBox2";
             textBox2.ShortcutsEnabled = false;
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 8;
             textBox2.UseSystemPasswordChar = true;
-=======
+
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Microsoft Sans Serif", 35.9999962F, FontStyle.Bold, GraphicsUnit.Point, 238);
@@ -175,16 +175,13 @@
             label3.Size = new Size(328, 69);
             label3.TabIndex = 6;
             label3.Text = "Zaloguj się";
->>>>>>> Stashed changes
             // 
             // textBox1
             // 
-<<<<<<< Updated upstream
             textBox1.Location = new Point(18, 45);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 7;
-=======
             linkLabel1.ActiveLinkColor = Color.Black;
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new Font("Microsoft Sans Serif", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point, 238);
@@ -199,18 +196,15 @@
             linkLabel1.Text = "Zapomniałeś hasła?";
             linkLabel1.VisitedLinkColor = Color.Black;
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
->>>>>>> Stashed changes
             // 
             // label1
             // 
-<<<<<<< Updated upstream
             label1.AutoSize = true;
             label1.Location = new Point(18, 22);
             label1.Name = "label1";
             label1.Size = new Size(46, 20);
             label1.TabIndex = 6;
             label1.Text = "Login";
-=======
             linkLabel2.ActiveLinkColor = Color.Black;
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Microsoft Sans Serif", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point, 238);
@@ -225,11 +219,10 @@
             linkLabel2.Text = "Zarejestruj się";
             linkLabel2.VisitedLinkColor = Color.Black;
             linkLabel2.LinkClicked += linkLabel3_LinkClicked;
->>>>>>> Stashed changes
             // 
             // rejestracja
             // 
-<<<<<<< Updated upstream
+
             rejestracja.Location = new Point(18, 209);
             rejestracja.Name = "rejestracja";
             rejestracja.Size = new Size(164, 29);
@@ -237,7 +230,6 @@
             rejestracja.Text = "Przejdź do rejestracji";
             rejestracja.UseVisualStyleBackColor = true;
             rejestracja.Click += rejestracja_Click;
-=======
             linkLabel3.ActiveLinkColor = Color.Black;
             linkLabel3.AutoSize = true;
             linkLabel3.Font = new Font("Microsoft Sans Serif", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point, 238);
@@ -270,7 +262,6 @@
             pictureBox1.Size = new Size(1781, 1773);
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
->>>>>>> Stashed changes
             // 
             // logowanie
             // 
@@ -283,33 +274,30 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Name = "logowanie";
-<<<<<<< Updated upstream
-            Size = new Size(215, 284);
-=======
             Size = new Size(1152, 864);
             Load += logowanie_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
->>>>>>> Stashed changes
+
             ResumeLayout(false);
             PerformLayout();
         }
 
-<<<<<<< Updated upstream
         #endregion
 
         private Button button1;
         private Label label2;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private Label label3;
+        private RoundedTextBox textBox2;
+        private RoundedTextBox textBox1;
         private Label label1;
         private Button rejestracja;
-=======
+
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
         private LinkLabel linkLabel3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
->>>>>>> Stashed changes
+
     }
 }
