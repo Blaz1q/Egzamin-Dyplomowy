@@ -8,8 +8,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace egzamin_dyplomowy
 {
@@ -29,42 +31,67 @@ namespace egzamin_dyplomowy
 
         private async void roundedButton1_Click(object sender, EventArgs e)
         {
-            ResetField(roundedTextBox1);
-            ResetField(roundedTextBox2);
-
             string login = roundedTextBox1.Texts;
             string haslo = roundedTextBox2.Texts;
-            string response = await new HTTPConnection("https://egzamin-dyplomowy.7m.pl/login.php")
-                                     .LogIn(login, haslo);
-
-            JObject json;
-            try
-            {
-                json = JObject.Parse(response);
-            }
-            catch
+            string url = "https://egzamin-dyplomowy.7m.pl/login.php";
+            HTTPConnection conn = new HTTPConnection(url);
+            string json = await conn.LogIn(login, haslo);
+            var response = new API(json);
+            if (!response.Success)
             {
                 MarkError(roundedTextBox1);
                 MarkError(roundedTextBox2);
-                MessageReceived?.Invoke(this, "błąd w serwerze");
+                MessageReceived?.Invoke(this, response.Message);
                 return;
             }
 
-            bool success = json.Value<bool>("success");
-            string msg = json.Value<string>("message");
+            string token = response.Data["token"].ToObject<string>();
+            string databaseConn = "https://egzamin-dyplomowy.7m.pl/validate.php";
+            conn = new HTTPConnection(databaseConn);
+            string validate = await conn.SendToken(token);
+            var validateToken = new API(validate);
+            if (validateToken.Success)
+            {
+                if (this.ParentForm is Form1 mainForm)
+                {
+                    mainForm.Hide();
+                    main_panel main_Panel = new main_panel(token);
+                    main_Panel.Owner = mainForm;
+                    main_Panel.Show();
+                }
+            }
+            MessageReceived?.Invoke(this, response.Message + " token:" + token);
 
-            if (!success)
-            {
-                //błąd hasła lub maila
-                MarkError(roundedTextBox1);
-                MarkError(roundedTextBox2);
-                MessageReceived?.Invoke(this, msg);
-            }
-            else
-            {
-                string token = json.Value<string>("token");
-                ValueChanged?.Invoke(this, token);
-            }
+            //JObject json;
+            //try
+            //{
+            //    json = JObject.Parse(response);
+            //}
+            //catch
+            //{
+            //    MarkError(roundedTextBox1);
+            //    MarkError(roundedTextBox2);
+            //    MessageReceived?.Invoke(this, "błąd w serwerze");
+            //    return;
+            //}
+
+            //bool success = json.Value<bool>("success");
+            //string msg = json.Value<string>("message");
+
+            //if (!success)
+            //{
+            //    //błąd hasła lub maila
+            //    MarkError(roundedTextBox1);
+            //    MarkError(roundedTextBox2);
+            //    MessageReceived?.Invoke(this, msg);
+            //}
+            //else
+            //{
+            //    string token = json.Value<string>("token");
+            //    ValueChanged?.Invoke(this, token);
+            //    main_panel main_Panel = new main_panel(token);
+            //    main_Panel.Owner = ;
+            //}
         }
 
         private void MarkError(RoundedTextBox box)

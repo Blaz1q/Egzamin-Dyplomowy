@@ -19,7 +19,7 @@ namespace egzamin_dyplomowy
         public void resetInputs() {
             logowanie log = new logowanie();
             log.ValueChanged += getToken;
-            log.GetMessage += getMessage;
+            log.MessageReceived += getMessage;
             ChangeUserControl(log);
             JSON_label.Text = "";
             token = "";
@@ -67,6 +67,7 @@ namespace egzamin_dyplomowy
         {
             this.Hide();
             main_panel main_Panel = new main_panel(token);
+            main_Panel.Owner = this;
             main_Panel.Show();
         }
     }
