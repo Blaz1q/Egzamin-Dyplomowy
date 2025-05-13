@@ -1,4 +1,5 @@
-﻿namespace egzamin_dyplomowy
+﻿using egzamin_dyplomowy.Properties;
+namespace egzamin_dyplomowy
 {
     partial class main_panel
     {
@@ -64,6 +65,7 @@
             wylogujButton.FlatStyle = FlatStyle.Flat;
             wylogujButton.ForeColor = Color.White;
             wylogujButton.HoverColor = Color.Transparent;
+            wylogujButton.Image = Resources.Log_out;
             wylogujButton.Location = new Point(12, 523);
             wylogujButton.Margin = new Padding(3, 3, 3, 15);
             wylogujButton.Name = "wylogujButton";
@@ -85,6 +87,7 @@
             settingsButton.FlatStyle = FlatStyle.Flat;
             settingsButton.ForeColor = Color.White;
             settingsButton.HoverColor = Color.Transparent;
+            settingsButton.Image = Resources.Settings;
             settingsButton.Location = new Point(12, 236);
             settingsButton.Margin = new Padding(3, 3, 3, 15);
             settingsButton.Name = "settingsButton";
@@ -105,6 +108,7 @@
             pytaniaButton.FlatStyle = FlatStyle.Flat;
             pytaniaButton.ForeColor = Color.White;
             pytaniaButton.HoverColor = Color.Transparent;
+            pytaniaButton.Image = Resources.Book;
             pytaniaButton.Location = new Point(12, 163);
             pytaniaButton.Margin = new Padding(3, 3, 3, 15);
             pytaniaButton.Name = "pytaniaButton";
@@ -125,6 +129,7 @@
             uzytkownicyButton.FlatStyle = FlatStyle.Flat;
             uzytkownicyButton.ForeColor = Color.White;
             uzytkownicyButton.HoverColor = Color.Transparent;
+            uzytkownicyButton.Image = Resources.Icon;
             uzytkownicyButton.Location = new Point(12, 85);
             uzytkownicyButton.Margin = new Padding(3, 3, 3, 20);
             uzytkownicyButton.Name = "uzytkownicyButton";
@@ -146,6 +151,7 @@
             CalendarButton.FlatStyle = FlatStyle.Flat;
             CalendarButton.ForeColor = Color.White;
             CalendarButton.HoverColor = Color.FromArgb(168, 206, 187);
+            CalendarButton.Image = Resources.Calendar;
             CalendarButton.Location = new Point(12, 12);
             CalendarButton.Margin = new Padding(3, 3, 3, 15);
             CalendarButton.Name = "CalendarButton";
