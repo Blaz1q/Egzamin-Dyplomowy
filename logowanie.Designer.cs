@@ -191,6 +191,7 @@ namespace egzamin_dyplomowy
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.White;
+            pictureBox1.Image = Properties.Resources.Logowanie;
             pictureBox1.Location = new Point(238, -336);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
