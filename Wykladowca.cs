@@ -18,7 +18,11 @@ namespace egzamin_dyplomowy
 
         public void Wypisz()
         {
-            Debug.WriteLine($"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}");
+            Console.WriteLine($"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}");
+        }
+        public override string ToString()
+        {
+            return $"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}";
         }
     }
 
@@ -37,9 +41,16 @@ namespace egzamin_dyplomowy
          {
              wykladowcy.Add(wykladowca);
          }
-        public Wykladowca GetWykladowca(int id) { 
-            return wykladowcy[id];
+        public Wykladowca? GetWykladowca(int id)
+        {
+            foreach (var wykladowca in wykladowcy)
+                if (wykladowca.Id == id) {
+                    return wykladowca;
+                }
+            return null;
         }
+
+        
         //usuwanie
         public void UsunWykladowce(int index)
         {
@@ -81,9 +92,7 @@ namespace egzamin_dyplomowy
         }
         public static void Testing() //testowanie
         {
-            //testowanie
-            static void Testing()
-            {
+    
                 ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
                 zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");
                 zarzadzanie.DodajWykladowce(2, "Steve", "Jobs", "Recenzent");
@@ -101,7 +110,9 @@ namespace egzamin_dyplomowy
 
                 Console.WriteLine("Lista po usunięciu:");
                 zarzadzanie.WypiszWszystkich();
-            }
+                Console.WriteLine(zarzadzanie.GetWykladowca(2));
+                
+            
         }
     } 
 }
