@@ -1,4 +1,5 @@
-﻿namespace egzamin_dyplomowy
+﻿using egzamin_dyplomowy.Properties
+namespace egzamin_dyplomowy
 {
     partial class main_panel
     {
@@ -93,6 +94,7 @@
             settingsButton.TextColor = Color.White;
             settingsButton.TooltipText = "Ustawienia";
             settingsButton.UseVisualStyleBackColor = false;
+            //settingsButton.Image = Properties.Resources.settings;
             // 
             // pytaniaButton
             // 
