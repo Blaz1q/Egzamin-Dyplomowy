@@ -8,8 +8,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace egzamin_dyplomowy
 {
@@ -29,11 +31,6 @@ namespace egzamin_dyplomowy
 
         private async void roundedButton1_Click(object sender, EventArgs e)
         {
-            string login = textBox1.Text;
-            string haslo = textBox2.Text;
-            ResetField(roundedTextBox1);
-            ResetField(roundedTextBox2);
-
             string login = roundedTextBox1.Texts;
             string haslo = roundedTextBox2.Texts;
             string url = "https://egzamin-dyplomowy.7m.pl/login.php";
@@ -55,8 +52,13 @@ namespace egzamin_dyplomowy
             var validateToken = new API(validate);
             if (validateToken.Success)
             {
-                string token = json.Value<string>("token");
-                ValueChanged?.Invoke(this, token);
+                if (this.ParentForm is Form1 mainForm)
+                {
+                    mainForm.Hide();
+                    main_panel main_Panel = new main_panel(token);
+                    main_Panel.Owner = mainForm;
+                    main_Panel.Show();
+                }
             }
             MessageReceived?.Invoke(this, response.Message + " token:" + token);
 
