@@ -13,6 +13,7 @@ namespace egzamin_dyplomowy
             Id = id;
             Status = status;
         }
+        public string ImieNazwisko => $"{Imie} {Nazwisko}";
 
         //wypisz jednego wykładowce
 

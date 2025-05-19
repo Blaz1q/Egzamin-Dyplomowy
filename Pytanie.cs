@@ -33,6 +33,10 @@ public class Pytanie
     {
         tresc = nowaTresc;
     }
+    public List<Wykladowca> GetWykladowcy()
+    {
+        return Wykladowcy;
+    }
     public void DodajWykladowce(Wykladowca wykladowca) { 
         if(!this.Wykladowcy.Contains(wykladowca))
             this.Wykladowcy.Add(wykladowca);
