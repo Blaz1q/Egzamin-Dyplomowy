@@ -5,17 +5,24 @@ using System.Windows.Forms;
 
 namespace egzamin_dyplomowy
 {
+    //DodajOsobeForm.cs
+    //EditStudentForm.cs
+    //EditWykladowcaForm.cs
+    //WyswietlOsoby.cs
     public partial class ListaOsob : Form
     {
         private ZarzadzanieStudent studentManager = new ZarzadzanieStudent();
         private ZarzadzanieWykladowcami wykladowcaManager = new ZarzadzanieWykladowcami();
         private List<Osoba> wszyscy = new List<Osoba>();
-
+        
+        //
+        //Filtrowanie
+        //
         public enum FilterType
         {
             All,
-            Students,
-            Lecturers
+            studenci,
+            wykladowcy
         }
         private void BtnWszyscy_Click(object sender, EventArgs e)
         {
@@ -24,12 +31,12 @@ namespace egzamin_dyplomowy
 
         private void BtnStudenci_Click(object sender, EventArgs e)
         {
-            RefreshList(FilterType.Students);
+            RefreshList(FilterType.studenci);
         }
 
         private void BtnWykladowcy_Click(object sender, EventArgs e)
         {
-            RefreshList(FilterType.Lecturers);
+            RefreshList(FilterType.wykladowcy);
         }
 
         public ListaOsob()
@@ -38,7 +45,7 @@ namespace egzamin_dyplomowy
             LoadData();
             CreateFilterButtons();
         }
-
+        // Na razie lokalnie, z przykładową bazą osób
         private void LoadData()
         {
             studentManager.DodajStudent(1, "Anna", "Nowak", 4.2, true, 1);
@@ -53,22 +60,25 @@ namespace egzamin_dyplomowy
             RefreshList(FilterType.All);
         }
 
+        //
+        // Odświerza liste gdy wybrany jest filtr
+        //
         public void RefreshList(FilterType filter)
         {
             flowLayoutPanel1.Controls.Clear();
 
-            if (filter == FilterType.All || filter == FilterType.Students)
+            if (filter == FilterType.All || filter == FilterType.studenci)
             {
-                List<Student> students = studentManager.getLista();
-                for (int i = 0; i < students.Count; i++)
+                List<Student> studenci = studentManager.getLista();
+                for (int i = 0; i < studenci.Count; i++)
                 {
-                    var student = students[i];
+                    var student = studenci[i];
                     var control = new WyswietlOsoby(student, i, studentManager, this);
                     flowLayoutPanel1.Controls.Add(control);
                 }
             }
 
-            if (filter == FilterType.All || filter == FilterType.Lecturers)
+            if (filter == FilterType.All || filter == FilterType.wykladowcy)
             {
                 List<Wykladowca> wykladowcy = wykladowcaManager.getLista();
                 for (int i = 0; i < wykladowcy.Count; i++)
@@ -79,20 +89,36 @@ namespace egzamin_dyplomowy
                 }
             }
         }
-
+        
+        //
+        // Funkcjonalność przycisków filtru
+        //
         private void CreateFilterButtons()
         {
-            Button btnAll = new Button() { Text = "Wszyscy", Location = new Point(10, 10) };
-            Button btnStudents = new Button() { Text = "Studenci", Location = new Point(100, 10) };
-            Button btnLecturers = new Button() { Text = "Wykładowcy", Location = new Point(200, 10) };
+        
+            Button btnAll = new Button();
+            Button btnstudenci = new Button();
+            Button btnwykladowcy = new Button();
 
             btnAll.Click += (s, e) => RefreshList(FilterType.All);
-            btnStudents.Click += (s, e) => RefreshList(FilterType.Students);
-            btnLecturers.Click += (s, e) => RefreshList(FilterType.Lecturers);
+            btnstudenci.Click += (s, e) => RefreshList(FilterType.studenci);
+            btnwykladowcy.Click += (s, e) => RefreshList(FilterType.wykladowcy);
 
-            this.Controls.Add(btnAll);
-            this.Controls.Add(btnStudents);
-            this.Controls.Add(btnLecturers);
         }
+
+        //
+        // Funkcjonalność przycisku dodawania
+        //
+        private void btnDodajOsobe_Click(object sender, EventArgs e)
+        {
+            using (var form = new DodajOsobeForm(studentManager, wykladowcaManager))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshList(FilterType.All);
+                }
+            }
+        }
+
     }
 }

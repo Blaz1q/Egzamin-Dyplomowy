@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 namespace egzamin_dyplomowy
 {
+    
     public partial class WyswietlOsoby : UserControl
     {
         private Student _student;
@@ -11,8 +12,10 @@ namespace egzamin_dyplomowy
         private ZarzadzanieStudent _studentManager;
         private ZarzadzanieWykladowcami _wykladowcaManager;
         private int _index;
-
-        // Constructor for Student
+        
+        //
+        // Studenci
+        //
         public WyswietlOsoby(Student student, int index, ZarzadzanieStudent manager, ListaOsob parent)
         {
             InitializeComponent();
@@ -24,7 +27,9 @@ namespace egzamin_dyplomowy
             editButton.Click += BtnEdit_Click;
         }
 
-        // Constructor for Wykladowca
+        //
+        // Wykładowcy
+        //
         public WyswietlOsoby(Wykladowca wykladowca, int index, ZarzadzanieWykladowcami manager, ListaOsob parent)
         {
             InitializeComponent();
@@ -35,7 +40,10 @@ namespace egzamin_dyplomowy
             nameLabel.Text = $"{wykladowca.Imie} {wykladowca.Nazwisko}";
             editButton.Click += BtnEdit_Click;
         }
-
+        
+        //
+        // Funkcjonalność przycisku do edycji
+        //
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             if (_student != null)
@@ -44,7 +52,7 @@ namespace egzamin_dyplomowy
                 {
                     if (editForm.ShowDialog() == DialogResult.OK)
                     {
-                        _parentForm.RefreshList(ListaOsob.FilterType.Students);
+                        _parentForm.RefreshList(ListaOsob.FilterType.studenci);
                     }
                 }
             }
@@ -54,7 +62,7 @@ namespace egzamin_dyplomowy
                 {
                     if (editForm.ShowDialog() == DialogResult.OK)
                     {
-                        _parentForm.RefreshList(ListaOsob.FilterType.Lecturers);
+                        _parentForm.RefreshList(ListaOsob.FilterType.wykladowcy);
                     }
                 }
             }

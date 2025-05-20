@@ -46,18 +46,18 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(200, 6);
+            editButton.Location = new Point(288, 6);
             editButton.Name = "editButton";
             editButton.Size = new Size(75, 23);
             editButton.TabIndex = 1;
-            editButton.Text = "Edit";
+            editButton.Text = "Edytuj";
             // 
-            // UserControl1
+            // WyswietlOsoby
             // 
             Controls.Add(nameLabel);
             Controls.Add(editButton);
-            Name = "UserControl1";
-            Size = new Size(626, 130);
+            Name = "WyswietlOsoby";
+            Size = new Size(626, 37);
             ResumeLayout(false);
             PerformLayout();
         }

@@ -15,10 +15,10 @@ namespace egzamin_dyplomowy
             _studentManager = studentManager;
             _index = index;
 
-            var students = _studentManager.getLista();
-            if (index >= 0 && index < students.Count)
+            var studenci = _studentManager.getLista();
+            if (index >= 0 && index < studenci.Count)
             {
-                _student = students[index];
+                _student = studenci[index];
                 LoadStudentData();
             }
             else
