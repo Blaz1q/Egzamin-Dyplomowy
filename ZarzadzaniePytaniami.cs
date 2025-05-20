@@ -1,16 +1,16 @@
-﻿namespace egzamin_dyplomowy;
+namespace egzamin_dyplomowy;
+
 public class ZarzadzaniePytaniami
 {
-    private static List<Pytanie> pytania = new List<Pytanie>();
-    private static int nextId = 1;
+    private List<Pytanie> pytania = new List<Pytanie>();
+    private int nextId = 1;
 
-    public static void DodajPytanie(string tresc, string kierunek, string wykladowca, string kategoria, string poziom)
+    public void DodajPytanie(string tresc, string kierunek, List<Wykladowca> wykladowcy, string kategoria, string poziom)
     {
-        pytania.Add(new Pytanie(nextId, tresc, kierunek, wykladowca, kategoria, poziom));
-        nextId++;
+        pytania.Add(new Pytanie(nextId++, tresc, kierunek, wykladowcy, kategoria, poziom));
     }
 
-    public static void UsunPytanie(int id)
+    public void UsunPytanie(int id)
     {
         var pytanie = pytania.FirstOrDefault(p => p.Id == id);
         if (pytanie != null)
@@ -24,14 +24,14 @@ public class ZarzadzaniePytaniami
         }
     }
 
-    public static void EdytujPytanie(int id, string nowaTresc, string nowyKierunek, string nowyWykladowca, string nowaKategoria, string nowyPoziom)
+    public void EdytujPytanie(int id, string nowaTresc, string nowyKierunek, List<Wykladowca> nowiWykladowcy, string nowaKategoria, string nowyPoziom)
     {
         var pytanie = pytania.FirstOrDefault(p => p.Id == id);
         if (pytanie != null)
         {
             pytanie.SetTresc(nowaTresc);
             pytanie.Kierunek = nowyKierunek;
-            pytanie.Wykladowca = nowyWykladowca;
+            pytanie.Wykladowcy = nowiWykladowcy;
             pytanie.Kategoria = nowaKategoria;
             pytanie.Poziom = nowyPoziom;
             Console.WriteLine("Pytanie zaktualizowane.");
@@ -42,30 +42,46 @@ public class ZarzadzaniePytaniami
         }
     }
 
-    public static List<int> LosujPytania(string kierunek)
+    public void EdytujWykladowcow(int id, List<Wykladowca> lista)
+    {
+        var pytanie = pytania.FirstOrDefault(p => p.Id == id);
+        if (pytanie != null)
+            pytanie.Wykladowcy = lista;
+    }
+
+    public void DodajWykladowce(int id, Wykladowca wykladowca)
+    {
+        var pytanie = pytania.FirstOrDefault(p => p.Id == id);
+        pytanie?.DodajWykladowce(wykladowca);
+    }
+
+    public void WypiszPytania()
+    {
+        foreach (var pytanie in pytania)
+        {
+            pytanie.WypiszPytanie();
+        }
+    }
+
+    public List<int> LosujPytaniaDlaKierunku(string kierunek, int liczba = 3)
     {
         Random rand = new Random();
         return pytania.Where(p => p.Kierunek == kierunek)
                       .Select(p => p.Id)
                       .OrderBy(x => rand.Next())
-                      .Take(3)
+                      .Take(liczba)
                       .ToList();
     }
 
-    public static int WymienPytanie(List<int> wylosowaneId, string kierunek, int idDoWymiany)
+    public List<int> LosujPytaniaDlaWykladowcy(Wykladowca wykladowca, int liczba = 3)
     {
-        if (!wylosowaneId.Contains(idDoWymiany)) return -1;
-
-        List<int> dostepneId = pytania.Where(p => p.Kierunek == kierunek && !wylosowaneId.Contains(p.Id))
-                                      .Select(p => p.Id)
-                                      .ToList();
-
-        if (dostepneId.Count == 0) return -1;
-
-        int noweId = dostepneId[new Random().Next(dostepneId.Count)];
-        int index = wylosowaneId.IndexOf(idDoWymiany);
-        wylosowaneId[index] = noweId;
-
-        return noweId;
+        Random rand = new Random();
+        return pytania.Where(p => p.Wykladowcy.Contains(wykladowca))
+                      .Select(p => p.Id)
+                      .OrderBy(x => rand.Next())
+                      .Take(liczba)
+                      .ToList();
     }
+
+
 }
