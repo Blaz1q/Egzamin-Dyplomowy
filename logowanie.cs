@@ -19,8 +19,8 @@ namespace egzamin_dyplomowy
     {
         public event EventHandler<string> ValueChanged;
         public event EventHandler<string> MessageReceived;
-        private readonly Color NormalBorderColor = Color.MediumSlateBlue;
-        private readonly Color NormalFocusColor = Color.HotPink;
+        private readonly Color NormalBorderColor = Color.Gray;
+        private readonly Color NormalFocusColor = Color.Blue;
 
         public logowanie()
         {
