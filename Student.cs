@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,11 +10,20 @@ namespace egzamin_dyplomowy
     public class Student : Osoba
     {
         private int id { get; set; }
-        private double srednia { get; set; }
+        public double srednia { get; set; }
         public bool kola_naukowe { get; set; }
         public int kierunek;
-        public string imie { get; set; }
-        public string nazwisko { get; set; }
+        public string nazwisko
+        {
+            get => Nazwisko;
+            set => Nazwisko = value;
+        }
+
+        public string imie
+        {
+            get => Imie;
+            set => Imie = value;
+        }
 
         public Student(int id, string imie, string nazwisko, double srednia, bool kola_naukowe, int kierunek) : base(imie, nazwisko)
         {
