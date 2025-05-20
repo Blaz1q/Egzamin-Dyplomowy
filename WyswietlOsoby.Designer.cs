@@ -1,4 +1,4 @@
-﻿namespace egzamin_dyplomowy
+namespace egzamin_dyplomowy
 {
     partial class WyswietlOsoby
     {
@@ -57,7 +57,7 @@
             Controls.Add(nameLabel);
             Controls.Add(editButton);
             Name = "WyswietlOsoby";
-            Size = new Size(626, 37);
+            Size = new Size(365, 37);
             ResumeLayout(false);
             PerformLayout();
         }
