@@ -12,5 +12,11 @@ namespace egzamin_dyplomowy
         public static ZarzadzaniePytaniami Pytania = new ZarzadzaniePytaniami();
         public static ZarzadzanieWykladowcami Wykladowcy = new ZarzadzanieWykladowcami();
         public static ZarzadzanieStudent Studenci = new ZarzadzanieStudent();
+        public static void ResetData() { 
+            Terminy = new OperacjeNaTerminach();
+            Pytania = new ZarzadzaniePytaniami();
+            Wykladowcy = new ZarzadzanieWykladowcami();
+            Studenci = new ZarzadzanieStudent();
+        }
     }
 }

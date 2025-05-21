@@ -191,18 +191,19 @@ namespace egzamin_dyplomowy
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.White;
-            pictureBox1.Image = Properties.Resources.Logowanie;
-            pictureBox1.Location = new Point(238, -336);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.BackgroundImage = Properties.Resources.Logowanie;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(407, 0);
+            pictureBox1.Margin = new Padding(0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1781, 1773);
+            pictureBox1.Size = new Size(1156, 864);
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Margin = new Padding(0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(594, 864);
             pictureBox2.TabIndex = 12;
