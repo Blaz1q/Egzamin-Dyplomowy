@@ -25,11 +25,11 @@ namespace egzamin_dyplomowy
         public void WyswietlSzczegoly()
         {
             Console.WriteLine($"Data: {Data.ToShortDateString()}, Godzina: {Godzina}, Czas trwania: {CzasTrwania}, Status: {Status}");
-            Egzamin.WypiszEgzamin();
+            //Egzamin.WypiszEgzamin();
         }
 
-        public TimeOnly GetStartTime() => Data.Add(Godzina);
-        public EndTime GetEndTime() => GetStartTime().Add(CzasTrwania);
+        public TimeOnly GetStartTime() => Godzina;
+        public TimeOnly GetEndTime() => GetStartTime().Add(CzasTrwania);
     }
 
     public class OperacjeNaTerminach
@@ -49,7 +49,7 @@ namespace egzamin_dyplomowy
                         Debug.WriteLine("Nie można dodać terminu: Członkowie komisji się powtarzają.");
                         return;
                     }
-                }   
+                }
             }
             terminy.Add(termin);
             Debug.WriteLine("Termin dodany pomyślnie.");
@@ -108,7 +108,7 @@ namespace egzamin_dyplomowy
                     }
                 }
 
-                
+
             }
 
             termin.Data = data;
