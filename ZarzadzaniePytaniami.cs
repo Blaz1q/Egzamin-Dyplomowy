@@ -5,13 +5,13 @@ public class ZarzadzaniePytaniami
     private static List<Pytanie> pytania = new List<Pytanie>();
     private static int nextId = 1;
 
-    public static void DodajPytanie(string tresc, string kierunek, List<Wykladowca> wykladowcy, string kategoria, string poziom)
+    public void DodajPytanie(string tresc, string kierunek, List<Wykladowca> wykladowcy, string kategoria, string poziom)
     {
         pytania.Add(new Pytanie(nextId, tresc, kierunek, wykladowcy, kategoria, poziom));
         nextId++;
     }
 
-    public static void UsunPytanie(int id)
+    public void UsunPytanie(int id)
     {
         var pytanie = pytania.FirstOrDefault(p => p.Id == id);
         if (pytanie != null)
@@ -25,7 +25,7 @@ public class ZarzadzaniePytaniami
         }
     }
 
-    public static void EdytujPytanie(int id, string nowaTresc, string nowyKierunek, List<Wykladowca> nowiWykladowcy, string nowaKategoria, string nowyPoziom)
+    public void EdytujPytanie(int id, string nowaTresc, string nowyKierunek, List<Wykladowca> nowiWykladowcy, string nowaKategoria, string nowyPoziom)
     {
         var pytanie = pytania.FirstOrDefault(p => p.Id == id);
         if (pytanie != null)
@@ -42,7 +42,17 @@ public class ZarzadzaniePytaniami
             Console.WriteLine("Nie znaleziono takiego pytania.");
         }
     }
-
+    public void EdytujWykladowcow(int id,List<Wykladowca> lista) {
+        pytania[id].Wykladowcy = lista;
+    }
+    public void DodajWykladowce(int id, Wykladowca wykladowca) {
+        pytania[id].Wykladowcy.Add(wykladowca);
+    }
+    public void WypiszPytania() {
+        foreach (var pytania in pytania) { 
+            pytania.WypiszPytanie();
+        }
+    }
     public static List<int> LosujPytania(string kierunek)
     {
         Random rand = new Random();

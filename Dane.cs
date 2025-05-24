@@ -8,11 +8,9 @@ namespace egzamin_dyplomowy
 {
     internal class Dane
     {
-        public ZarzadzaniePytaniami Pytania;
-        public ZarzadzanieWykladowcami Wykladowcy;
-        Dane() {
-            this.Pytania = new ZarzadzaniePytaniami();
-            this.Wykladowcy = new ZarzadzanieWykladowcami();
-        }
+        public static OperacjeNaTerminach Terminy = new OperacjeNaTerminach();
+        public static ZarzadzaniePytaniami Pytania = new ZarzadzaniePytaniami();
+        public static ZarzadzanieWykladowcami Wykladowcy = new ZarzadzanieWykladowcami();
+        public static ZarzadzanieStudent Studenci = new ZarzadzanieStudent();
     }
 }

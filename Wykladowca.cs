@@ -10,15 +10,16 @@ namespace egzamin_dyplomowy
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         
-        public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie + " " + nazwisko)
+        public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie, nazwisko)
         {
             Id = id;
             Imie = imie;
             Nazwisko = nazwisko;
             Status = status;
         }
+        public string ImieNazwisko => $"{Imie} {Nazwisko}";
 
-//wypisz jednego wykładowce
+        //wypisz jednego wykładowce
 
         public void Wypisz()
         {
