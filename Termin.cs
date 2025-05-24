@@ -5,15 +5,15 @@ namespace egzamin_dyplomowy
 {
     public class Termin
     {
-        public DateTime Data { get; set; }
-        public TimeSpan Godzina { get; set; }
+        public DateOnly Data { get; set; }
+        public TimeOnly Godzina { get; set; }
         public TimeSpan CzasTrwania { get; set; }
         public string Status { get; set; }
         public Egzamin Egzamin { get; set; }
 
         public Termin() { }
 
-        public Termin(DateTime data, TimeSpan godzina, TimeSpan czasTrwania, string status, Egzamin egzamin)
+        public Termin(DateOnly data, TimeOnly godzina, TimeSpan czasTrwania, string status, Egzamin egzamin)
         {
             this.Data = data;
             this.Godzina = godzina;
@@ -28,8 +28,8 @@ namespace egzamin_dyplomowy
             //Egzamin.WypiszEgzamin(); sorry, nie ma jeszcze takiej funkcji bo krzysiek tego nie zrobił bo nie wymagałem (chyba) - Belzebebe
         }
 
-        public DateTime GetStartTime() => Data.Add(Godzina);
-        public DateTime GetEndTime() => GetStartTime().Add(CzasTrwania);
+        public TimeOnly GetStartTime() => Godzina;
+        public TimeOnly GetEndTime() => GetStartTime().Add(CzasTrwania);
     }
 
     public class OperacjeNaTerminach
@@ -49,7 +49,7 @@ namespace egzamin_dyplomowy
                         Debug.WriteLine("Nie można dodać terminu: Członkowie komisji się powtarzają.");
                         return;
                     }
-                }   
+                }
             }
             terminy.Add(termin);
             Debug.WriteLine("Termin dodany pomyślnie.");
@@ -90,7 +90,7 @@ namespace egzamin_dyplomowy
             return komisjaNowa.Any(osoba => komisjaIstniejaca.Contains(osoba));
         }
 
-        public void EdytujTermin(Termin termin, DateTime data, TimeSpan godzina, string status, Egzamin egzamin)
+        public void EdytujTermin(Termin termin, DateOnly data, TimeOnly godzina, string status, Egzamin egzamin)
         {
             var nowyTermin = new Termin(data, godzina, termin.CzasTrwania, status, egzamin);
 
@@ -108,7 +108,7 @@ namespace egzamin_dyplomowy
                     }
                 }
 
-                
+
             }
 
             termin.Data = data;
