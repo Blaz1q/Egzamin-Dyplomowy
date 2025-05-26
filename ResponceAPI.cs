@@ -79,7 +79,11 @@ namespace egzamin_dyplomowy
             ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠛⢁⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
             */
         }
-        public void SetDane() {  
+        public void SetDane() {
+            if (this.Has("User")) {
+                JObject user = this.Data["User"].ToObject<JObject>();
+                Dane.User = new Uzytkownik(user["imie"].ToString(), user["nazwisko"].ToString(), "nwm", user["rodzaj_konta"].ToObject<int>());
+            }
             if (this.Has("Studenci"))
             {
                 JArray Studenci = this.Data["Studenci"].ToObject<JArray>();
@@ -124,11 +128,15 @@ namespace egzamin_dyplomowy
                 foreach (var item in Terminy) {
                     DateTime data = DateTime.Parse(item["data"].ToString());
                     TimeSpan godzina_rozpoczecia = TimeSpan.Parse(item["godzina_rozpoczecia"].ToString());
-                    TimeSpan godzina_zakonczenia = TimeSpan.Parse(item["godzina_zakonczenia"].ToString());
+                    TimeSpan godzina_zakonczenia = TimeSpan.Parse(item["czas_trwania"].ToString());
                     int promotor_id = item["promotor_id"].ToObject<int>();
                     int prodziekan_id = item["prodziekan_id"].ToObject<int>();
                     int recenzent_id = item["recenzent_id"].ToObject<int>();
                     int student_id = item["student_id"].ToObject<int>();
+                    //if (Dane.Studenci.getLista().Count == 0) {
+                        //Egzamin egzamin = new Egzamin();
+                   // }
+                    
                     //Egzamin egzamin = new Egzamin(new Student(0, "skibi", "di", 4.2, true, 1), new Wykladowca(0, "skibid", "i", "ninja"), new Wykladowca(0, "skibid", "i", "ninja"), new Wykladowca(0, "skibid", "i", "ninja"), new List<Pytanie>());
                     //Termin termin = new Termin(data, godzina_rozpoczecia, godzina_zakonczenia, "skibidi", egzamin);
                     //Dane.Terminy.DodajTermin(termin);

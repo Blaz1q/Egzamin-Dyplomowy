@@ -36,17 +36,16 @@ namespace egzamin_dyplomowy
             uzytkownicyButton = new RoundedButton();
             CalendarButton = new RoundedButton();
             panel2 = new Panel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             panel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(54, 54, 54);
+            panel1.Controls.Add(flowLayoutPanel1);
             panel1.Controls.Add(wylogujButton);
-            panel1.Controls.Add(settingsButton);
-            panel1.Controls.Add(pytaniaButton);
-            panel1.Controls.Add(uzytkownicyButton);
-            panel1.Controls.Add(CalendarButton);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -89,8 +88,8 @@ namespace egzamin_dyplomowy
             settingsButton.ForeColor = Color.White;
             settingsButton.HoverColor = Color.Transparent;
             settingsButton.Image = Resources.Settings;
-            settingsButton.Location = new Point(12, 236);
-            settingsButton.Margin = new Padding(3, 3, 3, 15);
+            settingsButton.Location = new Point(12, 222);
+            settingsButton.Margin = new Padding(12, 3, 3, 15);
             settingsButton.Name = "settingsButton";
             settingsButton.Size = new Size(55, 55);
             settingsButton.TabIndex = 4;
@@ -111,8 +110,8 @@ namespace egzamin_dyplomowy
             pytaniaButton.ForeColor = Color.White;
             pytaniaButton.HoverColor = Color.Transparent;
             pytaniaButton.Image = Resources.Book;
-            pytaniaButton.Location = new Point(12, 163);
-            pytaniaButton.Margin = new Padding(3, 3, 3, 15);
+            pytaniaButton.Location = new Point(12, 76);
+            pytaniaButton.Margin = new Padding(12, 3, 3, 15);
             pytaniaButton.Name = "pytaniaButton";
             pytaniaButton.Size = new Size(55, 55);
             pytaniaButton.TabIndex = 3;
@@ -134,8 +133,8 @@ namespace egzamin_dyplomowy
             uzytkownicyButton.ForeColor = Color.White;
             uzytkownicyButton.HoverColor = Color.Transparent;
             uzytkownicyButton.Image = Resources.Icon;
-            uzytkownicyButton.Location = new Point(12, 85);
-            uzytkownicyButton.Margin = new Padding(3, 3, 3, 20);
+            uzytkownicyButton.Location = new Point(12, 149);
+            uzytkownicyButton.Margin = new Padding(12, 3, 3, 15);
             uzytkownicyButton.Name = "uzytkownicyButton";
             uzytkownicyButton.Size = new Size(55, 55);
             uzytkownicyButton.TabIndex = 2;
@@ -157,14 +156,15 @@ namespace egzamin_dyplomowy
             CalendarButton.ForeColor = Color.White;
             CalendarButton.HoverColor = Color.FromArgb(168, 206, 187);
             CalendarButton.Image = Resources.Calendar;
-            CalendarButton.Location = new Point(12, 12);
-            CalendarButton.Margin = new Padding(3, 3, 3, 15);
+            CalendarButton.Location = new Point(12, 3);
+            CalendarButton.Margin = new Padding(12, 3, 3, 15);
             CalendarButton.Name = "CalendarButton";
             CalendarButton.Size = new Size(55, 55);
             CalendarButton.TabIndex = 1;
             CalendarButton.TextColor = Color.White;
             CalendarButton.TooltipText = "Kalendarz";
             CalendarButton.UseVisualStyleBackColor = false;
+            CalendarButton.Click += CalendarButton_Click;
             // 
             // panel2
             // 
@@ -174,6 +174,19 @@ namespace egzamin_dyplomowy
             panel2.Name = "panel2";
             panel2.Size = new Size(920, 593);
             panel2.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(CalendarButton);
+            flowLayoutPanel1.Controls.Add(pytaniaButton);
+            flowLayoutPanel1.Controls.Add(uzytkownicyButton);
+            flowLayoutPanel1.Controls.Add(settingsButton);
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.Location = new Point(0, 22);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(82, 318);
+            flowLayoutPanel1.TabIndex = 6;
             // 
             // main_panel
             // 
@@ -187,6 +200,7 @@ namespace egzamin_dyplomowy
             Text = "Egzamin Dyplomowy - Panel";
             Load += main_panel_Load;
             panel1.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -199,5 +213,6 @@ namespace egzamin_dyplomowy
         private RoundedButton settingsButton;
         private RoundedButton wylogujButton;
         private Panel panel2;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

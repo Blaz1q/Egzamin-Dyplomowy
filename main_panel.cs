@@ -22,7 +22,7 @@ namespace egzamin_dyplomowy
         {
             InitializeComponent();
             this.token = token;
-            LoadDataBase();
+            initAsync();
             //Kalendarz2 kalendarz = new Kalendarz2();
             //Kalendarz kalendarz = new Kalendarz()
             //kalendarz.Dock = DockStyle.Fill;
@@ -37,6 +37,17 @@ namespace egzamin_dyplomowy
             panel2.Controls.Clear();
             panel2.Controls.Add(newControl);
         }
+        private async void initAsync() {
+            await Task.Run(() => LoadDataBase());
+            if (Dane.User.getPoziom_dostepu() <= 1)
+            {
+                uzytkownicyButton.Visible = false;
+            }
+            else
+            {
+                uzytkownicyButton.Visible = true;
+            }
+        }
         private async void LoadDataBase()
         {
             HTTPConnection getDataBase = new HTTPConnection("https://egzamin-dyplomowy.7m.pl/getDataBase.php");
@@ -48,6 +59,7 @@ namespace egzamin_dyplomowy
             Dane.Pytania.WypiszPytania();
             Dane.Studenci.WypiszAll();
             kalendarz.terminarz.initTerminy();
+            
         }
 
         private void main_panel_Load(object sender, EventArgs e)
@@ -77,7 +89,8 @@ namespace egzamin_dyplomowy
 
             this.Close(); // nie wywoła Application.Exit(), bo isLoggingOut = true
         }
-        public void edytujPytania(Pytanie pytanie) {
+        public void edytujPytania(Pytanie pytanie)
+        {
             changeUserControl(new edytuj_pytania(pytanie));
         }
         private void pytaniaButton_Click(object sender, EventArgs e)
@@ -86,6 +99,11 @@ namespace egzamin_dyplomowy
             pytaniacontrol.Dock = DockStyle.Fill;
             pytaniacontrol.OnEdytuj += edytujPytania;
             changeUserControl(pytaniacontrol);
+        }
+
+        private void CalendarButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
