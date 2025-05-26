@@ -17,16 +17,20 @@ namespace egzamin_dyplomowy
     public partial class main_panel : Form
     {
         private String token = "";
+        private KalendarzControl kalendarz = new KalendarzControl();
         public main_panel(string token)
         {
             InitializeComponent();
             this.token = token;
             LoadDataBase();
-            Kalendarz kalendarz = new Kalendarz();
+            //Kalendarz2 kalendarz = new Kalendarz2();
+            //Kalendarz kalendarz = new Kalendarz()
+            //kalendarz.Dock = DockStyle.Fill;
+            kalendarz.Dock = DockStyle.Fill;
             changeUserControl(kalendarz);
-            kalendarz.AddEvent(1, new TimeSpan(9, 30, 0), "BankAtlan Center", Color.RoyalBlue);
-            kalendarz.AddEvent(1, new TimeSpan(10, 30, 0), "Cynthia Woods\nMitchell Pavilion", Color.MediumSeaGreen);
-            kalendarz.AddEvent(1, new TimeSpan(10, 0, 0), "Skibidi toilet\nGoni mnie", Color.MediumSeaGreen);
+            // kalendarz.AddEvent(1, new TimeSpan(9, 30, 0), "BankAtlan Center", Color.RoyalBlue);
+            //kalendarz.AddEvent(1, new TimeSpan(10, 30, 0), "Cynthia Woods\nMitchell Pavilion", Color.MediumSeaGreen);
+            //kalendarz.AddEvent(1, new TimeSpan(10, 0, 0), "Skibidi toilet\nGoni mnie", Color.MediumSeaGreen);
         }
         public void changeUserControl(UserControl newControl)
         {
@@ -42,6 +46,7 @@ namespace egzamin_dyplomowy
             Dane.Wykladowcy.WypiszWszystkich();
             Dane.Pytania.WypiszPytania();
             Dane.Studenci.WypiszAll();
+            kalendarz.terminarz.initTerminy();
         }
 
         private void main_panel_Load(object sender, EventArgs e)

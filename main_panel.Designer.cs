@@ -66,6 +66,7 @@ namespace egzamin_dyplomowy
             wylogujButton.ForeColor = Color.White;
             wylogujButton.HoverColor = Color.Transparent;
             wylogujButton.Image = Resources.Log_out;
+            wylogujButton.ImageAlign = ContentAlignment.MiddleCenter;
             wylogujButton.Location = new Point(12, 523);
             wylogujButton.Margin = new Padding(3, 3, 3, 15);
             wylogujButton.Name = "wylogujButton";
@@ -83,6 +84,7 @@ namespace egzamin_dyplomowy
             settingsButton.BorderColor = Color.Transparent;
             settingsButton.BorderRadius = 10;
             settingsButton.BorderSize = 0;
+            settingsButton.Cursor = Cursors.Hand;
             settingsButton.FlatAppearance.BorderSize = 0;
             settingsButton.FlatStyle = FlatStyle.Flat;
             settingsButton.ForeColor = Color.White;
@@ -104,6 +106,7 @@ namespace egzamin_dyplomowy
             pytaniaButton.BorderColor = Color.Transparent;
             pytaniaButton.BorderRadius = 10;
             pytaniaButton.BorderSize = 0;
+            pytaniaButton.Cursor = Cursors.Hand;
             pytaniaButton.FlatAppearance.BorderSize = 0;
             pytaniaButton.FlatStyle = FlatStyle.Flat;
             pytaniaButton.ForeColor = Color.White;
@@ -125,6 +128,7 @@ namespace egzamin_dyplomowy
             uzytkownicyButton.BorderColor = Color.Transparent;
             uzytkownicyButton.BorderRadius = 10;
             uzytkownicyButton.BorderSize = 0;
+            uzytkownicyButton.Cursor = Cursors.Hand;
             uzytkownicyButton.FlatAppearance.BorderSize = 0;
             uzytkownicyButton.FlatStyle = FlatStyle.Flat;
             uzytkownicyButton.ForeColor = Color.White;
@@ -146,6 +150,7 @@ namespace egzamin_dyplomowy
             CalendarButton.BorderColor = Color.Transparent;
             CalendarButton.BorderRadius = 10;
             CalendarButton.BorderSize = 0;
+            CalendarButton.Cursor = Cursors.Hand;
             CalendarButton.FlatAppearance.BorderSize = 0;
             CalendarButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(168, 206, 187);
             CalendarButton.FlatStyle = FlatStyle.Flat;
