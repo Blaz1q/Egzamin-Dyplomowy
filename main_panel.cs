@@ -37,7 +37,8 @@ namespace egzamin_dyplomowy
             panel2.Controls.Clear();
             panel2.Controls.Add(newControl);
         }
-        private async void LoadDataBase() {
+        private async void LoadDataBase()
+        {
             HTTPConnection getDataBase = new HTTPConnection("https://egzamin-dyplomowy.7m.pl/getDataBase.php");
             string json = await getDataBase.SendToken(token);
             API api = new API(json);
@@ -75,6 +76,16 @@ namespace egzamin_dyplomowy
             }
 
             this.Close(); // nie wywoła Application.Exit(), bo isLoggingOut = true
+        }
+        public void edytujPytania(Pytanie pytanie) {
+            changeUserControl(new edytuj_pytania(pytanie));
+        }
+        private void pytaniaButton_Click(object sender, EventArgs e)
+        {
+            Pytania pytaniacontrol = new Pytania();
+            pytaniacontrol.Dock = DockStyle.Fill;
+            pytaniacontrol.OnEdytuj += edytujPytania;
+            changeUserControl(pytaniacontrol);
         }
     }
 }

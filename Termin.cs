@@ -131,5 +131,8 @@ namespace egzamin_dyplomowy
                 termin.WyswietlSzczegoly();
             }
         }
+        public List<Termin> getTerminy() {
+            return this.terminy;
+        }
     }
 }

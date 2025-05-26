@@ -82,6 +82,8 @@ public class ZarzadzaniePytaniami
                       .Take(liczba)
                       .ToList();
     }
-
+    public List<Pytanie> getPytania() {
+        return this.pytania;
+    }
 
 }

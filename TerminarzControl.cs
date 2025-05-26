@@ -108,9 +108,9 @@ namespace egzamin_dyplomowy
 
                 for (int i = 0; i < dates.Length; i++)
                 {
-                    if (DateOnly.FromDateTime(termin.Data) == dates[i])
+                    if (termin.Data == dates[i])
                     {
-                        addEvent(termin.Egzamin.getProdziekan().GetNazwisko(), i, TimeOnly.FromDateTime(termin.GetStartTime()));
+                        addEvent(termin.Egzamin.getProdziekan().GetNazwisko(), i, termin.GetStartTime());
                         break;
                     }
                 }

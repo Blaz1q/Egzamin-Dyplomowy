@@ -37,7 +37,7 @@ namespace egzamin_dyplomowy
             _index = index;
             _wykladowcaManager = manager;
             _parentForm = parent;
-            nameLabel.Text = $"{wykladowca.Imie} {wykladowca.Nazwisko}";
+            nameLabel.Text = $"{wykladowca.GetImie()} {wykladowca.GetNazwisko()}";
             editButton.Click += BtnEdit_Click;
         }
         

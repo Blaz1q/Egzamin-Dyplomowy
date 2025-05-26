@@ -13,8 +13,9 @@ namespace egzamin_dyplomowy
     public partial class edytuj_pytania : UserControl
     {
         public Pytanie Pytanie;
-        public List<Wykladowca> wszyscyWykladowcy = new List<Wykladowca>();
-        public edytuj_pytania(Pytanie pytanie, List<Wykladowca> wszyscyWykladowcy)
+        public List<Wykladowca> wszyscyWykladowcy = Dane.Wykladowcy.getLista();
+        
+        public edytuj_pytania(Pytanie pytanie)
         {
             InitializeComponent();
 
@@ -22,7 +23,6 @@ namespace egzamin_dyplomowy
             this.Pytanie = pytanie;
             textBoxTresc.Text = Pytanie.GetTresc();
 
-            this.wszyscyWykladowcy = wszyscyWykladowcy;
 
             comboBoxWykladowcy.DataSource = wszyscyWykladowcy;
             comboBoxWykladowcy.DisplayMember = "ImieNazwisko"; // Właściwość pomocnicza
@@ -31,7 +31,7 @@ namespace egzamin_dyplomowy
             foreach (var wykladowca in Pytanie.GetWykladowcy())
             {
                 TagButton tag = new TagButton();
-                tag.Text = wykladowca.Imie + " " + wykladowca.Nazwisko;
+                tag.Text = wykladowca.GetImie() + " " + wykladowca.GetNazwisko();
                 tag.Tag = wykladowca;
                 tag.Margin = new Padding(5);
                 tag.Click += (s, e) =>
@@ -61,7 +61,7 @@ namespace egzamin_dyplomowy
 
                 // Tworzymy TagButton
                 TagButton tagButton = new TagButton();
-                tagButton.Text = selectedWykladowca.Imie + " " + selectedWykladowca.Nazwisko;
+                tagButton.Text = selectedWykladowca.GetImie() + " " + selectedWykladowca.GetNazwisko();
                 tagButton.Tag = selectedWykladowca;
                 tagButton.Margin = new Padding(5);
                 tagButton.Click += (s, eArgs) =>
@@ -99,7 +99,7 @@ namespace egzamin_dyplomowy
             var wynik = MessageBox.Show("Czy na pewno chcesz usunąć to pytanie?", "Potwierdzenie", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (wynik == DialogResult.Yes)
             {
-                ZarzadzaniePytaniami.UsunPytanie(Pytanie.Id);
+                Dane.Pytania.UsunPytanie(Pytanie.Id);
                 MessageBox.Show("Pytanie zostało usunięte.");
 
                 this.Parent.Controls.Remove(this);
@@ -134,7 +134,7 @@ namespace egzamin_dyplomowy
             }
 
             // Wywołanie metody edytującej
-            ZarzadzaniePytaniami.EdytujPytanie(
+            Dane.Pytania.EdytujPytanie(
                 Pytanie.Id,
                 nowaTresc,
                 Pytanie.Kierunek,
@@ -143,7 +143,7 @@ namespace egzamin_dyplomowy
                 Pytanie.Poziom
             );
 
-            MessageBox.Show("Pytanie zostało zaktualizowane.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Pytanie zostało zaktualizowane.", "pSukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
