@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using System.Runtime.CompilerServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Newtonsoft.Json.Schema;
+using Newtonsoft.Json;
 
 namespace egzamin_dyplomowy
 {
@@ -14,7 +17,7 @@ namespace egzamin_dyplomowy
         public string Message { get; set; }
         public JObject Data { get; set; } // Generic to handle different shapes of data
         public bool hasData = false;
-        public static JObject deserialize(String json) {
+        public static JObject deserialize(string json) {
             return JObject.Parse(json);
         }
         public bool Has(string key) {
@@ -23,15 +26,23 @@ namespace egzamin_dyplomowy
         }
         public API(string json) {
             if (json.Equals("")) return;
-            var jsonObject = deserialize(json);
-            if (jsonObject == null) return;
-            this.Success = jsonObject["success"].ToObject<bool>();
-            this.Message = jsonObject["message"].ToObject<string>();
-            if (jsonObject.ContainsKey("data"))
+            try
             {
-                this.Data = jsonObject["data"].ToObject<JObject>();
-                this.hasData = true;
+                var jsonObject = JObject.Parse(json);
+                if (jsonObject == null) return;
+                this.Success = jsonObject["success"].ToObject<bool>();
+                this.Message = jsonObject["message"].ToObject<string>();
+                if (jsonObject.ContainsKey("data"))
+                {
+                    this.Data = jsonObject["data"].ToObject<JObject>();
+                    this.hasData = true;
+                }
             }
+            catch (JsonSerializationException ex) {
+                this.Success = false;
+                this.Message = "Nieznany format wiadomości: "+ex.ToString();
+            }
+            
         }
         public static void SetData(string json) { 
 
@@ -117,10 +128,10 @@ namespace egzamin_dyplomowy
                     int promotor_id = item["promotor_id"].ToObject<int>();
                     int prodziekan_id = item["prodziekan_id"].ToObject<int>();
                     int recenzent_id = item["recenzent_id"].ToObject<int>();
-                    int student_id = item["student_id"].ToObject<int>(); ;
-                    //Egzamin egzamin = new Egzamin();
-                    //Termin termin = new Termin(data,godzina_rozpoczecia,godzina_zakonczenia,"skibidi",)
-                    //Dane.Terminy.DodajTermin()
+                    int student_id = item["student_id"].ToObject<int>();
+                    //Egzamin egzamin = new Egzamin(new Student(0, "skibi", "di", 4.2, true, 1), new Wykladowca(0, "skibid", "i", "ninja"), new Wykladowca(0, "skibid", "i", "ninja"), new Wykladowca(0, "skibid", "i", "ninja"), new List<Pytanie>());
+                    //Termin termin = new Termin(data, godzina_rozpoczecia, godzina_zakonczenia, "skibidi", egzamin);
+                    //Dane.Terminy.DodajTermin(termin);
                 }
             }
         }
