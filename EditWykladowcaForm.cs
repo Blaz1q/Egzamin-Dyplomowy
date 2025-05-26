@@ -30,8 +30,8 @@ namespace egzamin_dyplomowy
 
         private void LoadWykladowcaData()
         {
-            txtImie.Text = _wykladowca.Imie;
-            txtNazwisko.Text = _wykladowca.Nazwisko;
+            txtImie.Text = _wykladowca.GetImie();
+            txtNazwisko.Text = _wykladowca.GetNazwisko();
             txtStatus.Text = _wykladowca.Status;
         }
 

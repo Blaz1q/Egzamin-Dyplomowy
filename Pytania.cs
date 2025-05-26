@@ -4,18 +4,19 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace egzamin_dyplomowy
 {
     public partial class Pytania : UserControl
     {
-        private List<Pytanie> wszystkiePytania = new();
+        private List<Pytanie> wszystkiePytania = Dane.Pytania.getPytania();
         private RoundedButton mojRoundedButton;
-
+        public event Action<Pytanie> OnEdytuj;
         public Pytania()
         {
             InitializeComponent();
-
+            UstawPytania();
            
             mojRoundedButton = new RoundedButton
             {
@@ -37,9 +38,8 @@ namespace egzamin_dyplomowy
             comboKierunki.SelectedIndexChanged += comboKierunki_SelectedIndexChanged;
         }
 
-        public void UstawPytania(List<Pytanie> pytania)
+        public void UstawPytania()
         {
-            wszystkiePytania = pytania;
             comboKierunki.Items.Clear();
             comboKierunki.Items.AddRange(wszystkiePytania
                 .Select(p => p.Kierunek)
@@ -93,9 +93,9 @@ namespace egzamin_dyplomowy
                 Text = ""
             };
 
-            btnEdytuj.Click += (s, e2) =>
+            btnEdytuj.Click += (object sender, EventArgs e) =>
             {
-                
+                OnEdytuj?.Invoke(pytanie);
             };
 
             panel.Controls.Add(lbl);
@@ -116,7 +116,9 @@ namespace egzamin_dyplomowy
         private void Pytania_Load(object sender, EventArgs e)
         {
         }
-
+        private void openEdytujPytaniak(object sender, EventArgs e) { 
+        
+        }
         private void ZaokraglijRogi(Control control, int promien)
         {
             GraphicsPath path = new GraphicsPath();

@@ -14,7 +14,7 @@ namespace egzamin_dyplomowy
     {
         public TestForm()
         {
-            InitializeComponent();
+           // InitializeComponent();
             List<Wykladowca> wykladowcy = new List<Wykladowca>();
             wykladowcy.Add(new Wykladowca(0, "Imie", "Nazwisko", "status"));
             wykladowcy.Add(new Wykladowca(1, "naJ", "lewap", "ziwi"));
@@ -23,9 +23,9 @@ namespace egzamin_dyplomowy
             wykladowcy.Add(new Wykladowca(3, "blalala", "pieer", "sadas"));
             wykladowcy.Add(new Wykladowca(4, "tymek", "dol", "Lorem"));
             wykladowcy.Add(new Wykladowca(5, "Ania", "erde", "Ipsum"));
-            var control = new edytuj_pytania(new Pytanie(1, "Lorem Ipsum", "Informatyka", wykladowcy, "kategoria?", "Inżynier"), wykladowcy);
-            control.Dock = DockStyle.Fill; // żeby ładnie się wpasował w cały formularz
-            this.Controls.Add(control);
+           // var control = new edytuj_pytania(new Pytanie(1, "Lorem Ipsum", "Informatyka", wykladowcy, "kategoria?", "Inżynier"), wykladowcy);
+            //control.Dock = DockStyle.Fill; // żeby ładnie się wpasował w cały formularz
+           // this.Controls.Add(control);
         }
     }
 }

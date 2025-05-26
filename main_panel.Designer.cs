@@ -66,7 +66,6 @@ namespace egzamin_dyplomowy
             wylogujButton.ForeColor = Color.White;
             wylogujButton.HoverColor = Color.Transparent;
             wylogujButton.Image = Resources.Log_out;
-            wylogujButton.ImageAlign = ContentAlignment.MiddleCenter;
             wylogujButton.Location = new Point(12, 523);
             wylogujButton.Margin = new Padding(3, 3, 3, 15);
             wylogujButton.Name = "wylogujButton";
@@ -120,6 +119,7 @@ namespace egzamin_dyplomowy
             pytaniaButton.TextColor = Color.White;
             pytaniaButton.TooltipText = "Pytania";
             pytaniaButton.UseVisualStyleBackColor = false;
+            pytaniaButton.Click += pytaniaButton_Click;
             // 
             // uzytkownicyButton
             // 
