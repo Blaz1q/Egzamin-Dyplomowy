@@ -62,6 +62,15 @@ public class ZarzadzaniePytaniami
             pytanie.WypiszPytanie();
         }
     }
+    public Pytanie? GetPytanie(int id)
+    {
+    foreach (var pytanie in pytania)
+        if (pytanie.Id == id)
+        {
+            return pytanie;
+        }
+    return null;
+    }
 
     public List<int> LosujPytaniaDlaKierunku(string kierunek, int liczba = 3)
     {
