@@ -31,6 +31,9 @@ namespace egzamin_dyplomowy
         {
             return this.prodziekan;
         }
+        public Student getStudent() {
+            return this.student;
+        }
         public string GetSala()
         {
             return "Jakaś sala";

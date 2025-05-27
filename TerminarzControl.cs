@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace egzamin_dyplomowy
 {
@@ -110,12 +111,14 @@ namespace egzamin_dyplomowy
                 {
                     if (termin.Data == dates[i])
                     {
-                        addEvent(termin.Egzamin.getProdziekan().GetNazwisko(), i, termin.GetStartTime());
+                        displayEvent(termin);
+                        //addEvent(termin.Egzamin.getProdziekan().GetNazwisko(), i, termin.GetStartTime());
                         break;
                     }
                 }
             }
         }
+
         public void addEvent(string newevent, int day, TimeOnly time)
         {
             if (time < startHour || time > endHour) return; // time out of range
@@ -131,6 +134,43 @@ namespace egzamin_dyplomowy
             eventLabel.BackColor = Color.LightBlue; // make it visually different
             tableLayoutPanel1.Controls.Add(eventLabel, columnIndex, rowIndex);
             this.terminyData.Add(new TerminyLocation(columnIndex, rowIndex));
+        }
+        public void displayEvent(Termin termin) {
+            if (!isHoursReady) return;
+
+            DateOnly weekStart = _currentWeekStart;
+            DateOnly weekEnd = weekStart.AddDays(6);
+
+            if (termin.Data < weekStart || termin.Data > weekEnd)
+                return;
+
+
+
+            // Figure out which day column to put it in
+            int dayIndex = (int)(termin.Data.DayOfWeek + 6) % 7;
+            int columnIndex = dayIndex + 1;
+
+            TimeOnly roundedTime = RoundTimeToIteration(termin.Godzina);
+            int rowIndex = GetRowIndex(roundedTime);
+
+            Label eventLabel = addLabel(
+                termin.Egzamin.getStudent().nazwisko + "\n" +
+                termin.Egzamin.GetSala() + "\n" +
+                termin.Godzina.ToShortTimeString()
+            );
+            eventLabel.BackColor = Color.LightBlue;
+            tableLayoutPanel1.Controls.Add(eventLabel, columnIndex, rowIndex);
+            terminyData.Add(new TerminyLocation(columnIndex, rowIndex));
+        }
+        public void addEvent(Termin termin)
+        {
+            if (termin.Godzina < startHour || termin.Godzina > endHour)
+                return;
+            // Always save the termin to the data source
+            Dane.Terminy.DodajTermin(termin);
+            displayEvent(termin);
+            // Only display the event if the week matches
+            
         }
         private void clearTerminy()
         {
@@ -162,11 +202,6 @@ namespace egzamin_dyplomowy
             initTerminy();   // re-add the right events
         }
         private DateOnly _currentWeekStart = default;
-
-        public void SetWeek(DateOnly date)
-        {
-            
-        }
         public void setWeek(DateOnly date)
         {
             if (!isHoursReady) return;

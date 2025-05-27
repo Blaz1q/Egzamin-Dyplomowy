@@ -30,13 +30,13 @@ namespace egzamin_dyplomowy
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            wylogujButton = new RoundedButton();
-            settingsButton = new RoundedButton();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            CalendarButton = new RoundedButton();
             pytaniaButton = new RoundedButton();
             uzytkownicyButton = new RoundedButton();
-            CalendarButton = new RoundedButton();
+            settingsButton = new RoundedButton();
+            wylogujButton = new RoundedButton();
             panel2 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -52,50 +52,42 @@ namespace egzamin_dyplomowy
             panel1.Size = new Size(82, 593);
             panel1.TabIndex = 0;
             // 
-            // wylogujButton
+            // flowLayoutPanel1
             // 
-            wylogujButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            wylogujButton.BackColor = Color.Linen;
-            wylogujButton.BackgroundColor = Color.Linen;
-            wylogujButton.BorderColor = Color.Transparent;
-            wylogujButton.BorderRadius = 10;
-            wylogujButton.BorderSize = 0;
-            wylogujButton.FlatAppearance.BorderSize = 0;
-            wylogujButton.FlatStyle = FlatStyle.Flat;
-            wylogujButton.ForeColor = Color.White;
-            wylogujButton.HoverColor = Color.Transparent;
-            wylogujButton.Image = Resources.Log_out;
-            wylogujButton.Location = new Point(12, 523);
-            wylogujButton.Margin = new Padding(3, 3, 3, 15);
-            wylogujButton.Name = "wylogujButton";
-            wylogujButton.Size = new Size(55, 55);
-            wylogujButton.TabIndex = 5;
-            wylogujButton.TextColor = Color.White;
-            wylogujButton.TooltipText = "Wyloguj się";
-            wylogujButton.UseVisualStyleBackColor = false;
-            wylogujButton.Click += wylogujButton_Click;
+            flowLayoutPanel1.Controls.Add(CalendarButton);
+            flowLayoutPanel1.Controls.Add(pytaniaButton);
+            flowLayoutPanel1.Controls.Add(uzytkownicyButton);
+            flowLayoutPanel1.Controls.Add(settingsButton);
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.Location = new Point(0, 22);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(82, 318);
+            flowLayoutPanel1.TabIndex = 6;
             // 
-            // settingsButton
+            // CalendarButton
             // 
-            settingsButton.BackColor = Color.Linen;
-            settingsButton.BackgroundColor = Color.Linen;
-            settingsButton.BorderColor = Color.Transparent;
-            settingsButton.BorderRadius = 10;
-            settingsButton.BorderSize = 0;
-            settingsButton.Cursor = Cursors.Hand;
-            settingsButton.FlatAppearance.BorderSize = 0;
-            settingsButton.FlatStyle = FlatStyle.Flat;
-            settingsButton.ForeColor = Color.White;
-            settingsButton.HoverColor = Color.Transparent;
-            settingsButton.Image = Resources.Settings;
-            settingsButton.Location = new Point(12, 222);
-            settingsButton.Margin = new Padding(12, 3, 3, 15);
-            settingsButton.Name = "settingsButton";
-            settingsButton.Size = new Size(55, 55);
-            settingsButton.TabIndex = 4;
-            settingsButton.TextColor = Color.White;
-            settingsButton.TooltipText = "Ustawienia";
-            settingsButton.UseVisualStyleBackColor = false;
+            CalendarButton.BackColor = Color.FromArgb(175, 232, 203);
+            CalendarButton.BackgroundColor = Color.FromArgb(175, 232, 203);
+            CalendarButton.BorderColor = Color.Transparent;
+            CalendarButton.BorderRadius = 10;
+            CalendarButton.BorderSize = 0;
+            CalendarButton.Cursor = Cursors.Hand;
+            CalendarButton.FlatAppearance.BorderSize = 0;
+            CalendarButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(168, 206, 187);
+            CalendarButton.FlatStyle = FlatStyle.Flat;
+            CalendarButton.ForeColor = Color.White;
+            CalendarButton.HoverColor = Color.FromArgb(168, 206, 187);
+            CalendarButton.Image = Resources.Calendar;
+            CalendarButton.Location = new Point(12, 3);
+            CalendarButton.Margin = new Padding(12, 3, 3, 15);
+            CalendarButton.Name = "CalendarButton";
+            CalendarButton.Size = new Size(55, 55);
+            CalendarButton.TabIndex = 1;
+            CalendarButton.TextColor = Color.White;
+            CalendarButton.TooltipText = "Kalendarz";
+            CalendarButton.UseVisualStyleBackColor = false;
+            CalendarButton.Click += CalendarButton_Click;
             // 
             // pytaniaButton
             // 
@@ -141,30 +133,52 @@ namespace egzamin_dyplomowy
             uzytkownicyButton.TextColor = Color.White;
             uzytkownicyButton.TooltipText = "Użytkownicy";
             uzytkownicyButton.UseVisualStyleBackColor = false;
+            uzytkownicyButton.Click += uzytkownicyButton_Click;
             // 
-            // CalendarButton
+            // settingsButton
             // 
-            CalendarButton.BackColor = Color.FromArgb(175, 232, 203);
-            CalendarButton.BackgroundColor = Color.FromArgb(175, 232, 203);
-            CalendarButton.BorderColor = Color.Transparent;
-            CalendarButton.BorderRadius = 10;
-            CalendarButton.BorderSize = 0;
-            CalendarButton.Cursor = Cursors.Hand;
-            CalendarButton.FlatAppearance.BorderSize = 0;
-            CalendarButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(168, 206, 187);
-            CalendarButton.FlatStyle = FlatStyle.Flat;
-            CalendarButton.ForeColor = Color.White;
-            CalendarButton.HoverColor = Color.FromArgb(168, 206, 187);
-            CalendarButton.Image = Resources.Calendar;
-            CalendarButton.Location = new Point(12, 3);
-            CalendarButton.Margin = new Padding(12, 3, 3, 15);
-            CalendarButton.Name = "CalendarButton";
-            CalendarButton.Size = new Size(55, 55);
-            CalendarButton.TabIndex = 1;
-            CalendarButton.TextColor = Color.White;
-            CalendarButton.TooltipText = "Kalendarz";
-            CalendarButton.UseVisualStyleBackColor = false;
-            CalendarButton.Click += CalendarButton_Click;
+            settingsButton.BackColor = Color.Linen;
+            settingsButton.BackgroundColor = Color.Linen;
+            settingsButton.BorderColor = Color.Transparent;
+            settingsButton.BorderRadius = 10;
+            settingsButton.BorderSize = 0;
+            settingsButton.Cursor = Cursors.Hand;
+            settingsButton.FlatAppearance.BorderSize = 0;
+            settingsButton.FlatStyle = FlatStyle.Flat;
+            settingsButton.ForeColor = Color.White;
+            settingsButton.HoverColor = Color.Transparent;
+            settingsButton.Image = Resources.Settings;
+            settingsButton.Location = new Point(12, 222);
+            settingsButton.Margin = new Padding(12, 3, 3, 15);
+            settingsButton.Name = "settingsButton";
+            settingsButton.Size = new Size(55, 55);
+            settingsButton.TabIndex = 4;
+            settingsButton.TextColor = Color.White;
+            settingsButton.TooltipText = "Ustawienia";
+            settingsButton.UseVisualStyleBackColor = false;
+            // 
+            // wylogujButton
+            // 
+            wylogujButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            wylogujButton.BackColor = Color.Linen;
+            wylogujButton.BackgroundColor = Color.Linen;
+            wylogujButton.BorderColor = Color.Transparent;
+            wylogujButton.BorderRadius = 10;
+            wylogujButton.BorderSize = 0;
+            wylogujButton.FlatAppearance.BorderSize = 0;
+            wylogujButton.FlatStyle = FlatStyle.Flat;
+            wylogujButton.ForeColor = Color.White;
+            wylogujButton.HoverColor = Color.Transparent;
+            wylogujButton.Image = Resources.Log_out;
+            wylogujButton.Location = new Point(12, 523);
+            wylogujButton.Margin = new Padding(3, 3, 3, 15);
+            wylogujButton.Name = "wylogujButton";
+            wylogujButton.Size = new Size(55, 55);
+            wylogujButton.TabIndex = 5;
+            wylogujButton.TextColor = Color.White;
+            wylogujButton.TooltipText = "Wyloguj się";
+            wylogujButton.UseVisualStyleBackColor = false;
+            wylogujButton.Click += wylogujButton_Click;
             // 
             // panel2
             // 
@@ -174,19 +188,6 @@ namespace egzamin_dyplomowy
             panel2.Name = "panel2";
             panel2.Size = new Size(920, 593);
             panel2.TabIndex = 1;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(CalendarButton);
-            flowLayoutPanel1.Controls.Add(pytaniaButton);
-            flowLayoutPanel1.Controls.Add(uzytkownicyButton);
-            flowLayoutPanel1.Controls.Add(settingsButton);
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(0, 22);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(82, 318);
-            flowLayoutPanel1.TabIndex = 6;
             // 
             // main_panel
             // 
