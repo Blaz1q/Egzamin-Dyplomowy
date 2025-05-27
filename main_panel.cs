@@ -37,7 +37,8 @@ namespace egzamin_dyplomowy
             panel2.Controls.Clear();
             panel2.Controls.Add(newControl);
         }
-        private async void initAsync() {
+        private async void initAsync()
+        {
             await Task.Run(() => LoadDataBase());
             if (Dane.User.getPoziom_dostepu() <= 1)
             {
@@ -53,13 +54,13 @@ namespace egzamin_dyplomowy
             HTTPConnection getDataBase = new HTTPConnection("https://egzamin-dyplomowy.7m.pl/getDataBase.php");
             string json = await getDataBase.SendToken(token);
             API api = new API(json);
-            Debug.WriteLine(api.Data);
+            //Debug.WriteLine(api.Data);
             api.SetDane();
-            Dane.Wykladowcy.WypiszWszystkich();
-            Dane.Pytania.WypiszPytania();
-            Dane.Studenci.WypiszAll();
+            //Dane.Wykladowcy.WypiszWszystkich();
+            //Dane.Pytania.WypiszPytania();
+            //Dane.Studenci.WypiszAll();
             kalendarz.terminarz.initTerminy();
-            
+
         }
 
         private void main_panel_Load(object sender, EventArgs e)
@@ -103,7 +104,14 @@ namespace egzamin_dyplomowy
 
         private void CalendarButton_Click(object sender, EventArgs e)
         {
+            changeUserControl(kalendarz);
+        }
 
+        private void uzytkownicyButton_Click(object sender, EventArgs e)
+        {
+            ListaOsob listaOsob = new ListaOsob();
+            listaOsob.Dock= DockStyle.Fill;
+            changeUserControl(listaOsob);
         }
     }
 }

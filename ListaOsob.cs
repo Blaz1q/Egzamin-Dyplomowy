@@ -9,10 +9,10 @@ namespace egzamin_dyplomowy
     //EditStudentForm.cs
     //EditWykladowcaForm.cs
     //WyswietlOsoby.cs
-    public partial class ListaOsob : Form
+    public partial class ListaOsob : UserControl
     {
-        private ZarzadzanieStudent studentManager = new ZarzadzanieStudent();
-        private ZarzadzanieWykladowcami wykladowcaManager = new ZarzadzanieWykladowcami();
+        private ZarzadzanieStudent studentManager = Dane.Studenci;
+        private ZarzadzanieWykladowcami wykladowcaManager = Dane.Wykladowcy;
         private List<Osoba> wszyscy = new List<Osoba>();
         
         //

@@ -59,7 +59,7 @@ namespace egzamin_dyplomowy
         {
             var nowyStart = nowyTermin.GetStartTime();
             var nowyEnd = nowyTermin.GetEndTime();
-
+            if (nowyTermin.Data != istniejącyTermin.Data) return false; 
             if (nowyStart < istniejącyTermin.GetEndTime() && nowyEnd > istniejącyTermin.GetStartTime())
             {
                 if (nowyStart < istniejącyTermin.GetStartTime().AddMinutes(15) || nowyEnd > istniejącyTermin.GetEndTime().AddMinutes(-15))
