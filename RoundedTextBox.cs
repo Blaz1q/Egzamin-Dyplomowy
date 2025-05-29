@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -108,10 +108,12 @@ public partial class RoundedTextBox : UserControl
     }
     public override Color BackColor
     {
-        get {
+        get
+        {
             return base.BackColor;
         }
-        set { 
+        set
+        {
             base.BackColor = value;
             textBox1.BackColor = value;
         }
@@ -119,12 +121,14 @@ public partial class RoundedTextBox : UserControl
 
     public override Color ForeColor
     {
-        get { 
-        return base.ForeColor; 
+        get
+        {
+            return base.ForeColor;
         }
-        set { 
-        base.ForeColor = value; 
-        textBox1.ForeColor= value;
+        set
+        {
+            base.ForeColor = value;
+            textBox1.ForeColor = value;
         }
     }
     [Category("RJ Code Advance")]
@@ -219,6 +223,11 @@ public partial class RoundedTextBox : UserControl
         set { placeholderText = value; textBox1.Text = ""; SetPlaceholder(); }
     }
 
+    // --- NEW: Expose the internal TextBox's KeyDown event ---
+    [Category("RJ Code Advance")]
+    public event KeyEventHandler _KeyDown;
+
+
     //─ Overridden methods ─────────────────────────────────────────────
     protected override void OnResize(EventArgs e)
     {
@@ -245,13 +254,15 @@ public partial class RoundedTextBox : UserControl
         using (Pen penBorder = new Pen(BorderColor, borderSize))
         {
             penBorder.Alignment = PenAlignment.Center;
-            if (isFocused && isValid) {
+            if (isFocused && isValid)
+            {
                 penBorder.Color = borderFocusColor;
             }
-            else if (isFocused&&!isValid) {
+            else if (isFocused && !isValid)
+            {
                 penBorder.Color = invalidBorderFocusColor;
             }
-                
+
 
             if (borderRadius > 1) // Rounded TextBox
             {
@@ -329,9 +340,9 @@ public partial class RoundedTextBox : UserControl
     {
         textBox1 = new System.Windows.Forms.TextBox();
         SuspendLayout();
-        // 
+        //
         // textBox1
-        // 
+        //
         textBox1.BackColor = SystemColors.ControlLightLight;
         textBox1.BorderStyle = BorderStyle.None;
         textBox1.Dock = DockStyle.Fill;
@@ -341,9 +352,10 @@ public partial class RoundedTextBox : UserControl
         textBox1.TabIndex = 0;
         textBox1.Enter += textBox1_Enter;
         textBox1.Leave += textBox1_Leave;
-        // 
+        textBox1.KeyDown += textBox1_KeyPress;  //dla entera
+        //
         // RoundedTextBox
-        // 
+        //
         BackColor = SystemColors.ControlLightLight;
         Controls.Add(textBox1);
         Name = "RoundedTextBox";
@@ -351,6 +363,16 @@ public partial class RoundedTextBox : UserControl
         Size = new Size(250, 30);
         ResumeLayout(false);
         PerformLayout();
+    }
+
+    //enter
+    private void textBox1_KeyPress(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            e.SuppressKeyPress = true; // By windows nie krzyczał jak klikasz enter
+            _KeyDown?.Invoke(this, e); 
+        }
     }
 
     private void textBox1_KeyPress(object sender, KeyPressEventArgs e) => OnKeyPress(e);
