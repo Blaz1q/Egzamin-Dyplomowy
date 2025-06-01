@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dodaj_egzamin));
             contextMenuStrip1 = new ContextMenuStrip(components);
             comboBox1 = new ComboBox();
             label1 = new Label();
@@ -47,6 +48,10 @@
             textBox3 = new TextBox();
             roundedButton1 = new RoundedButton();
             roundedButton2 = new RoundedButton();
+            roundedButton4 = new RoundedButton();
+            roundedButton3 = new RoundedButton();
+            imageList1 = new ImageList(components);
+            roundedButton5 = new RoundedButton();
             SuspendLayout();
             // 
             // contextMenuStrip1
@@ -172,7 +177,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label8.Location = new Point(76, 36);
+            label8.Location = new Point(76, 33);
             label8.Name = "label8";
             label8.Size = new Size(409, 41);
             label8.TabIndex = 19;
@@ -244,12 +249,90 @@
             roundedButton2.UseVisualStyleBackColor = false;
             roundedButton2.Click += roundedButton2_Click;
             // 
+            // roundedButton4
+            // 
+            roundedButton4.BackColor = Color.Transparent;
+            roundedButton4.BackgroundColor = Color.Transparent;
+            roundedButton4.BorderColor = Color.PaleVioletRed;
+            roundedButton4.BorderRadius = 25;
+            roundedButton4.BorderSize = 0;
+            roundedButton4.FlatAppearance.BorderSize = 0;
+            roundedButton4.FlatStyle = FlatStyle.Flat;
+            roundedButton4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            roundedButton4.ForeColor = Color.White;
+            roundedButton4.HoverColor = Color.Transparent;
+            roundedButton4.Image = (Image)resources.GetObject("roundedButton4.Image");
+            roundedButton4.Location = new Point(502, 217);
+            roundedButton4.Name = "roundedButton4";
+            roundedButton4.Size = new Size(50, 50);
+            roundedButton4.TabIndex = 25;
+            roundedButton4.TextAlign = ContentAlignment.TopCenter;
+            roundedButton4.TextColor = Color.White;
+            roundedButton4.TooltipText = null;
+            roundedButton4.UseVisualStyleBackColor = false;
+            roundedButton4.Click += roundedButton4_Click;
+            // 
+            // roundedButton3
+            // 
+            roundedButton3.BackColor = Color.Transparent;
+            roundedButton3.BackgroundColor = Color.Transparent;
+            roundedButton3.BorderColor = Color.PaleVioletRed;
+            roundedButton3.BorderRadius = 25;
+            roundedButton3.BorderSize = 0;
+            roundedButton3.FlatAppearance.BorderSize = 0;
+            roundedButton3.FlatStyle = FlatStyle.Flat;
+            roundedButton3.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            roundedButton3.ForeColor = Color.White;
+            roundedButton3.HoverColor = Color.Transparent;
+            roundedButton3.Image = (Image)resources.GetObject("roundedButton3.Image");
+            roundedButton3.Location = new Point(502, 124);
+            roundedButton3.Name = "roundedButton3";
+            roundedButton3.Size = new Size(50, 50);
+            roundedButton3.TabIndex = 26;
+            roundedButton3.TextAlign = ContentAlignment.TopCenter;
+            roundedButton3.TextColor = Color.White;
+            roundedButton3.TooltipText = null;
+            roundedButton3.UseVisualStyleBackColor = false;
+            roundedButton3.Click += roundedButton3_Click;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
+            // roundedButton5
+            // 
+            roundedButton5.BackColor = Color.Transparent;
+            roundedButton5.BackgroundColor = Color.Transparent;
+            roundedButton5.BorderColor = Color.PaleVioletRed;
+            roundedButton5.BorderRadius = 25;
+            roundedButton5.BorderSize = 0;
+            roundedButton5.FlatAppearance.BorderSize = 0;
+            roundedButton5.FlatStyle = FlatStyle.Flat;
+            roundedButton5.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            roundedButton5.ForeColor = Color.White;
+            roundedButton5.HoverColor = Color.Transparent;
+            roundedButton5.Image = (Image)resources.GetObject("roundedButton5.Image");
+            roundedButton5.Location = new Point(502, 306);
+            roundedButton5.Name = "roundedButton5";
+            roundedButton5.Size = new Size(50, 50);
+            roundedButton5.TabIndex = 27;
+            roundedButton5.TextAlign = ContentAlignment.TopCenter;
+            roundedButton5.TextColor = Color.White;
+            roundedButton5.TooltipText = null;
+            roundedButton5.UseVisualStyleBackColor = false;
+            roundedButton5.Click += roundedButton5_Click;
+            // 
             // dodaj_egzamin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(563, 597);
+            ClientSize = new Size(594, 597);
+            Controls.Add(roundedButton5);
+            Controls.Add(roundedButton3);
+            Controls.Add(roundedButton4);
             Controls.Add(roundedButton2);
             Controls.Add(roundedButton1);
             Controls.Add(textBox3);
@@ -292,5 +375,9 @@
         private TextBox textBox3;
         private RoundedButton roundedButton1;
         private RoundedButton roundedButton2;
+        private RoundedButton roundedButton4;
+        private RoundedButton roundedButton3;
+        private ImageList imageList1;
+        private RoundedButton roundedButton5;
     }
 }

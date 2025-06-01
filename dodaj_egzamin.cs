@@ -14,8 +14,10 @@ namespace egzamin_dyplomowy
     public partial class dodaj_egzamin : Form
     {
         Egzamin egzamin;
+        string kierunek;
         public dodaj_egzamin()
         {
+            this.kierunek = "informatyka";
             var promotor = new Promotor(0, "Zbigniew", "Promotor", "XD");
             var recenzent = new Wykladowca(1, "Zbigniew", "Recenzent", "Recenzent");
             var prodziekan = new Wykladowca(2, "Zbigniew", "Prodziekan", "Prodziekan");
@@ -36,7 +38,7 @@ namespace egzamin_dyplomowy
             Dane.Pytania.DodajPytanie("Wyjaśnij zjawisko powstania ziemi.", "informatyka", lista2, "specjalistyczne", "magisterskie");
             Dane.Pytania.DodajPytanie("Kim jesteś?", "informatyka", lista3, "rozszerzone", "inżynierskie");
             Dane.Pytania.DodajPytanie("jak wygonić smoka z kuchni?", "informatyka", lista4, "ogólne", "inżynierskie");
-            Dane.Pytania.DodajPytanie("Do czego służy miernikmagnetoelektryczny?", "informatyka", lista5, "ogólne", "inżynierskie");
+            Dane.Pytania.DodajPytanie("Do czego służy miernikmagnetoelektryczny?", "matematyka", lista5, "ogólne", "inżynierskie");
             //Dane.Wykladowcy.DodajWykladowce(0, "Zbigniew", "Recenzent", "Recenzent");
             //Dane.Wykladowcy.DodajWykladowce(1, "Zbigniew", "Otremba", "Promotor");
             //Dane.Wykladowcy.DodajWykladowce(new Promotor(1, "Zbigniew", "Promotor", "C122"));
@@ -66,7 +68,7 @@ namespace egzamin_dyplomowy
                 {
                     combobox.Items.Add(new ComboBoxItem
                     {
-                        Text = $"{wykladowca.Imie} {wykladowca.Nazwisko}",
+                        Text = $"{wykladowca.GetImie()} {wykladowca.GetNazwisko()}",
                         Value = wykladowca
                     });
                 }
@@ -154,15 +156,15 @@ namespace egzamin_dyplomowy
         comboBox4.SelectedItem == null)
             {
                 MessageBox.Show("Wybierz wszystkie osoby: studenta i całą komisję.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; 
+                return;
             }
             Promotor promotor = (Promotor)getItem(comboBox2);
             var recenzent = (Wykladowca)getItem(comboBox3);
             var prodziekan = (Wykladowca)getItem(comboBox4);
 
-            var pytaniaPromotor = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytaniaDlaWykladowcy(promotor, 1)[0]);
-            var pytaniaRecenzent = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytaniaDlaWykladowcy(recenzent, 1)[0]);
-            var pytaniaProdziekan = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytaniaDlaWykladowcy(prodziekan, 1)[0]);
+            var pytaniaPromotor = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek,promotor, 1)[0]);
+            var pytaniaRecenzent = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek,recenzent, 1)[0]);
+            var pytaniaProdziekan = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek, prodziekan, 1)[0]);
             textBox1.Text = pytaniaPromotor.GetTresc();
             textBox2.Text = pytaniaRecenzent.GetTresc();
             textBox3.Text = pytaniaProdziekan.GetTresc();
@@ -207,18 +209,59 @@ namespace egzamin_dyplomowy
         }
 
         private void roundedButton2_Click(object sender, EventArgs e)
+
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                string.IsNullOrWhiteSpace(textBox2.Text) ||
+                string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Musisz najpierw wylosować wszystkie pytania.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            MessageBox.Show("Wszystkie pytania zostały wylosowane, możesz kontynuować.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void roundedButton3_Click(object sender, EventArgs e)
+        {
+            Promotor promotor = (Promotor)getItem(comboBox2);
+            if (promotor == null)
+            {
+                MessageBox.Show("Wybierz promotora.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var pytanie = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek, promotor, 1)[0]);
+            textBox1.Text = pytanie.GetTresc();
+        }
+
+
+        private void roundedButton4_Click(object sender, EventArgs e)
+        {
+            Wykladowca recenzent = (Wykladowca)getItem(comboBox3);
+            if (recenzent == null)
+            {
+                MessageBox.Show("Wybierz recenzenta.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var pytanie = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek, recenzent, 1)[0]);
+            textBox2.Text = pytanie.GetTresc();
+        }
+
         
-                {
-                    if (string.IsNullOrWhiteSpace(textBox1.Text) ||
-                        string.IsNullOrWhiteSpace(textBox2.Text) ||
-                        string.IsNullOrWhiteSpace(textBox3.Text))
-                    {
-                        MessageBox.Show("Musisz najpierw wylosować wszystkie pytania.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    MessageBox.Show("Wszystkie pytania zostały wylosowane, możesz kontynuować.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-      
+        private void roundedButton5_Click(object sender, EventArgs e)
+        {
+            Wykladowca prodziekan = (Wykladowca)getItem(comboBox4);
+            if (prodziekan == null)
+            {
+                MessageBox.Show("Wybierz prodziekana.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var pytanie = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek, prodziekan, 1)[0]);
+            textBox3.Text = pytanie.GetTresc();
+        }
+
     }
 }
 
