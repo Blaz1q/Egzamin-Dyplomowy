@@ -3,16 +3,27 @@ namespace egzamin_dyplomowy
 {
     public class Osoba
     {
-        protected string imie_nazwisko;
+        protected string Imie { get; set; }
+        protected string Nazwisko { get; set; }
 
-        public Osoba(string imieNazwisko)
+        public Osoba(string imie,string nazwisko)
         {
-            imie_nazwisko = imieNazwisko;
+            this.Imie = imie;
+            this.Nazwisko = nazwisko;
         }
 
-        public string GetImieNazwisko()
+        public string GetImie() { 
+            return this.Imie; 
+        }
+        public string GetNazwisko()
         {
-            return imie_nazwisko;
+            return this.Nazwisko;
+        }
+        public void SetImie(string value) { 
+            this.Imie = value;
+        }
+        public void SetNazwisko (string value){ 
+            this.Nazwisko = value;
         }
     }
 }

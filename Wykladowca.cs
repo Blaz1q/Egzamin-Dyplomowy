@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace egzamin_dyplomowy
 {
@@ -7,22 +8,21 @@ namespace egzamin_dyplomowy
     {
         public int Id { get; set; }
         public string Status { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        
-        public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie + " " + nazwisko)
+        public Wykladowca(int id, string imie, string nazwisko, string status) : base(imie,nazwisko)
         {
             Id = id;
-            Imie = imie;
-            Nazwisko = nazwisko;
             Status = status;
         }
 
-//wypisz jednego wykładowce
+        //wypisz jednego wykładowce
 
         public void Wypisz()
         {
             Console.WriteLine($"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}");
+        }
+        public override string ToString()
+        {
+            return $"ID: {Id}, Imię: {Imie}, Nazwisko: {Nazwisko}, Status: {Status}";
         }
     }
 
@@ -36,6 +36,21 @@ namespace egzamin_dyplomowy
         {
             wykladowcy.Add(new Wykladowca(id, imie, nazwisko, status));
         }
+         // NOWA METODA!!!!!!! (freaky)
+        public void DodajWykladowce(Wykladowca wykladowca)
+         {
+             wykladowcy.Add(wykladowca);
+         }
+        public Wykladowca? GetWykladowca(int id)
+        {
+            foreach (var wykladowca in wykladowcy)
+                if (wykladowca.Id == id) {
+                    return wykladowca;
+                }
+            return null;
+        }
+
+        
         //usuwanie
         public void UsunWykladowce(int index)
         {
@@ -57,8 +72,8 @@ namespace egzamin_dyplomowy
         {
             if (index >= 0 && index < wykladowcy.Count)
             {
-                wykladowcy[index].Imie = noweImie;
-                wykladowcy[index].Nazwisko = noweNazwisko;
+                wykladowcy[index].SetImie(noweImie);
+                wykladowcy[index].SetNazwisko(noweNazwisko);
             }
             else
                 Console.WriteLine("Błedny indeks");
@@ -69,29 +84,35 @@ namespace egzamin_dyplomowy
             foreach (var wykladowca in wykladowcy)
             {
                 wykladowca.Wypisz();
+                //Debug.WriteLine(wykladowca.GetType());
             }
         }
-        //testowanie
-        public static void Testing()
-        {
-            ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
-
-            zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");
-            zarzadzanie.DodajWykladowce(2, "Steve", "Jobs", "Recenzent");
-
-            Console.WriteLine("lista po dodaniu:");
-            zarzadzanie.WypiszWszystkich();
-
-            zarzadzanie.EdytujStatus(0, "Prodziekan");
-            zarzadzanie.EdytujWykladowce(1, "Melon", "Muzg");
-
-            Console.WriteLine("Lista po edycji:");
-            zarzadzanie.WypiszWszystkich();
-
-            zarzadzanie.UsunWykladowce(0);
-
-            Console.WriteLine("Lista po usunięciu:");
-            zarzadzanie.WypiszWszystkich();
+        public List<Wykladowca> getLista() {
+            return wykladowcy;
         }
-    }    
+        public static void Testing() //testowanie
+        {
+    
+                ZarzadzanieWykladowcami zarzadzanie = new ZarzadzanieWykladowcami();
+                zarzadzanie.DodajWykladowce(1, "Sam", "Sung", "Promotor");
+                zarzadzanie.DodajWykladowce(2, "Steve", "Jobs", "Recenzent");
+
+                Console.WriteLine("lista po dodaniu:");
+                zarzadzanie.WypiszWszystkich();
+
+                zarzadzanie.EdytujStatus(0, "Prodziekan");
+                zarzadzanie.EdytujWykladowce(1, "Melon", "Muzg");
+
+                Console.WriteLine("Lista po edycji:");
+                zarzadzanie.WypiszWszystkich();
+
+                zarzadzanie.UsunWykladowce(0);
+
+                Console.WriteLine("Lista po usunięciu:");
+                zarzadzanie.WypiszWszystkich();
+                Console.WriteLine(zarzadzanie.GetWykladowca(2));
+                
+            
+        }
+    } 
 }

@@ -62,7 +62,15 @@ public class ZarzadzaniePytaniami
             pytanie.WypiszPytanie();
         }
     }
-
+    public Pytanie? GetPytanie(int id)
+    {
+    foreach (var pytanie in pytania)
+        if (pytanie.Id == id)
+        {
+            return pytanie;
+        }
+    return null;
+    }
     public List<int> LosujPytaniaDlaKierunku(string kierunek, int liczba = 3)
     {
         Random rand = new Random();
@@ -72,6 +80,7 @@ public class ZarzadzaniePytaniami
                       .Take(liczba)
                       .ToList();
     }
+
 
    public List<int> LosujPytania(string kierunek, Wykladowca wykladowca, int liczba = 3)
 {
@@ -83,6 +92,17 @@ public class ZarzadzaniePytaniami
             .Take(liczba)
             .ToList();
 }
-
+    public List<int> LosujPytaniaDlaWykladowcy(Wykladowca wykladowca, int liczba = 3)
+    {
+        Random rand = new Random();
+        return pytania.Where(p => p.Wykladowcy.Contains(wykladowca))
+                      .Select(p => p.Id)
+                      .OrderBy(x => rand.Next())
+                      .Take(liczba)
+                      .ToList();
+    }
+    public List<Pytanie> getPytania() {
+        return this.pytania;
+    }
 
 }

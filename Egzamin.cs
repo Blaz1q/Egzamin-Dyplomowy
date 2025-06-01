@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,20 @@ namespace egzamin_dyplomowy
             this.prodziekan = prodziekan;
             this.pytania = pytania;
         }
-
+        public Wykladowca getPromotor() {
+            return this.promotor;
+        }
+        public Wykladowca getRecenzent()
+        {
+            return this.recenzent;
+        }
+        public Wykladowca getProdziekan()
+        {
+            return this.prodziekan;
+        }
+        public Student getStudent() {
+            return this.student;
+        }
         public string GetSala()
         {
             return "Jakaś sala";
