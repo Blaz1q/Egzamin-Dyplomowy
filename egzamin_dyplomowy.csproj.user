@@ -1,8 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="DodajOsobeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DodajTermin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditWykladowcaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="edytuj_pytania.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Kalendarz.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Kalendarz2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="KalendarzControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="KalendarzDzien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ListaOsob.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="logowanie.cs">
       <SubType>UserControl</SubType>
@@ -12,6 +42,9 @@
     </Compile>
     <Compile Update="ModernToolTip.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pytania.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="rejestracja.cs">
       <SubType>UserControl</SubType>
@@ -24,6 +57,36 @@
     </Compile>
     <Compile Update="RoundedButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="RoundedComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="RoundedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="RoundedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="RoundedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TagButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="TerminarzControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WyswietlOsoby.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ZaklepTermin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ZatwierdzTermin.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 </Project>

@@ -102,7 +102,7 @@ namespace egzamin_dyplomowy
             //    string token = json.Value<string>("token");
             //    ValueChanged?.Invoke(this, token);
             //    main_panel main_Panel = new main_panel(token);
-            //    main_Panel.Owner = ;
+            //    main_Panel.Owner = ; 
             //}
         }
 
