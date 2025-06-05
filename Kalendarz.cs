@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,117 +12,144 @@ using System.Windows.Forms;
 
 namespace egzamin_dyplomowy
 {
-
-
     public partial class Kalendarz : UserControl
     {
-        private TableLayoutPanel scheduler;
-        private readonly TimeSpan[] TimeSlots = Enumerable.Range(0, (21 - 6) * 2 + 1)
-    .Select(i => new TimeSpan(6, 0, 0).Add(TimeSpan.FromMinutes(30 * i)))
-    .ToArray();
+        public static int _Month, _Year;
         public Kalendarz()
         {
-            InitializeScheduler();
+            InitializeComponent();
         }
-
-        private void InitializeScheduler()
+        private Label addLabel(string labeltext)
         {
-            this.DoubleBuffered = true;
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-            this.UpdateStyles();
-            this.BackColor = Color.White;
-            this.Dock = DockStyle.Fill;
+            Label newLabel = new Label();
+            newLabel.Dock = DockStyle.Fill;
+            newLabel.Location = new Point(3, 0);
+            newLabel.Name = labeltext;
+            newLabel.Size = new Size(65, 200);
+            newLabel.TabIndex = 0;
+            newLabel.Text = labeltext;
+            newLabel.TextAlign = ContentAlignment.MiddleCenter;
+            newLabel.BackColor = Color.White;
+            return newLabel;
+        }
+        private void showDays(int month, int year)
+        {
+            _Year = year;
+            _Month = month;
 
-            // 👇 Scrollable container panel
-            var scrollPanel = new Panel
+            DateTime start = new DateTime(year, month, 1);
+            int daysInMonth = DateTime.DaysInMonth(year, month);
+            int startDay = (int)start.DayOfWeek;
+            startDay = (startDay == 0) ? 6 : startDay - 1; // Convert so Monday = 0
+
+            label8.Text = start.ToString("MMMM", CultureInfo.InvariantCulture) + " " + _Year;
+
+            DateTime prevMonthStart = start.AddMonths(-1);
+            int daysInPrevMonth = DateTime.DaysInMonth(prevMonthStart.Year, prevMonthStart.Month);
+
+            tableLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.Controls.Add(addLabel("pn"), 0, 0);
+            tableLayoutPanel1.Controls.Add(addLabel("wt"), 1, 0);
+            tableLayoutPanel1.Controls.Add(addLabel("sr"), 2, 0);
+            tableLayoutPanel1.Controls.Add(addLabel("czw"), 3, 0);
+            tableLayoutPanel1.Controls.Add(addLabel("pt"), 4, 0);
+            tableLayoutPanel1.Controls.Add(addLabel("sb"), 5, 0);
+            tableLayoutPanel1.Controls.Add(addLabel("nd"), 6, 0);
+
+            tableLayoutPanel1.RowCount += 1;
+            int counter = 0;
+
+            // Fill in previous month's tail days (faded)
+            for (int i = 0; i < startDay; i++)
             {
-                Dock = DockStyle.Fill,
-                AutoScroll = true
-            };
-
-            scheduler = new TableLayoutPanel
-            {
-                RowCount = 1,
-                ColumnCount = 3, // Time + 2 days
-                AutoSize = true, // Needed for scroll container
-                CellBorderStyle = TableLayoutPanelCellBorderStyle.Single
-            };
-
-            // Set column styles
-            scheduler.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60)); // Time
-            scheduler.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));  // Day 1
-            scheduler.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));  // Day 2
-            // Set row styles
-            scheduler.RowStyles.Add(new RowStyle(SizeType.Absolute, 30)); // Header row
-
-            // Add header labels
-            scheduler.Controls.Add(CreateHeaderLabel(""), 0, 0);
-            scheduler.Controls.Add(CreateHeaderLabel("April, Mon 27"), 1, 0);
-            scheduler.Controls.Add(CreateHeaderLabel("April, Tue 28"), 2, 0);
-
-            // Time column + empty event slots
-            for (int i = 0; i < TimeSlots.Length; i++)
-            {
-                scheduler.RowCount++;
-                scheduler.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-                scheduler.Controls.Add(CreateTimeLabel(TimeSlots[i]), 0, scheduler.RowCount - 1);
+                int dayNumber = daysInPrevMonth - startDay + i + 1;
+                DateOnly date = new DateOnly(prevMonthStart.Year, prevMonthStart.Month, dayNumber);
+                var dzien = new KalendarzDzien(date, faded: true);
+                dzien.Dock = DockStyle.Fill;
+                dzien.OnDateClicked += HandleDayClick; // optional if you need to handle clicks
+                tableLayoutPanel1.Controls.Add(dzien, i, tableLayoutPanel1.RowCount - 1);
+                counter++;
             }
 
-            scrollPanel.Controls.Add(scheduler);
-            this.Controls.Add(scrollPanel);
+            // Fill in current month days
+            for (int i = 1; i <= daysInMonth; i++)
+            {
+                if (counter == 7)
+                {
+                    counter = 0;
+                    tableLayoutPanel1.RowCount += 1;
+                }
+
+                DateOnly date = new DateOnly(year, month, i);
+                var dzien = new KalendarzDzien(date);
+                dzien.Dock = DockStyle.Fill;
+                dzien.OnDateClicked += HandleDayClick;
+                tableLayoutPanel1.Controls.Add(dzien, counter, tableLayoutPanel1.RowCount - 1);
+                counter++;
+            }
+
+            // Fill in next month's leading days (faded)
+            int nextMonth = (month == 12) ? 1 : month + 1;
+            int nextYear = (month == 12) ? year + 1 : year;
+            int nextDay = 1;
+
+            while (counter != 0 && counter < 7)
+            {
+                DateOnly date = new DateOnly(nextYear, nextMonth, nextDay++);
+                var dzien = new KalendarzDzien(date, faded: true);
+                dzien.Dock = DockStyle.Fill;
+                dzien.OnDateClicked += HandleDayClick;
+                tableLayoutPanel1.Controls.Add(dzien, counter, tableLayoutPanel1.RowCount - 1);
+                counter++;
+            }
+
+            // Adjust row heights (optional but nice)
+            for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
+            {
+                if (i >= tableLayoutPanel1.RowStyles.Count)
+                    tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+                else
+                    tableLayoutPanel1.RowStyles[i] = new RowStyle(SizeType.Percent, 100);
+            }
+
+            Debug.WriteLine("rows:" + tableLayoutPanel1.RowCount);
+            Debug.WriteLine("cols:" + tableLayoutPanel1.ColumnCount);
         }
 
-        private Label CreateHeaderLabel(string text)
+
+
+        private void Kalendarz2_Load(object sender, EventArgs e)
         {
-            return new Label
-            {
-                Text = text,
-                TextAlign = ContentAlignment.MiddleCenter,
-                Dock = DockStyle.Fill,
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                BackColor = Color.LightGray
-            };
+            Debug.WriteLine("month:" + DateTime.Now.Month);
+            Debug.WriteLine("year:" + DateTime.Now.Year);
+            showDays(DateTime.Now.Month, DateTime.Now.Year);
+
+
         }
-
-        private Label CreateTimeLabel(TimeSpan time)
+        public event Action<DateOnly> OnDateClicked;
+        private void HandleDayClick(DateOnly clickedDate)
         {
-            return new Label
-            {
-                Text = time.ToString(@"hh\:mm"),
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleRight,
-                Font = new Font("Segoe UI", 8, FontStyle.Regular),
-                Padding = new Padding(0, 0, 5, 0),
-                BackColor = Color.WhiteSmoke
-            };
+            OnDateClicked?.Invoke(clickedDate);
+            //terminarzControl.SetWeek(clickedDate); // for example
         }
-
-        public void AddEvent(int dayColumn, TimeSpan time, string text, Color color)
-        {
-            int rowIndex = Array.FindIndex(TimeSlots, t => t == time);
-
-            if (rowIndex == -1 || dayColumn < 1 || dayColumn >= scheduler.ColumnCount)
-                throw new ArgumentException("Invalid time or dayColumn.");
-
-            rowIndex += 1; // Adjust for header row
-
-            var eventPanel = new Panel
+        public void incrementMonth() {
+            _Month++;
+            if (_Month > 12)
             {
-                BackColor = color,
-                Dock = DockStyle.Fill,
-                Margin = new Padding(1)
-            };
-
-            eventPanel.Controls.Add(new Label
+                _Month = 1;
+                _Year++;
+            }
+            showDays(_Month, _Year);
+        }
+        public void decrementMonth() {
+            _Month--;
+            if (_Month < 1)
             {
-                Text = time.ToString() + "\n" + text,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 8, FontStyle.Bold)
-            });
-
-            scheduler.Controls.Add(eventPanel, dayColumn, rowIndex);
+                _Month = 12;
+                _Year--;
+            }
+            showDays(_Month, _Year);
         }
     }
 }
