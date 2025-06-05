@@ -7,12 +7,12 @@ namespace egzamin_dyplomowy
     public class Egzamin
     {
         private Student student;
-        private Wykladowca promotor;
+        private Promotor promotor;
         private Wykladowca recenzent;
         private Wykladowca prodziekan;
         private List<Pytanie> pytania;
 
-        public Egzamin(Student student, Wykladowca promotor, Wykladowca recenzent, Wykladowca prodziekan, List<Pytanie> pytania)
+        public Egzamin(Student student, Promotor promotor, Wykladowca recenzent, Wykladowca prodziekan, List<Pytanie> pytania)
         {
             this.student = student;
             this.promotor = promotor;
@@ -36,7 +36,7 @@ namespace egzamin_dyplomowy
         }
         public string GetSala()
         {
-            return "Jakaś sala";
+            return this.promotor.GetSala();
         }
         
     }
