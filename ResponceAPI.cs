@@ -28,7 +28,7 @@ namespace egzamin_dyplomowy
             if (json.Equals("")) return;
             try
             {
-                var jsonObject = JObject.Parse(json);
+                JObject jsonObject = JObject.Parse(json);
                 if (jsonObject == null) return;
                 this.Success = jsonObject["success"].ToObject<bool>();
                 this.Message = jsonObject["message"].ToObject<string>();

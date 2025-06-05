@@ -60,7 +60,6 @@ namespace egzamin_dyplomowy
             newLabel.Dock = DockStyle.Fill;
             newLabel.Location = new Point(3, 0);
             newLabel.Name = labeltext;
-            newLabel.Size = new Size(65, 200);
             newLabel.TabIndex = 0;
             newLabel.Text = labeltext;
             newLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -71,7 +70,7 @@ namespace egzamin_dyplomowy
             for (TimeOnly i = startHour; i <= endHour; i = i.AddMinutes(iteration.Minute))
             {
                 tableLayoutPanel1.RowCount++;
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
                 tableLayoutPanel1.Controls.Add(addLabel(i.ToString()), 0, tableLayoutPanel1.RowCount - 1);
             }
             isHoursReady = true;
@@ -103,13 +102,14 @@ namespace egzamin_dyplomowy
             }
         }
         public void initTerminy() {
+            clearTerminy();
             foreach (Termin termin in terminy)
             {
                 if (dates == null) return;
 
                 for (int i = 0; i < dates.Length; i++)
                 {
-                    if (termin.Data == dates[i])
+                    if (termin.Data == dates[i]&&!termin.Status.Equals("Odrzucony"))
                     {
                         displayEvent(termin);
                         //addEvent(termin.Egzamin.getProdziekan().GetNazwisko(), i, termin.GetStartTime());
@@ -135,7 +135,9 @@ namespace egzamin_dyplomowy
             tableLayoutPanel1.Controls.Add(eventLabel, columnIndex, rowIndex);
             this.terminyData.Add(new TerminyLocation(columnIndex, rowIndex));
         }
-        public void displayEvent(Termin termin) {
+
+        public void displayEvent(Termin termin)
+        {
             if (!isHoursReady) return;
 
             DateOnly weekStart = _currentWeekStart;
@@ -144,9 +146,6 @@ namespace egzamin_dyplomowy
             if (termin.Data < weekStart || termin.Data > weekEnd)
                 return;
 
-
-
-            // Figure out which day column to put it in
             int dayIndex = (int)(termin.Data.DayOfWeek + 6) % 7;
             int columnIndex = dayIndex + 1;
 
@@ -159,8 +158,53 @@ namespace egzamin_dyplomowy
                 termin.Godzina.ToShortTimeString()
             );
             eventLabel.BackColor = Color.LightBlue;
-            tableLayoutPanel1.Controls.Add(eventLabel, columnIndex, rowIndex);
+
+            TableLayoutPanel existing = tableLayoutPanel1.GetControlFromPosition(columnIndex, rowIndex) as TableLayoutPanel;
+
+            if (existing == null)
+            {
+                TableLayoutPanel innerTable = createInnerTable();
+                innerTable.ColumnCount = 1;
+                innerTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+                innerTable.Controls.Add(eventLabel, 0, 0);
+                tableLayoutPanel1.Controls.Add(innerTable, columnIndex, rowIndex);
+            }
+            else
+            {
+                existing.ColumnCount += 1;
+
+                // Reset all column styles
+                existing.ColumnStyles.Clear();
+                for (int i = 0; i < existing.ColumnCount; i++)
+                    existing.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / existing.ColumnCount));
+
+                existing.Controls.Add(eventLabel, existing.ColumnCount - 1, 0);
+            }
+
             terminyData.Add(new TerminyLocation(columnIndex, rowIndex));
+        }
+        private TableLayoutPanel createInnerTable()
+        {
+            return new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 1,
+                RowCount = 0,
+                CellBorderStyle = TableLayoutPanelCellBorderStyle.None,
+                BackColor = Color.Transparent,
+                Margin = new Padding(0),
+                Padding = new Padding(0)
+            };
+        }
+        public FlowLayoutPanel addPanel() {
+            return new FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = true,
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = false,
+                BackColor = Color.Transparent
+            };
         }
         public void addEvent(Termin termin)
         {
