@@ -100,6 +100,14 @@ namespace egzamin_dyplomowy
             pytaniacontrol.Dock = DockStyle.Fill;
             pytaniacontrol.OnEdytuj += edytujPytania;
             changeUserControl(pytaniacontrol);
+
+            pytaniacontrol.OnDodaj += () =>{
+
+                var ctrlDodaj = new dodaj_pytania();
+                ctrlDodaj.Dock = DockStyle.Fill;
+                changeUserControl(ctrlDodaj);
+            }
+            ;
         }
 
         private void CalendarButton_Click(object sender, EventArgs e)
