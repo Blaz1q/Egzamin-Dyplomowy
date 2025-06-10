@@ -4,8 +4,11 @@
     <Compile Update="DodajOsobeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DodajTermin.cs">
+    <Compile Update="dodaj_egzamin.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="dodaj_pytania.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="EditStudentForm.cs">
       <SubType>Form</SubType>
@@ -58,13 +61,7 @@
     <Compile Update="RoundedButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="RoundedComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Update="RoundedLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="RoundedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="RoundedTextBox.cs">
@@ -81,12 +78,6 @@
     </Compile>
     <Compile Update="WyswietlOsoby.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ZaklepTermin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ZatwierdzTermin.cs">
-      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 </Project>
