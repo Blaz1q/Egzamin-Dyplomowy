@@ -169,7 +169,7 @@ namespace egzamin_dyplomowy
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Zarejestruj się";
             linkLabel2.VisitedLinkColor = Color.Black;
-            linkLabel2.LinkClicked += linkLabel3_LinkClicked;
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
             // linkLabel3
             // 
