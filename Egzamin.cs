@@ -20,10 +20,6 @@ namespace egzamin_dyplomowy
             this.prodziekan = prodziekan;
             this.pytania = pytania;
         }
-        public Egzamin() {
-            this.student = new Student(-1,"","",-1,false,-1);
-            this.promotor = new Promotor(-1,"","","Cskibidi");
-        }
         public Wykladowca getPromotor() {
             return this.promotor;
         }

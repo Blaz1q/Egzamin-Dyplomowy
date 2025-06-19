@@ -64,7 +64,6 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Elon Musk", "dawid Czech" });
             comboBox1.Location = new Point(76, 391);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(409, 28);

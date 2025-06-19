@@ -13,7 +13,6 @@ namespace egzamin_dyplomowy
         private List<Pytanie> wszystkiePytania = Dane.Pytania.getPytania();
         private RoundedButton mojRoundedButton;
         public event Action<Pytanie> OnEdytuj;
-        public event Action OnDodaj;
         public Pytania()
         {
             InitializeComponent();
@@ -30,10 +29,11 @@ namespace egzamin_dyplomowy
                 ForeColor = Color.White
             };
 
-            mojRoundedButton.Click += (s, e) => OnDodaj?.Invoke();
+            mojRoundedButton.Click += MojRoundedButton_Click;
 
             this.Controls.Add(mojRoundedButton);
 
+     
 
             comboKierunki.SelectedIndexChanged += comboKierunki_SelectedIndexChanged;
         }
@@ -102,6 +102,11 @@ namespace egzamin_dyplomowy
             panel.Controls.Add(btnEdytuj);
             ZaokraglijRogi(panel, 15);
             return panel;
+        }
+
+        private void MojRoundedButton_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
