@@ -38,8 +38,6 @@
             label1 = new Label();
             label6 = new Label();
             panel1 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
             label8 = new Label();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -153,8 +151,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(label8);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
@@ -162,44 +158,22 @@
             panel1.Size = new Size(494, 46);
             panel1.TabIndex = 4;
             // 
-            // button2
-            // 
-            button2.Dock = DockStyle.Left;
-            button2.Location = new Point(0, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 46);
-            button2.TabIndex = 5;
-            button2.Text = "< prev";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button1
-            // 
-            button1.Dock = DockStyle.Right;
-            button1.Location = new Point(400, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 46);
-            button1.TabIndex = 4;
-            button1.Text = "next >";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // label8
             // 
             label8.Dock = DockStyle.Fill;
             label8.Location = new Point(0, 0);
             label8.Name = "label8";
             label8.Size = new Size(494, 46);
-            label8.TabIndex = 3;
+            label8.TabIndex = 2;
             label8.Text = "Month and Year";
             label8.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Kalendarz
+            // Kalendarz2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel2);
-            Name = "Kalendarz";
+            Name = "Kalendarz2";
             Size = new Size(500, 400);
             Load += Kalendarz2_Load;
             tableLayoutPanel2.ResumeLayout(false);
@@ -220,8 +194,6 @@
         private Label label1;
         private Label label6;
         private Panel panel1;
-        private Button button2;
-        private Button button1;
         private Label label8;
     }
 }

@@ -34,9 +34,9 @@ namespace egzamin_dyplomowy
             CalendarButton = new RoundedButton();
             pytaniaButton = new RoundedButton();
             uzytkownicyButton = new RoundedButton();
-            settingsButton = new RoundedButton();
             wylogujButton = new RoundedButton();
             panel2 = new Panel();
+            settingsButton = new RoundedButton();
             panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -135,28 +135,6 @@ namespace egzamin_dyplomowy
             uzytkownicyButton.UseVisualStyleBackColor = false;
             uzytkownicyButton.Click += uzytkownicyButton_Click;
             // 
-            // settingsButton
-            // 
-            settingsButton.BackColor = Color.Linen;
-            settingsButton.BackgroundColor = Color.Linen;
-            settingsButton.BorderColor = Color.Transparent;
-            settingsButton.BorderRadius = 10;
-            settingsButton.BorderSize = 0;
-            settingsButton.Cursor = Cursors.Hand;
-            settingsButton.FlatAppearance.BorderSize = 0;
-            settingsButton.FlatStyle = FlatStyle.Flat;
-            settingsButton.ForeColor = Color.White;
-            settingsButton.HoverColor = Color.Transparent;
-            settingsButton.Image = Resources.Settings;
-            settingsButton.Location = new Point(12, 222);
-            settingsButton.Margin = new Padding(12, 3, 3, 15);
-            settingsButton.Name = "settingsButton";
-            settingsButton.Size = new Size(55, 55);
-            settingsButton.TabIndex = 4;
-            settingsButton.TextColor = Color.White;
-            settingsButton.TooltipText = "Ustawienia";
-            settingsButton.UseVisualStyleBackColor = false;
-            // 
             // wylogujButton
             // 
             wylogujButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -188,6 +166,28 @@ namespace egzamin_dyplomowy
             panel2.Name = "panel2";
             panel2.Size = new Size(920, 593);
             panel2.TabIndex = 1;
+            // 
+            // settingsButton
+            // 
+            settingsButton.BackColor = Color.Linen;
+            settingsButton.BackgroundColor = Color.Linen;
+            settingsButton.BorderColor = Color.Transparent;
+            settingsButton.BorderRadius = 10;
+            settingsButton.BorderSize = 0;
+            settingsButton.Cursor = Cursors.Hand;
+            settingsButton.FlatAppearance.BorderSize = 0;
+            settingsButton.FlatStyle = FlatStyle.Flat;
+            settingsButton.ForeColor = Color.White;
+            settingsButton.HoverColor = Color.Transparent;
+            settingsButton.Image = Resources.Settings;
+            settingsButton.Location = new Point(12, 222);
+            settingsButton.Margin = new Padding(12, 3, 3, 15);
+            settingsButton.Name = "settingsButton";
+            settingsButton.Size = new Size(55, 55);
+            settingsButton.TabIndex = 4;
+            settingsButton.TextColor = Color.White;
+            settingsButton.TooltipText = "Ustawienia";
+            settingsButton.UseVisualStyleBackColor = false;
             // 
             // main_panel
             // 

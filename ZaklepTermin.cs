@@ -15,7 +15,7 @@ namespace egzamin_dyplomowy
         private readonly bool _hasExistingExam;
         private readonly OperacjeNaTerminach _operacje;
         private readonly TerminarzControl _terminarz;
-        private Egzamin egzamin;
+
         public ZaklepTermin(DateOnly selectedDate,
                             OperacjeNaTerminach operacje,
                             TerminarzControl terminarz)
@@ -81,12 +81,10 @@ namespace egzamin_dyplomowy
 
             // TODO: Pobierz konkretny obiekt Egzamin według wybranej opcji
             // For now, Egzamin is null as in your original code. You'd integrate exam selection here.
-            if (egzamin == null) {
-                MessageBox.Show("Nie wybrano egzaminu", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;    // przerwij, nie dodawaj
-            }
+            Egzamin egz = new Egzamin();
+
             // Create and add the new term with "OczekujeNaZatwierdzenie" status
-            var nowyTermin = new Termin(date, time, TimeSpan.FromHours(1), "OczekujeNaZatwierdzenie", egzamin);
+            var nowyTermin = new Termin(date, time, TimeSpan.FromHours(1), "OczekujeNaZatwierdzenie", egz);
             Dane.Terminy.DodajTermin(nowyTermin);
             //_terminarz.addEvent(nowyTermin); // Add the new event to your calendar display
 
@@ -97,15 +95,5 @@ namespace egzamin_dyplomowy
 
         private void lblSelectedDate_Click(object sender, EventArgs e) { }
         private void panelTime_Click(object sender, EventArgs e) { }
-        private void setEgzamin(Egzamin egz) {
-            this.egzamin = egz;
-        }
-        private void dodaj_egzamin_Click(object sender, EventArgs e)
-        {
-            dodaj_egzamin dodajegzamin = new dodaj_egzamin(Dane.User.getUserAsWykladowca());
-            dodajegzamin.egzamin_set += setEgzamin;
-            dodajegzamin.Show();
-
-        }
     }
 }

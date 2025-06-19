@@ -19,7 +19,6 @@ namespace egzamin_dyplomowy
         private readonly bool _hasExistingExam;
         private readonly OperacjeNaTerminach _operacje;
         private readonly TerminarzControl _terminarz;
-        private Egzamin egzamin;
 
         public DodajTermin(DateOnly selectedDate,
                            OperacjeNaTerminach operacje,
@@ -98,12 +97,10 @@ namespace egzamin_dyplomowy
             }
 
             // TODO: Pobierz konkretny obiekt Egzamin według wybranej opcji
-            if (egzamin == null) {
-                MessageBox.Show("Nie dodano egzaminu", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;    // przerwij, nie dodawaj
-            }
+            Egzamin egz = null;
+
             // Tworzymy i dodajemy termin
-            var nowyTermin = new Termin(date, time, TimeSpan.FromHours(1), "Nowy", egzamin);
+            var nowyTermin = new Termin(date, time, TimeSpan.FromHours(1), "Nowy", egz);
             _operacje.DodajTermin(nowyTermin);
             _terminarz.addEvent(nowyTermin);
 
@@ -119,16 +116,6 @@ namespace egzamin_dyplomowy
         private void panelTime_Click(object sender, EventArgs e)
         {
 
-        }
-        private void setEgzamin(Egzamin egz)
-        {
-            this.egzamin = egz;
-        }
-        private void dodajEgz_Click(object sender, EventArgs e)
-        {
-            dodaj_egzamin dodajegzamin = new dodaj_egzamin(Dane.User.getUserAsWykladowca());
-            dodajegzamin.egzamin_set += setEgzamin;
-            dodajegzamin.Show();
         }
     }
 
