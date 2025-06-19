@@ -30,6 +30,7 @@ namespace egzamin_dyplomowy
             lblOccupied = new Label();
             flpOccupied = new FlowLayoutPanel();
             btnSubmit = new Button();
+            dodaj_egzamin = new Button();
             panelDate.SuspendLayout();
             panelTime.SuspendLayout();
             panelOccupied.SuspendLayout();
@@ -52,7 +53,7 @@ namespace egzamin_dyplomowy
             lblSelectedDate.BackColor = Color.LightGray;
             lblSelectedDate.Location = new Point(5, 16);
             lblSelectedDate.Name = "lblSelectedDate";
-            lblSelectedDate.Size = new Size(83, 15);
+            lblSelectedDate.Size = new Size(105, 20);
             lblSelectedDate.TabIndex = 0;
             lblSelectedDate.Text = "Wybrana data:";
             // 
@@ -66,7 +67,7 @@ namespace egzamin_dyplomowy
             datePicker.Format = DateTimePickerFormat.Custom;
             datePicker.Location = new Point(130, 12);
             datePicker.Name = "datePicker";
-            datePicker.Size = new Size(120, 25);
+            datePicker.Size = new Size(120, 29);
             datePicker.TabIndex = 1;
             // 
             // panelTime
@@ -86,7 +87,7 @@ namespace egzamin_dyplomowy
             lblSelectedTime.BackColor = Color.LightGray;
             lblSelectedTime.Location = new Point(5, 17);
             lblSelectedTime.Name = "lblSelectedTime";
-            lblSelectedTime.Size = new Size(102, 15);
+            lblSelectedTime.Size = new Size(129, 20);
             lblSelectedTime.TabIndex = 0;
             lblSelectedTime.Text = "Wybrana godzina:";
             // 
@@ -102,7 +103,7 @@ namespace egzamin_dyplomowy
             timePicker.Location = new Point(140, 12);
             timePicker.Name = "timePicker";
             timePicker.ShowUpDown = true;
-            timePicker.Size = new Size(110, 25);
+            timePicker.Size = new Size(110, 29);
             timePicker.TabIndex = 1;
             // 
             // panelOccupied
@@ -122,7 +123,7 @@ namespace egzamin_dyplomowy
             lblOccupied.BackColor = Color.LightGray;
             lblOccupied.Location = new Point(5, 8);
             lblOccupied.Name = "lblOccupied";
-            lblOccupied.Size = new Size(140, 15);
+            lblOccupied.Size = new Size(179, 20);
             lblOccupied.TabIndex = 0;
             lblOccupied.Text = "Zajęte godziny tego dnia:";
             // 
@@ -140,17 +141,31 @@ namespace egzamin_dyplomowy
             btnSubmit.BackColor = Color.Transparent;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSubmit.ForeColor = Color.Black;
-            btnSubmit.Location = new Point(116, 322);
+            btnSubmit.Location = new Point(116, 368);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(260, 30);
             btnSubmit.TabIndex = 4;
             btnSubmit.Text = "Zarezerwuj Termin";
             btnSubmit.UseVisualStyleBackColor = false;
             // 
+            // dodaj_egzamin
+            // 
+            dodaj_egzamin.BackColor = Color.Transparent;
+            dodaj_egzamin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dodaj_egzamin.ForeColor = Color.Black;
+            dodaj_egzamin.Location = new Point(116, 323);
+            dodaj_egzamin.Name = "dodaj_egzamin";
+            dodaj_egzamin.Size = new Size(260, 30);
+            dodaj_egzamin.TabIndex = 5;
+            dodaj_egzamin.Text = "Ustaw Egzamin";
+            dodaj_egzamin.UseVisualStyleBackColor = false;
+            dodaj_egzamin.Click += dodaj_egzamin_Click;
+            // 
             // ZaklepTermin
             // 
             BackColor = Color.Gray;
             ClientSize = new Size(499, 447);
+            Controls.Add(dodaj_egzamin);
             Controls.Add(panelDate);
             Controls.Add(panelTime);
             Controls.Add(panelOccupied);
@@ -169,5 +184,7 @@ namespace egzamin_dyplomowy
             panelOccupied.PerformLayout();
             ResumeLayout(false);
         }
+
+        private Button dodaj_egzamin;
     }
 }
