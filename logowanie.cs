@@ -139,16 +139,7 @@ namespace egzamin_dyplomowy
         {
             if (this.ParentForm is Form1 mainForm)
             {
-                //var ctl = new RejestracjaControl();  //forgot password POPRAWIĆ!!!
-                //mainForm.ChangeUserControl(ctl);
-            }
-        }
-
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (this.ParentForm is Form1 mainForm)
-            {
-                var ctl = new aktywuj_konto();  //Rejestracja
+                var ctl = new RejestracjaControl();  //forgot password POPRAWIĆ!!!
                 mainForm.ChangeUserControl(ctl);
             }
         }
@@ -157,7 +148,16 @@ namespace egzamin_dyplomowy
         {
             if (this.ParentForm is Form1 mainForm)
             {
-                var ctl = new Rejestrowanie();  //activate account POPRAWIĆ!!!
+                var ctl = new RejestracjaControl();  //Rejestracja
+                mainForm.ChangeUserControl(ctl);
+            }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (this.ParentForm is Form1 mainForm)
+            {
+                var ctl = new RejestracjaControl();  //activate account POPRAWIĆ!!!
                 mainForm.ChangeUserControl(ctl);
             }
         }
