@@ -17,17 +17,18 @@ namespace egzamin_dyplomowy
     public partial class main_panel : Form
     {
         private String token = "";
-        private KalendarzControl kalendarz = new KalendarzControl();
+        private KalendarzControl kalendarz;
         public main_panel(string token)
         {
             InitializeComponent();
             this.token = token;
-            initAsync();
+            LoadDataBase();
             //Kalendarz2 kalendarz = new Kalendarz2();
             //Kalendarz kalendarz = new Kalendarz()
             //kalendarz.Dock = DockStyle.Fill;
+            kalendarz = new KalendarzControl();
             kalendarz.Dock = DockStyle.Fill;
-            changeUserControl(kalendarz);
+            
             // kalendarz.AddEvent(1, new TimeSpan(9, 30, 0), "BankAtlan Center", Color.RoyalBlue);
             //kalendarz.AddEvent(1, new TimeSpan(10, 30, 0), "Cynthia Woods\nMitchell Pavilion", Color.MediumSeaGreen);
             //kalendarz.AddEvent(1, new TimeSpan(10, 0, 0), "Skibidi toilet\nGoni mnie", Color.MediumSeaGreen);
@@ -37,29 +38,21 @@ namespace egzamin_dyplomowy
             panel2.Controls.Clear();
             panel2.Controls.Add(newControl);
         }
-        private async void initAsync()
-        {
-            await Task.Run(() => LoadDataBase());
-            if (Dane.User.getPoziom_dostepu() <= 1)
-            {
-                uzytkownicyButton.Visible = false;
-            }
-            else
-            {
-                uzytkownicyButton.Visible = true;
-            }
-        }
         private async void LoadDataBase()
         {
             HTTPConnection getDataBase = new HTTPConnection("https://egzamin-dyplomowy.7m.pl/getDataBase.php");
             string json = await getDataBase.SendToken(token);
             API api = new API(json);
-            //Debug.WriteLine(api.Data);
-            api.SetDane();
+            Debug.WriteLine(api.Data);
+            await Task.Run(() => api.SetDane());
+            Debug.WriteLine("popierdoli mnie:" + Dane.User.getPoziom_dostepu());
+            uzytkownicyButton.Visible = !(Dane.User.getPoziom_dostepu() <= 1);
             //Dane.Wykladowcy.WypiszWszystkich();
             //Dane.Pytania.WypiszPytania();
             //Dane.Studenci.WypiszAll();
             kalendarz.terminarz.initTerminy();
+            kalendarz.setPermisions();
+            changeUserControl(kalendarz);
 
         }
 
@@ -87,7 +80,7 @@ namespace egzamin_dyplomowy
                 mainForm.resetInputs();
                 mainForm.Show();
             }
-
+            Dane.ResetData();
             this.Close(); // nie wywoła Application.Exit(), bo isLoggingOut = true
         }
         public void edytujPytania(Pytanie pytanie)
@@ -100,18 +93,11 @@ namespace egzamin_dyplomowy
             pytaniacontrol.Dock = DockStyle.Fill;
             pytaniacontrol.OnEdytuj += edytujPytania;
             changeUserControl(pytaniacontrol);
-
-            pytaniacontrol.OnDodaj += () =>{
-
-                var ctrlDodaj = new dodaj_pytania();
-                ctrlDodaj.Dock = DockStyle.Fill;
-                changeUserControl(ctrlDodaj);
-            }
-            ;
         }
 
         private void CalendarButton_Click(object sender, EventArgs e)
         {
+            kalendarz.setPermisions();
             changeUserControl(kalendarz);
         }
 
