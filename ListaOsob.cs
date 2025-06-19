@@ -48,10 +48,7 @@ namespace egzamin_dyplomowy
         // Na razie lokalnie, z przykładową bazą osób
         private void LoadData()
         {
-            studentManager.DodajStudent(1, "Anna", "Nowak", 4.2, true, 1);
-            studentManager.DodajStudent(2, "Jan", "Kowalski", 3.5, false, 2);
-            wykladowcaManager.DodajWykladowce(1, "Marek", "Nowicki", "Profesor");
-            wykladowcaManager.DodajWykladowce(2, "Agnieszka", "Zielińska", "Adiunkt");
+
 
             wszyscy.Clear();
             wszyscy.AddRange(studentManager.getLista());
