@@ -15,6 +15,9 @@ namespace egzamin_dyplomowy
     public partial class Kalendarz : UserControl
     {
         public static int _Month, _Year;
+        public int _selectedDay = 0;
+        public int _selectedMonth = 0;
+        public int _selectedYear = 0;
         public Kalendarz()
         {
             InitializeComponent();
@@ -124,16 +127,56 @@ namespace egzamin_dyplomowy
             Debug.WriteLine("month:" + DateTime.Now.Month);
             Debug.WriteLine("year:" + DateTime.Now.Year);
             showDays(DateTime.Now.Month, DateTime.Now.Year);
-
+            DateTime current = DateTime.Now;
+            _selectedDay = current.Day;
+            _selectedMonth = current.Month;
+            _selectedYear = current.Year;
+            selectDayControl();
 
         }
+        public void selectDayControl()
+        {
+            KalendarzDzien dzien = GetDayControlByDate(new DateOnly(_selectedYear, _selectedMonth, _selectedDay));
+            dzien.Select();
+        }
+        private KalendarzDzien GetDayControlByDate(DateOnly date)
+        {
+            DateOnly firstOfMonth = new DateOnly(_Year, _Month, 1);
+            int startDay = (int)firstOfMonth.DayOfWeek;
+            startDay = (startDay == 0) ? 6 : startDay - 1;
+
+            // Days from previous month shown in current calendar
+            int offset = startDay;
+
+            // Calculate index of date being searched
+            int dayIndex = (date.Day + offset - 1); // zero-based index
+            int row = 1 + (dayIndex / 7); // +1 because row 0 is header
+            int col = (dayIndex % 7);
+
+            Control control = tableLayoutPanel1.GetControlFromPosition(col, row);
+            return control as KalendarzDzien;
+        }
         public event Action<DateOnly> OnDateClicked;
+        public void selectDate(DateOnly date)
+        {
+            if (_selectedDay != 0)
+            {
+                DateOnly prevSelectedDate = new DateOnly(_Year, _Month, _selectedDay);
+                var prevControl = GetDayControlByDate(prevSelectedDate);
+                prevControl?.ResetSelection();
+            }
+            _selectedDay = date.Day;
+            _selectedMonth = date.Month;
+            _selectedYear = date.Year;
+        }
         private void HandleDayClick(DateOnly clickedDate)
         {
+            selectDate(clickedDate);
             OnDateClicked?.Invoke(clickedDate);
             //terminarzControl.SetWeek(clickedDate); // for example
         }
-        public void incrementMonth() {
+        public void incrementMonth()
+        {
             _Month++;
             if (_Month > 12)
             {
@@ -141,8 +184,13 @@ namespace egzamin_dyplomowy
                 _Year++;
             }
             showDays(_Month, _Year);
+            if (_selectedMonth == _Month && _selectedYear == _Year)
+            {
+                selectDayControl();
+            }
         }
-        public void decrementMonth() {
+        public void decrementMonth()
+        {
             _Month--;
             if (_Month < 1)
             {
@@ -150,6 +198,20 @@ namespace egzamin_dyplomowy
                 _Year--;
             }
             showDays(_Month, _Year);
+            if (_selectedMonth == _Month && _selectedYear == _Year)
+            {
+                selectDayControl();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            incrementMonth();  
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            decrementMonth();
         }
     }
 }

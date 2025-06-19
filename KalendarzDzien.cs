@@ -16,6 +16,7 @@ namespace egzamin_dyplomowy
         public event Action<DateOnly> OnDateClicked;
         DateOnly _Date;
         bool _faded = false;
+        bool _selected = false;
         Color defaultbackcolor;
         public KalendarzDzien(DateOnly date, bool faded = false)
         {
@@ -28,10 +29,21 @@ namespace egzamin_dyplomowy
             if (_faded)
                 this.ForeColor = Color.Gray;
         }
-
+        public void ResetSelection() {
+            _selected = false;
+            this.BackColor = defaultbackcolor;
+        }
+        public void Select() {
+            _selected = true;
+            this.BackColor = Color.Orange;
+        }
         private void panel1_Click(object sender, EventArgs e)
         {
-            OnDateClicked?.Invoke(_Date);
+            if (!_faded) {
+                OnDateClicked?.Invoke(_Date);
+                _selected = true;
+                base.BackColor = Color.Orange;
+            }
         }
         private void panel1_MouseLeave(object sender, EventArgs e)
         {
@@ -51,8 +63,16 @@ namespace egzamin_dyplomowy
 
         private void daylabel_MouseLeave(object sender, EventArgs e)
         {
-            if (!_faded)
-                base.BackColor = defaultbackcolor;
+            if (!_faded) {
+                if (_selected)
+                {
+                    base.BackColor = Color.Orange;
+                }
+                else {
+                    base.BackColor = defaultbackcolor;
+                }
+            }
+                
         }
 
         private void daylabel_Click(object sender, EventArgs e)

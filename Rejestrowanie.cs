@@ -9,7 +9,7 @@ namespace egzamin_dyplomowy
     public partial class Rejestrowanie : UserControl
     {
         private RoundLabel komunikatLabel;
-
+        public event EventHandler<string> ValueChanged;
         public Rejestrowanie()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace egzamin_dyplomowy
             komunikatLabel.BringToFront();
         }
 
-        private void roundedButton1_Click(object sender, EventArgs e)
+        private async void roundedButton1_Click(object sender, EventArgs e)
         {
             Walidacja walidacja = new Walidacja();
 
@@ -70,7 +70,8 @@ namespace egzamin_dyplomowy
                 MessageBox.Show("Rejestracja zakoñczona sukcesem!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 string url = "https://egzamin-dyplomowy.7m.pl/rejestracja.php";
                 HTTPConnection conn = new HTTPConnection(url);
-                string responce = await conn.Register(textrejestracja.Text.ToLower(), texthaslo.Text, textimie.Text, textnazwisko.Text);
+                string responce = await conn.Register(email, haslo, "imie", "nazwisko");
+                //string responce = await conn.Register(textrejestracja.Text.ToLower(), texthaslo.Text, textimie.Text, textnazwisko.Text);
                 ValueChanged?.Invoke(this, responce);
             }
         }
@@ -99,6 +100,16 @@ namespace egzamin_dyplomowy
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void powrotlogowanielinl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (this.ParentForm is Form1 mainForm)
+            {
+                logowanie aktywuj = new logowanie();
+                aktywuj.ValueChanged += mainForm.getToken;
+                mainForm.ChangeUserControl(aktywuj);
+            }
         }
     }
 }
