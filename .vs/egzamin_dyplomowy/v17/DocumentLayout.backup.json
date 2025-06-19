@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\nwmja\\Documents\\GitHub\\Egzamin-Dyplomowy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{79902EFB-C3FA-FA00-9192-AE69501F36EF}|egzamin_dyplomowy.csproj|c:\\users\\nwmja\\documents\\github\\egzamin-dyplomowy\\kalendarzcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79902EFB-C3FA-FA00-9192-AE69501F36EF}|egzamin_dyplomowy.csproj|solutionrelative:kalendarzcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79902EFB-C3FA-FA00-9192-AE69501F36EF}|egzamin_dyplomowy.csproj|c:\\users\\nwmja\\documents\\github\\egzamin-dyplomowy\\kalendarzcontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79902EFB-C3FA-FA00-9192-AE69501F36EF}|egzamin_dyplomowy.csproj|solutionrelative:kalendarzcontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79902EFB-C3FA-FA00-9192-AE69501F36EF}|egzamin_dyplomowy.csproj|c:\\users\\nwmja\\documents\\github\\egzamin-dyplomowy\\zarzadzaniepytaniami.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79902EFB-C3FA-FA00-9192-AE69501F36EF}|egzamin_dyplomowy.csproj|solutionrelative:zarzadzaniepytaniami.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ZarzadzaniePytaniami.cs",
+              "DocumentMoniker": "C:\\Users\\nwmja\\Documents\\GitHub\\Egzamin-Dyplomowy\\ZarzadzaniePytaniami.cs",
+              "RelativeDocumentMoniker": "ZarzadzaniePytaniami.cs",
+              "ToolTip": "C:\\Users\\nwmja\\Documents\\GitHub\\Egzamin-Dyplomowy\\ZarzadzaniePytaniami.cs",
+              "RelativeToolTip": "ZarzadzaniePytaniami.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAwEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T20:49:06.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "KalendarzControl.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\nwmja\\Documents\\GitHub\\Egzamin-Dyplomowy\\KalendarzControl.Designer.cs",
+              "RelativeDocumentMoniker": "KalendarzControl.Designer.cs",
+              "ToolTip": "C:\\Users\\nwmja\\Documents\\GitHub\\Egzamin-Dyplomowy\\KalendarzControl.Designer.cs",
+              "RelativeToolTip": "KalendarzControl.Designer.cs",
+              "ViewState": "AgIAACMBAAAAAAAAAAAAwDEBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T20:49:04.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KalendarzControl.cs",
+              "DocumentMoniker": "C:\\Users\\nwmja\\Documents\\GitHub\\Egzamin-Dyplomowy\\KalendarzControl.cs",
+              "RelativeDocumentMoniker": "KalendarzControl.cs",
+              "ToolTip": "C:\\Users\\nwmja\\Documents\\GitHub\\Egzamin-Dyplomowy\\KalendarzControl.cs",
+              "RelativeToolTip": "KalendarzControl.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T20:48:50.639Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

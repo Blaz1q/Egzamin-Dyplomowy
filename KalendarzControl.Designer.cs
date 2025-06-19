@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            button1 = new Button();
-            button2 = new Button();
             panel3 = new Panel();
             roundedButton1 = new RoundedButton();
             roundedButton2 = new RoundedButton();
@@ -153,25 +150,63 @@
             flowLayoutPanel1.Size = new Size(250, 185);
             flowLayoutPanel1.TabIndex = 7;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 73.40067F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 26.5993271F));
+            tableLayoutPanel1.Size = new Size(375, 594);
+            tableLayoutPanel1.TabIndex = 8;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.6849022F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.3150978F));
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 0);
+            tableLayoutPanel2.Controls.Add(panel3, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(914, 600);
+            tableLayoutPanel2.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 4);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(369, 428);
+            panel1.TabIndex = 8;
+            // 
             // KalendarzControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(flowLayoutPanel1);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
+            Controls.Add(tableLayoutPanel2);
             Margin = new Padding(3, 4, 3, 4);
             Name = "KalendarzControl";
             Size = new Size(914, 600);
             panel1.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -179,5 +214,8 @@
         private RoundedButton roundedButton2; // NEW
         private RoundedButton roundedButton3; // NEW
         private FlowLayoutPanel flowLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Panel panel1;
     }
 }

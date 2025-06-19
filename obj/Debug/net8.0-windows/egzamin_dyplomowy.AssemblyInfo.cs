@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("egzamin_dyplomowy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbf31d31467b2eee31ee7ac75fcf0233551e0b73")]
 [assembly: System.Reflection.AssemblyProductAttribute("egzamin_dyplomowy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("egzamin_dyplomowy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -71,7 +71,16 @@ public class ZarzadzaniePytaniami
         }
     return null;
     }
-
+    public List<int> LosujPytania(string kierunek, Wykladowca wykladowca, int liczba = 3)
+    {
+        Random rand = new Random();
+        return pytania
+                .Where(p => p.Kierunek == kierunek && p.Wykladowcy.Contains(wykladowca))
+                .Select(p => p.Id)
+                .OrderBy(x => rand.Next())
+                .Take(liczba)
+                .ToList();
+    }
     public List<int> LosujPytaniaDlaKierunku(string kierunek, int liczba = 3)
     {
         Random rand = new Random();
