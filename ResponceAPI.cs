@@ -38,7 +38,7 @@ namespace egzamin_dyplomowy
                     this.hasData = true;
                 }
             }
-            catch (Exception ex) {
+            catch (JsonSerializationException ex) {
                 this.Success = false;
                 this.Message = "Nieznany format wiadomości: "+ex.ToString();
             }
@@ -82,7 +82,7 @@ namespace egzamin_dyplomowy
         public void SetDane() {
             if (this.Has("User")) {
                 JObject user = this.Data["User"].ToObject<JObject>();
-                Dane.User = new Uzytkownik(user["user_id"].ToObject<int>(),user["imie"].ToString(), user["nazwisko"].ToString(), "nwm", user["rodzaj_konta"].ToObject<int>());
+                Dane.User = new Uzytkownik(user["imie"].ToString(), user["nazwisko"].ToString(), "nwm", user["rodzaj_konta"].ToObject<int>());
             }
             if (this.Has("Studenci"))
             {
@@ -100,19 +100,7 @@ namespace egzamin_dyplomowy
                     int id = item["id"].ToObject<int>();
                     string imie = item["imie"].ToString();
                     string nazwisko = item["nazwisko"].ToString();
-                    Dane.Wykladowcy.DodajWykladowce(id, imie, nazwisko, item["nazwa"].ToString());
-                }
-            }
-            if (this.Has("Promotorzy")) {
-                JArray Promotorzy = this.Data["Promotorzy"].ToObject<JArray>();
-                foreach (var item in Promotorzy)
-                {
-                    int id = item["id"].ToObject<int>();
-                    string imie = item["imie"].ToString();
-                    string nazwisko = item["nazwisko"].ToString();
-                    string sala = item["sala_promotora"].ToString();
-                    Promotor prom = new Promotor(id,imie,nazwisko,sala);
-                    Dane.Wykladowcy.DodajWykladowce(prom);
+                    Dane.Wykladowcy.DodajWykladowce(id, imie, nazwisko, "skibidi");
                 }
             }
             if (this.Has("Pytania") && this.Has("LaczeniaPytan")) { 

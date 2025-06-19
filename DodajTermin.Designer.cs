@@ -13,6 +13,7 @@ namespace egzamin_dyplomowy
         private RoundedPanel panelTime;
         private Label lblSelectedTime;
         private DateTimePicker timePicker;
+        private RoundedComboBox cmbEgzamin;
         private RoundedPanel panelOccupied;
         private Label lblOccupied;
         private FlowLayoutPanel flpOccupied;
@@ -26,12 +27,11 @@ namespace egzamin_dyplomowy
             panelTime = new RoundedPanel();
             lblSelectedTime = new Label();
             timePicker = new DateTimePicker();
+            cmbEgzamin = new RoundedComboBox();
             panelOccupied = new RoundedPanel();
             lblOccupied = new Label();
             flpOccupied = new FlowLayoutPanel();
             btnSubmit = new Button();
-            dodajEgz = new Button();
-            cmbEgzamin = new RoundedComboBox();
             panelDate.SuspendLayout();
             panelTime.SuspendLayout();
             panelOccupied.SuspendLayout();
@@ -107,6 +107,22 @@ namespace egzamin_dyplomowy
             timePicker.Size = new Size(110, 29);
             timePicker.TabIndex = 1;
             // 
+            // cmbEgzamin
+            // 
+            cmbEgzamin.ActiveBorderColor = Color.DodgerBlue;
+            cmbEgzamin.ArrowColor = Color.FromArgb(100, 100, 100);
+            cmbEgzamin.BorderColor = Color.FromArgb(220, 220, 220);
+            cmbEgzamin.BorderThickness = 1;
+            cmbEgzamin.CornerRadius = 8;
+            cmbEgzamin.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbEgzamin.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEgzamin.FillColor = Color.LightGray;
+            cmbEgzamin.Location = new Point(116, 142);
+            cmbEgzamin.Name = "cmbEgzamin";
+            cmbEgzamin.Placeholder = "Egzamin";
+            cmbEgzamin.Size = new Size(260, 28);
+            cmbEgzamin.TabIndex = 2;
+            // 
             // panelOccupied
             // 
             panelOccupied.BackColor = Color.LightGray;
@@ -149,40 +165,10 @@ namespace egzamin_dyplomowy
             btnSubmit.Text = "Zatwierdź";
             btnSubmit.UseVisualStyleBackColor = false;
             // 
-            // dodajEgz
-            // 
-            dodajEgz.BackColor = Color.Transparent;
-            dodajEgz.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dodajEgz.ForeColor = Color.Black;
-            dodajEgz.Location = new Point(116, 393);
-            dodajEgz.Name = "dodajEgz";
-            dodajEgz.Size = new Size(260, 30);
-            dodajEgz.TabIndex = 5;
-            dodajEgz.Text = "Dodaj Egzamin";
-            dodajEgz.UseVisualStyleBackColor = false;
-            dodajEgz.Click += dodajEgz_Click;
-            // 
-            // cmbEgzamin
-            // 
-            cmbEgzamin.ActiveBorderColor = Color.DodgerBlue;
-            cmbEgzamin.ArrowColor = Color.FromArgb(100, 100, 100);
-            cmbEgzamin.BorderColor = Color.FromArgb(220, 220, 220);
-            cmbEgzamin.BorderThickness = 1;
-            cmbEgzamin.CornerRadius = 8;
-            cmbEgzamin.DrawMode = DrawMode.OwnerDrawFixed;
-            cmbEgzamin.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEgzamin.FillColor = Color.LightGray;
-            cmbEgzamin.Location = new Point(116, 142);
-            cmbEgzamin.Name = "cmbEgzamin";
-            cmbEgzamin.Placeholder = "Egzamin";
-            cmbEgzamin.Size = new Size(260, 28);
-            cmbEgzamin.TabIndex = 2;
-            // 
             // DodajTermin
             // 
             BackColor = Color.Gray;
             ClientSize = new Size(499, 447);
-            Controls.Add(dodajEgz);
             Controls.Add(panelDate);
             Controls.Add(panelTime);
             Controls.Add(cmbEgzamin);
@@ -202,8 +188,5 @@ namespace egzamin_dyplomowy
             panelOccupied.PerformLayout();
             ResumeLayout(false);
         }
-
-        private Button dodajEgz;
-        private RoundedComboBox cmbEgzamin;
     }
 }

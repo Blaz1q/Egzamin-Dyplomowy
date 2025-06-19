@@ -1,4 +1,4 @@
-﻿namespace egzamin_dyplomowy
+namespace egzamin_dyplomowy
 {
     partial class KalendarzControl
     {
