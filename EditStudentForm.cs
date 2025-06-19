@@ -32,6 +32,9 @@ namespace egzamin_dyplomowy
         {
             txtImie.Text = _student.imie;
             txtNazwisko.Text = _student.nazwisko;
+            if (_student.getSrednia() < 2) {
+                _student.setSrednia(2);
+            }
             numSrednia.Value = (decimal)_student.getSrednia();
             chkKolaNaukowe.Checked = _student.kola_naukowe;
             numKierunek.Value = _student.kierunek;
