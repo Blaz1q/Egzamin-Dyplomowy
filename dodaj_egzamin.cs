@@ -15,40 +15,33 @@ namespace egzamin_dyplomowy
     {
         Egzamin egzamin;
         string kierunek;
-        public dodaj_egzamin()
+        Wykladowca current_osoba;
+        Pytanie[] pytania = new Pytanie[3];
+        public event Action<Egzamin> egzamin_set;
+        public dodaj_egzamin(Wykladowca wykladowca)
         {
-            this.kierunek = "informatyka";
-            var promotor = new Promotor(0, "Zbigniew", "Promotor", "XD");
-            var recenzent = new Wykladowca(1, "Zbigniew", "Recenzent", "Recenzent");
-            var prodziekan = new Wykladowca(2, "Zbigniew", "Prodziekan", "Prodziekan");
-
-
-            // Dodajemy wykładowców do systemu
-            Dane.Wykladowcy.DodajWykladowce(promotor);
-            Dane.Wykladowcy.DodajWykladowce(recenzent);
-            Dane.Wykladowcy.DodajWykladowce(prodziekan);
-
-            var lista1 = new List<Wykladowca> { promotor };
-            var lista2 = new List<Wykladowca> { recenzent };
-            var lista3 = new List<Wykladowca> { prodziekan };
-            var lista4 = new List<Wykladowca> { promotor };
-            var lista5 = new List<Wykladowca> { recenzent, promotor };
-
-            Dane.Pytania.DodajPytanie("Co to jest Skibidi?", "informatyka", lista1, "ogólne", "inżynierskie");
-            Dane.Pytania.DodajPytanie("Wyjaśnij zjawisko powstania ziemi.", "informatyka", lista2, "specjalistyczne", "magisterskie");
-            Dane.Pytania.DodajPytanie("Kim jesteś?", "informatyka", lista3, "rozszerzone", "inżynierskie");
-            Dane.Pytania.DodajPytanie("jak wygonić smoka z kuchni?", "informatyka", lista4, "ogólne", "inżynierskie");
-            Dane.Pytania.DodajPytanie("Do czego służy miernikmagnetoelektryczny?", "matematyka", lista5, "ogólne", "inżynierskie");
-            //Dane.Wykladowcy.DodajWykladowce(0, "Zbigniew", "Recenzent", "Recenzent");
-            //Dane.Wykladowcy.DodajWykladowce(1, "Zbigniew", "Otremba", "Promotor");
-            //Dane.Wykladowcy.DodajWykladowce(new Promotor(1, "Zbigniew", "Promotor", "C122"));
-            //Dane.Wykladowcy.DodajWykladowce(2, "Zbigniew", "Prodziekan", "Prodziekan");
-
+            this.kierunek = "Informatyka";
+            this.current_osoba = wykladowca;
             InitializeComponent();
             wstaw_wykladowcow(comboBox2, "Promotor");
             wstaw_wykladowcow(comboBox3, "Recenzent");
             wstaw_wykladowcow(comboBox4, "Prodziekan");
-
+            wstaw_studentow(comboBox1);
+            switch (current_osoba.Status)
+            {
+                case "Prodziekan":
+                    UstawComboBoxNaWartosci(comboBox4, current_osoba);
+                    comboBox4.Enabled = false;
+                    break;
+                case "Recenzent":
+                    UstawComboBoxNaWartosci(comboBox3, current_osoba);
+                    comboBox3.Enabled = false;
+                    break;
+                case "Promotor":
+                    UstawComboBoxNaWartosci(comboBox2, current_osoba);
+                    comboBox2.Enabled = false;
+                    break;
+            }
         }
         public class ComboBoxItem
         {
@@ -58,6 +51,17 @@ namespace egzamin_dyplomowy
             public override string ToString()
             {
                 return Text;
+            }
+        }
+        private void UstawComboBoxNaWartosci(ComboBox comboBox, Wykladowca wykladowca)
+        {
+            foreach (ComboBoxItem item in comboBox.Items)
+            {
+                if (item.Value is Wykladowca w && w.Id == wykladowca.Id)
+                {
+                    comboBox.SelectedItem = item;
+                    break;
+                }
             }
         }
         private void wstaw_wykladowcow(ComboBox combobox, string type)
@@ -72,6 +76,17 @@ namespace egzamin_dyplomowy
                         Value = wykladowca
                     });
                 }
+            }
+        }
+        private void wstaw_studentow(ComboBox combobox)
+        {
+            foreach (Student student in Dane.Studenci.getLista())
+            {
+                combobox.Items.Add(new ComboBoxItem
+                {
+                    Text = $"{student.GetImie()} {student.GetNazwisko()}",
+                    Value = student
+                });
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -218,7 +233,10 @@ namespace egzamin_dyplomowy
                 MessageBox.Show("Musisz najpierw wylosować wszystkie pytania.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            MessageBox.Show("Wszystkie pytania zostały wylosowane, możesz kontynuować.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            List<Pytanie> lista = pytania.ToList();
+            egzamin = new Egzamin((Student)getItem(comboBox1), (Promotor)getItem(comboBox2), (Wykladowca)getItem(comboBox3), (Wykladowca)getItem(comboBox4), lista);
+            egzamin_set.Invoke(egzamin);
+            this.Close();
         }
 
         private void roundedButton3_Click(object sender, EventArgs e)
@@ -231,6 +249,7 @@ namespace egzamin_dyplomowy
             }
 
             var pytanie = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek, promotor, 1)[0]);
+            pytania[0] = pytanie;
             textBox1.Text = pytanie.GetTresc();
         }
 
@@ -245,6 +264,7 @@ namespace egzamin_dyplomowy
             }
 
             var pytanie = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek, recenzent, 1)[0]);
+            pytania[1] = pytanie;
             textBox2.Text = pytanie.GetTresc();
         }
 
@@ -259,6 +279,7 @@ namespace egzamin_dyplomowy
             }
 
             var pytanie = Dane.Pytania.GetPytanie(Dane.Pytania.LosujPytania(this.kierunek, prodziekan, 1)[0]);
+            pytania[2] = pytanie;
             textBox3.Text = pytanie.GetTresc();
         }
 
